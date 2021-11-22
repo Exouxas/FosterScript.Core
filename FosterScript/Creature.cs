@@ -41,6 +41,9 @@
         private double maxMovementSpeed; // no limit
 
 
+        /// <summary>
+        /// The cost of looking.
+        /// </summary>
         public double VisionCost
         {
             get 
@@ -53,6 +56,9 @@
         private double visionWidth; // no limit
 
 
+        /// <summary>
+        /// The cost of attacking.
+        /// </summary>
         public double AttackCost
         {
             get 
@@ -65,6 +71,9 @@
         private double attackWidth; // no limit
 
 
+        /// <summary>
+        /// The cost of eating.
+        /// </summary>
         public double EatCost 
         {
             get
@@ -76,6 +85,9 @@
         private double meatReward; // 0 to 1
 
 
+        /// <summary>
+        /// The cost of releasing pheromones.
+        /// </summary>
         public double PheromoneCost 
         { 
             get 
@@ -87,6 +99,9 @@
         private double pheromoneTime; // no limit
 
 
+        /// <summary>
+        /// The cost of smelling.
+        /// </summary>
         public double SmellCost 
         { 
             get
@@ -97,7 +112,9 @@
         private double smellRange; // no limit
 
 
-
+        /// <summary>
+        /// The forced cost for the round.
+        /// </summary>
         public double TurnCost
         {
             get 
@@ -109,7 +126,7 @@
         private double initiative;
 
 
-        private double stealth; // How stealthy it can be
-        private double attraction; // How flashy and attractive it is
+        private double stealth; // How stealthy the creature can be
+        private double attraction; // How flashy and attractive the creature is
     }
 }
