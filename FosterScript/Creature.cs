@@ -2,7 +2,9 @@
 {
     public class Creature
     {
-
+        /// <summary>
+        /// Amount of food stored in the creature. Limited by the maxFoodStorage variable.
+        /// </summary>
         public double FoodStorage
         {
             get { return foodStorage; }
@@ -26,14 +28,15 @@
         private double maxFoodStorage; // no limit
 
 
-
+        /// <summary>
+        /// The cost of doing a movement action.
+        /// </summary>
         public double MovementCost
         {
             get 
             { 
                 return maxFoodStorage * maxMovementSpeed * foodStorage; 
             }
-            set { }
         }
         private double maxMovementSpeed; // no limit
 
@@ -45,7 +48,6 @@
                 return visionLength * visionWidth;
 
             }
-            set { }
         }
         private double visionLength; // no limit
         private double visionWidth; // no limit
@@ -57,7 +59,6 @@
             {
                 return attackStrength * attackLength * attackWidth;
             }
-            set { }
         }
         private double attackStrength; // no limit
         private double attackLength; // no limit
@@ -70,7 +71,6 @@
             {
                 return (veggieReward + 1) * (meatReward + 1);
             }
-            set { }
         }
         private double veggieReward; // 0 to 1
         private double meatReward; // 0 to 1
@@ -82,7 +82,6 @@
             {
                 return pheromoneRange * pheromoneTime;
             }
-            set { }
         }
         private double pheromoneRange; // no limit
         private double pheromoneTime; // no limit
@@ -94,7 +93,6 @@
             {
                 return smellRange * smellRange;
             }
-            set { }
         }
         private double smellRange; // no limit
 
@@ -106,7 +104,6 @@
             { 
                 return initiative / timerFrequency;
             }
-            set { }
         }
         private int timerFrequency;
         private double initiative;
