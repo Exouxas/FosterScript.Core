@@ -20,7 +20,7 @@ namespace FosterScriptLib.Neurons
         internal string description;
 
 
-        abstract public double Output { get; }
+        public abstract double Output { get; }
 
 
 
