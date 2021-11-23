@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FosterScriptLib.Neuron
+namespace FosterScriptLib.Neurons
 {
-    public class NegativeNeuron : Neuron
+    public class PositiveNeuron : Neuron
     {
-        public NegativeNeuron()
+        public PositiveNeuron()
         {
-            name = "Negative";
-            description = "Returns -4";
+            name = "Positive";
+            description = "Returns 4";
         }
 
 
@@ -18,7 +18,7 @@ namespace FosterScriptLib.Neuron
         {
             get
             {
-                return -4d;
+                return 4d;
             }
         }
     }
