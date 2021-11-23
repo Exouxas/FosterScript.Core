@@ -1,4 +1,4 @@
-﻿namespace FosterScript
+﻿namespace FosterScriptLib
 {
     public class Creature
     {
