@@ -14,14 +14,11 @@ namespace FosterScriptLib.Neurons
         }
 
 
-        public override double Output
+        protected override double calculateOutput()
         {
-            get
-            {
-                double min = inputs.Min(item => item.Output);
-                double max = inputs.Max(item => item.Output);
-                return 4 - (max - min); // Lowest possible is -4, highest is 4, so biggest difference can be 8, which returns -4
-            }
+            double min = inputs.Min(item => item.Output);
+            double max = inputs.Max(item => item.Output);
+            return 4 - (max - min); // Lowest possible is -4, highest is 4, so biggest difference can be 8, which returns -4
         }
     }
 }

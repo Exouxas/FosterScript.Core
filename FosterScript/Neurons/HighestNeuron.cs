@@ -14,12 +14,9 @@ namespace FosterScriptLib.Neurons
         }
 
 
-        public override double Output
+        protected override double calculateOutput()
         {
-            get
-            {
-                return inputs.Max(item => item.Output);
-            }
+            return inputs.Max(item => item.Output);
         }
     }
 }

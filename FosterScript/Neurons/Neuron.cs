@@ -20,7 +20,15 @@ namespace FosterScriptLib.Neurons
         protected string description;
 
 
-        public abstract double Output { get; }
+        public double Output
+        {
+            get
+            {
+                savedOutput = calculateOutput();
+                return savedOutput;
+            }
+        }
+        protected double savedOutput;
 
 
 
@@ -43,5 +51,8 @@ namespace FosterScriptLib.Neurons
         {
             inputs.Add(n);
         }
+
+
+        protected abstract double calculateOutput();
     }
 }

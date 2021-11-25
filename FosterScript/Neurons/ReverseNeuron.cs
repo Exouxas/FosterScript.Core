@@ -14,12 +14,9 @@ namespace FosterScriptLib.Neurons
         }
 
 
-        public override double Output
+        protected override double calculateOutput()
         {
-            get
-            {
-                return Math.Tanh(inputs.Sum(item => item.Output)) * -1;
-            }
+            return Math.Tanh(inputs.Sum(item => item.Output)) * -1;
         }
     }
 }

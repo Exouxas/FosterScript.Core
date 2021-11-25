@@ -14,13 +14,10 @@ namespace FosterScriptLib.Neurons
         }
 
 
-        public override double Output
+        protected override double calculateOutput()
         {
-            get
-            {
-                double sum = inputs.Sum(item => item.Output);
-                return (sum / Math.Abs(sum)) * 4;
-            }
+            double sum = inputs.Sum(item => item.Output);
+            return (sum / Math.Abs(sum)) * 4;
         }
     }
 }
