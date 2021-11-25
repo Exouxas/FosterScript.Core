@@ -11,13 +11,13 @@ namespace FosterScriptLib.Neurons
         {
             get { return name; }
         }
-        internal string name;
+        protected string name;
 
         public string Description
         {
             get { return description; }
         }
-        internal string description;
+        protected string description;
 
 
         public abstract double Output { get; }
@@ -28,11 +28,13 @@ namespace FosterScriptLib.Neurons
         { 
             get { return inputs; }
         }
-        internal List<Neuron> inputs;
+        protected List<Neuron> inputs;
 
         public Neuron()
         {
             inputs = new List<Neuron>();
+            name = "";
+            description = "";
         }
 
 
