@@ -1,4 +1,5 @@
 ﻿using FosterScriptLib.Organs;
+using System.Numerics;
 
 namespace FosterScriptLib
 {
@@ -16,5 +17,7 @@ namespace FosterScriptLib
          */
 
         public List<Organ> Organs { get; set; }
+
+        public Vector2 Position { get; set; }
     }
 }
