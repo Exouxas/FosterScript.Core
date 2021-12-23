@@ -1,4 +1,6 @@
-﻿namespace FosterScriptLib
+﻿using FosterScriptLib.Organs;
+
+namespace FosterScriptLib
 {
     public class Creature
     {
@@ -12,5 +14,7 @@
          * 
          * This creature will only have base functionality. (like position, size, and colour)
          */
+
+        public List<Organ> Organs { get; set; }
     }
 }
