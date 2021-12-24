@@ -19,5 +19,28 @@ namespace FosterScriptLib
         public List<Organ> Organs { get; set; }
 
         public Vector2 Position { get; set; }
+
+        public string GeneticDirectory 
+        {
+            get
+            {
+                return GeneticDirectory;
+            }
+            set 
+            { 
+                // TODO: Code for reading what organs the creature can have. (Script folder)
+            } 
+        }
+
+        public Creature(float x, float y)
+        {
+            Position = new Vector2(x, y);
+            Organs = new List<Organ>();
+        }
+
+        public Creature(float x, float y, string geneticDirectory): this(x, y)
+        {
+            GeneticDirectory = geneticDirectory;
+        }
     }
 }
