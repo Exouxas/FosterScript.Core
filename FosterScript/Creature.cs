@@ -20,6 +20,10 @@ namespace FosterScriptLib
 
         public Vector2 Position { get; set; }
 
+        public double Radius { get; set; }
+
+        public System.Drawing.Color Color { get; set; }
+
         public string GeneticDirectory 
         {
             get
