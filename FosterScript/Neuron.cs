@@ -9,22 +9,22 @@ namespace FosterScriptLib
     {
         public string Name
         {
-            get { return name; }
+            get { return _name; }
         }
-        protected string name;
+        protected string _name;
 
         public string Description
         {
-            get { return description; }
+            get { return _description; }
         }
-        protected string description;
+        protected string _description;
 
 
 
-        public Neuron()
+        public Neuron(string name, string description)
         {
-            name = "";
-            description = "";
+            _name = name;
+            _description = description;
         }
     }
 }
