@@ -20,39 +20,11 @@ namespace FosterScriptLib
         protected string description;
 
 
-        public double Output
-        {
-            get
-            {
-                savedOutput = calculateOutput();
-                return savedOutput;
-            }
-        }
-        protected double savedOutput;
-
-
-
-        public List<Neuron> Inputs 
-        { 
-            get { return inputs; }
-        }
-        protected List<Neuron> inputs;
 
         public Neuron()
         {
-            inputs = new List<Neuron>();
             name = "";
             description = "";
         }
-
-
-
-        public void AddInput(Neuron n)
-        {
-            inputs.Add(n);
-        }
-
-
-        protected abstract double calculateOutput();
     }
 }
