@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FosterScriptLib
+namespace FosterScriptLib.Nodes
 {
-    internal interface ICanSupplement
+    public interface ICanSupplement
     {
         public double Output { get; }
     }

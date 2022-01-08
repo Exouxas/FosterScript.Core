@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FosterScriptLib
+namespace FosterScriptLib.Nodes
 {
-    internal interface ICanAugment
+    public interface ICanAugment
     {
-        public List<ICanSupplement> Inputs { get; set; }
+        abstract List<ICanSupplement> Inputs { get; }
     }
 }
