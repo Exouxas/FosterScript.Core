@@ -12,9 +12,18 @@ namespace FosterScriptLib.Nodes
         {
             get
             {
-                return GetOutput();
+                if (!HasCalculated)
+                {
+                    storedOutput = GetOutput();
+                    HasCalculated = true;
+                }
+                return storedOutput;
             } 
         }
+        private double storedOutput;
+
+        public bool HasCalculated { get; set; }
+
         protected abstract double GetOutput();
 
         protected InputNode(string name, string description) : base(name, description)
