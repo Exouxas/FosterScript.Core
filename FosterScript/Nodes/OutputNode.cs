@@ -8,6 +8,11 @@ namespace FosterScriptLib.Nodes
 {
     public abstract class OutputNode : Neuron, ICanAugment
     {
-        public abstract List<ICanSupplement> Inputs { get; }
+        public List<ICanSupplement> Inputs { get; }
+
+        protected OutputNode(string name, string description) : base(name, description)
+        {
+            Inputs = new List<ICanSupplement>();
+        }
     }
 }

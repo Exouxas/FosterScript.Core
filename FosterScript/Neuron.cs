@@ -21,7 +21,7 @@ namespace FosterScriptLib
 
 
 
-        public Neuron(string name, string description)
+        protected Neuron(string name, string description)
         {
             _name = name;
             _description = description;

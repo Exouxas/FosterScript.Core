@@ -8,7 +8,19 @@ namespace FosterScriptLib.Nodes
 {
     public abstract class HiddenNode : Neuron, ICanSupplement, ICanAugment
     {
-        public abstract List<ICanSupplement> Inputs { get; }
-        public abstract double Output { get; }
+        public List<ICanSupplement> Inputs { get; }
+        public double Output
+        {
+            get
+            {
+                return GetOutput();
+            }
+        }
+        protected abstract double GetOutput();
+
+        protected HiddenNode(string name, string description) : base(name, description)
+        {
+            Inputs = new List<ICanSupplement>();
+        }
     }
 }
