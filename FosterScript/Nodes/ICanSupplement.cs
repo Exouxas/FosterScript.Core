@@ -9,6 +9,7 @@ namespace FosterScriptLib.Nodes
     public interface ICanSupplement
     {
         public double Output { get; }
-        public bool HasCalculated { get; set; }
+        public void Calculate();
+        public void Propagate();
     }
 }

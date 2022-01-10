@@ -12,17 +12,22 @@ namespace FosterScriptLib.Nodes
         {
             get
             {
-                if (!HasCalculated)
-                {
-                    storedOutput = GetOutput();
-                    HasCalculated = true;
-                }
-                return storedOutput;
+                return output;
             } 
         }
+        private double output;
+
         private double storedOutput;
 
-        public bool HasCalculated { get; set; }
+        public void Calculate()
+        {
+            storedOutput = GetOutput();
+        }
+
+        public void Propagate()
+        {
+            output = storedOutput;
+        }
 
         protected abstract double GetOutput();
 
