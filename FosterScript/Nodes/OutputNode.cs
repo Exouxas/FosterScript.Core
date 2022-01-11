@@ -11,11 +11,11 @@ namespace FosterScriptLib.Nodes
     /// </summary>
     public abstract class OutputNode : Neuron, ICanAugment
     {
-        public List<ICanSupplement> Inputs { get; }
+        public List<NeuralConnection> Inputs { get; }
 
         protected OutputNode(string name, string description) : base(name, description)
         {
-            Inputs = new List<ICanSupplement>();
+            Inputs = new List<NeuralConnection>();
         }
     }
 }

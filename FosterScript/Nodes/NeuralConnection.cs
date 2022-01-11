@@ -16,6 +16,15 @@ namespace FosterScriptLib.Nodes
 
         public double Weight { get; }
 
+        public double Output
+        {
+            get 
+            { 
+                return From.Output * Weight;
+            }
+        }
+
+
         public NeuralConnection(ICanSupplement from, ICanAugment to, double weight)
         {
             From = from;
@@ -33,6 +42,8 @@ namespace FosterScriptLib.Nodes
             {
                 Weight = weight;
             }
+
+            To.Inputs.Add(this);
         }
     }
 }

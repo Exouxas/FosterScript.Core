@@ -11,6 +11,6 @@ namespace FosterScriptLib.Nodes
     /// </summary>
     public interface ICanAugment
     {
-        abstract List<ICanSupplement> Inputs { get; }
+        abstract List<NeuralConnection> Inputs { get; }
     }
 }

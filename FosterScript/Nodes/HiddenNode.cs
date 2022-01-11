@@ -11,11 +11,11 @@ namespace FosterScriptLib.Nodes
     /// </summary>
     public abstract class HiddenNode : InputNode, ICanAugment
     {
-        public List<ICanSupplement> Inputs { get; }
+        public List<NeuralConnection> Inputs { get; }
 
         protected HiddenNode(string name, string description) : base(name, description)
         {
-            Inputs = new List<ICanSupplement>();
+            Inputs = new List<NeuralConnection>();
         }
     }
 }
