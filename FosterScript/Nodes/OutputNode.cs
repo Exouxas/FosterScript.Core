@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace FosterScriptLib.Nodes
 {
+    /// <summary>
+    /// Exit node where values will be used to drive actions
+    /// </summary>
     public abstract class OutputNode : Neuron, ICanAugment
     {
         public List<ICanSupplement> Inputs { get; }

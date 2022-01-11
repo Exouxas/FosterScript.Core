@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace FosterScriptLib.Nodes
 {
+    /// <summary>
+    /// Calculating nodes used to calculate and propagate data from input to output
+    /// </summary>
     public abstract class HiddenNode : InputNode, ICanAugment
     {
         public List<ICanSupplement> Inputs { get; }

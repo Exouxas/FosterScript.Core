@@ -2,6 +2,9 @@
 
 namespace FosterScriptLib
 {
+    /// <summary>
+    /// Creature that will be evolving
+    /// </summary>
     public class Creature
     {
         /*

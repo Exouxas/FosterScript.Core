@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace FosterScriptLib
 {
+    /// <summary>
+    /// General neuron. Base type for the input, hidden, and output nodes.
+    /// </summary>
     public abstract class Neuron
     {
         public string Name
