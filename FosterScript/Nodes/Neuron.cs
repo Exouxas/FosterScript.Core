@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FosterScriptLib
+namespace FosterScriptLib.Nodes
 {
     /// <summary>
     /// General neuron. Base type for the input, hidden, and output nodes.
