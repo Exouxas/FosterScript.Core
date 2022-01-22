@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FosterScriptLib.Core.Nodes
+namespace FosterScript.Core.Nodes
 {
     /// <summary>
     /// Exit node where values will be used to drive actions

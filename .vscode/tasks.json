@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceRoot}/FosterScriptLib.csproj"
+                "${workspaceRoot}/FosterScript.csproj"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -17,7 +17,7 @@
             "type": "process",
             "args": [
                 "test",
-                "${workspaceRoot}/FosterScriptLib.csproj"
+                "${workspaceRoot}/FosterScript.csproj"
             ],
             "problemMatcher": "$msCompile",
             "group": {

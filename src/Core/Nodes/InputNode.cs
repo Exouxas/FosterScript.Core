@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FosterScriptLib.Core.Nodes
+namespace FosterScript.Core.Nodes
 {
     /// <summary>
     /// Nodes that provide input to the network
