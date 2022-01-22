@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FosterScriptLib.Nodes
+namespace FosterScriptLib.Core.Nodes
 {
     /// <summary>
     /// Simple connection between two nerons or nodes
