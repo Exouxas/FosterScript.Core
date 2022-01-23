@@ -82,7 +82,10 @@ namespace FosterScript.Loader
         }
         
 
-
+        /// <summary>
+        /// Gets value indicating whether the loader is active.
+        /// </summary>
+        /// <value></value>
         public bool Enabled 
         { 
             get { return FileCheckTimer.Enabled; } 
