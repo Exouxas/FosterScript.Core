@@ -15,19 +15,29 @@
             "group": "build"
         },
         {
-            "label": "cleanbuild",
+            "label": "rebuild",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceRoot}/src/FosterScript.csproj",
+                "-o", "./bin",
+                "-v", "m",
+                "--no-incremental"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "clean",
             "command": "C:/Windows/System32/cmd.exe",
             "type": "process",
             "args": [
                 "/C",
                 "rd", "/S", "/Q", "${workspaceRoot}\\src\\obj"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "dependsOn":[
-                "build"
             ]
         },
         {
