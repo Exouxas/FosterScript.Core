@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 
-namespace FosterScript.Loader
+namespace FosterScript.Core
 {
     /// <summary>
     /// Loads parts and components during runtime. Specifically for loading InputNode, HiddenNode, and Organ.
+    /// Can be used as a single-time loader.
     /// </summary>
-    public abstract class DynamicLoader
+    public abstract class Loader
     {
         /// <summary>
         /// Relative path to the node folder.
@@ -77,6 +78,12 @@ namespace FosterScript.Loader
                 if(value > 1)
                 {
                     FileCheckTimer.Interval = value * 1000 * 60; 
+                    FileCheckTimer.AutoReset = true;
+                }
+                else if(value == 0)
+                {
+                    FileCheckTimer.Interval = 0; 
+                    FileCheckTimer.AutoReset = false;
                 }
             }
         }
@@ -97,7 +104,7 @@ namespace FosterScript.Loader
         private DateTime lastLoadedTime;
 
 
-        public DynamicLoader()
+        public Loader()
         {
             organFolderLock = new object();
             nodeFolderLock = new object();
@@ -116,7 +123,7 @@ namespace FosterScript.Loader
             throw new NotImplementedException();
         }
 
-        public DynamicLoader(string nodeFolder, string organFolder) : this() 
+        public Loader(string nodeFolder, string organFolder) : this() 
         { 
             lock(nodeFolderLock)
             {
