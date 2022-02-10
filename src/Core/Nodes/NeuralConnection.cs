@@ -46,12 +46,12 @@ namespace FosterScript.Core.Nodes
             To.Inputs.Add(this);
         }
 
-        public NeuralConnection(byte[] bin, Dictionary<ICanSupplement> from, Dictionary<ICanAugment> to)
+        public NeuralConnection(byte[] bin, Dictionary<ushort, ICanSupplement> from, Dictionary<ushort, ICanAugment> to)
         {
-            int requiredSize = 8;
-            if(bin.Length != requiredSize) // Needs to be 64 bits total
+            int requiredSize = 6;
+            if(bin.Length != requiredSize) // Needs to be 48 bits total
             {
-                throw new Exception("Not correct amount of bytes. Expected "+ requiredSize + " bytes, but received " + bin.Length);
+                throw new Exception("Not correct amount of bytes. Expected "+ (requiredSize * 8) + " bits, but received " + (bin.Length * 8) + " bits");
             }
 
             // Logic for searching for link points (neurons)
