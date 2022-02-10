@@ -8,13 +8,27 @@
             "args": [
                 "build",
                 "${workspaceRoot}/src/FosterScript.csproj",
-                "-o", "./bin"
+                "-o", "./bin",
+                "-v", "m"
             ],
             "problemMatcher": "$msCompile",
+            "group": "build"
+        },
+        {
+            "label": "cleanbuild",
+            "command": "C:/Windows/System32/cmd.exe",
+            "type": "process",
+            "args": [
+                "/C",
+                "rd", "/S", "/Q", "${workspaceRoot}\\src\\obj"
+            ],
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "dependsOn":[
+                "build"
+            ]
         },
         {
             "label": "test",
