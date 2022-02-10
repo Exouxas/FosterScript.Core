@@ -45,5 +45,25 @@ namespace FosterScript.Core.Nodes
 
             To.Inputs.Add(this);
         }
+
+        public NeuralConnection(byte[] bin, Dictionary<ICanSupplement> from, Dictionary<ICanAugment> to)
+        {
+            int requiredSize = 8;
+            if(bin.Length != requiredSize) // Needs to be 64 bits total
+            {
+                throw new Exception("Not correct amount of bytes. Expected "+ requiredSize + " bytes, but received " + bin.Length);
+            }
+
+            // Logic for searching for link points (neurons)
+            throw new NotImplementedException();
+
+
+        }
+
+        public byte[] ToBinary()
+        {
+            // Logic for converting this object to binary.
+            throw new NotImplementedException();
+        }
     }
 }
