@@ -133,6 +133,9 @@ namespace FosterScript.Loader
         {
             // Check folders if any of the files are older than the last time they were loaded.
             throw new NotImplementedException();
+
+
+            lastLoadedTime = DateTime.Now;
         }
 
         
