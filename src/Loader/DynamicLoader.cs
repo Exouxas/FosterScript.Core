@@ -99,6 +99,9 @@ namespace FosterScript.Loader
 
         public DynamicLoader()
         {
+            organFolderLock = new object();
+            nodeFolderLock = new object();
+
             // Load and check default folders. Use a settings file.
 
 
