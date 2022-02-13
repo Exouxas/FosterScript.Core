@@ -14,7 +14,15 @@ namespace FosterScript.Core.Nodes
         public ICanSupplement From { get; }
         public ICanAugment To { get; }
 
-        public double Weight { get; }
+        public double Weight 
+        { 
+            get
+            {
+                return savedWeight;
+            }
+        }
+        private short weight;
+        private double savedWeight;
 
         public double Output
         {
@@ -25,23 +33,12 @@ namespace FosterScript.Core.Nodes
         }
 
 
-        public NeuralConnection(ICanSupplement from, ICanAugment to, double weight)
+        public NeuralConnection(ICanSupplement from, ICanAugment to, short weight)
         {
             From = from;
             To = to;
-
-            if(weight < -4)
-            {
-                Weight = -4;
-            }
-            else if(weight > 4)
-            {
-                Weight = 4;
-            }
-            else
-            {
-                Weight = weight;
-            }
+            this.weight = weight;
+            savedWeight = weight / 8192d;
 
             To.Inputs.Add(this);
         }
