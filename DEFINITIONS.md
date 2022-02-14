@@ -4,7 +4,7 @@
 Logical class that controls its host. Can create input and output nodes to allow for integration into the creatures logic.
 
 ## **Node**
-Calculation point in the neural network.
+Calculation point in the neural network. Separated into three categories:
 
 ### **Input node**
 Collects external information to create a signal that is provided to the network. Not affected by other neurons unless explicit logic is made in the organ that created it.
