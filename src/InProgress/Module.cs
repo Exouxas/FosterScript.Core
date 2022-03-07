@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 namespace FosterScript
 {
     /// <summary>
-    /// A "module" that can be inserted into a Creature for added functionality
+    /// A module that may be inserted into an Actor for added functionality
     /// </summary>
-    public abstract class Organ
+    public abstract class Module
     {
         /// <summary>
-        /// Parent creature
+        /// Parent actor
         /// </summary>
-        public abstract Creature Body { get; set; }
+        public abstract Actor Body { get; set; }
 
 
     }
