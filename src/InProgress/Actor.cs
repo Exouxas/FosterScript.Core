@@ -23,7 +23,7 @@ namespace FosterScript
          * This creature will only have base functionality. (like position, size, and colour)
          */
 
-        public List<Module> Modules { get; set; }
+        private List<Module> Modules { get; set; }
 
         public Vector2 Position { get; set; }
 
@@ -58,5 +58,9 @@ namespace FosterScript
 
         public abstract void Act();
         
+        public void AddModule(Module m){
+            Modules.Add(m);
+            m.Body = this;
+        }
     }
 }
