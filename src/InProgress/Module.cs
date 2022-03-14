@@ -16,6 +16,6 @@ namespace FosterScript
         /// </summary>
         public abstract Actor Body { get; set; }
 
-
+        public abstract List<string> Dependencies { get; }
     }
 }
