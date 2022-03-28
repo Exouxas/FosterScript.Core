@@ -9,8 +9,11 @@ namespace FosterScript.Core.Nodes
     /// <summary>
     /// Nodes that provide input to the network
     /// </summary>
-    public abstract class InputNode : Neuron, ICanSupplement
+    public class InputNode : Neuron, ICanSupplement
     {
+        public delegate void OutputRequestHandler(object sender, InputNeuronEventArgs e);
+        public event OutputRequestHandler OnRequestOutput;
+
         public double Output 
         {
             get
@@ -27,7 +30,13 @@ namespace FosterScript.Core.Nodes
         /// </summary>
         public void Calculate()
         {
-            storedOutput = GetOutput();
+            InputNeuronEventArgs args = new InputNeuronEventArgs();
+            if(OnRequestOutput != null)
+            {
+                OnRequestOutput(this, args);
+            }
+            
+            storedOutput = args.Output;
         }
 
         /// <summary>
@@ -38,16 +47,19 @@ namespace FosterScript.Core.Nodes
             output = storedOutput;
         }
 
-        // TODO: Change this to be an event that will call a listener in the module that added it.
-        /// <summary>
-        /// Method used when running Calculate()
-        /// </summary>
-        /// <returns>Should end up with a value from -1 to 1</returns>
-        protected abstract double GetOutput();
-
         protected InputNode(string name, string description) : base(name, description)
         {
 
+        }
+    }
+
+    public class InputNeuronEventArgs : EventArgs
+    {
+        public double Output { get; set; }
+
+        public InputNeuronEventArgs()
+        {
+            Output = 0;
         }
     }
 }
