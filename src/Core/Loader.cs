@@ -8,7 +8,7 @@ using System.Timers;
 namespace FosterScript.Core
 {
     /// <summary>
-    /// Loads parts and components during runtime. Specifically for loading InputNode, HiddenNode, and Organ.
+    /// Loads parts and components during runtime. Specifically for loading InputNode, HiddenNode, and Module.
     /// Can be used as a single-time loader.
     /// </summary>
     public abstract class Loader
@@ -39,28 +39,28 @@ namespace FosterScript.Core
 
 
         /// <summary>
-        /// Relative path to the organ folder.
+        /// Relative path to the module folder.
         /// </summary>
         /// <value>Relative path.</value>
-        public string OrganFolderPath 
+        public string ModuleFolderPath 
         { 
             get
             { 
-                lock(organFolderLock)
+                lock(moduleFolderLock)
                 {
-                    return organFolderPath;
+                    return moduleFolderPath;
                 }
             } 
             set
             {
-                lock(organFolderLock)
+                lock(moduleFolderLock)
                 {
-                    organFolderPath = value;
+                    moduleFolderPath = value;
                 }
             } 
         }
-        private string organFolderPath;
-        private readonly object organFolderLock;
+        private string moduleFolderPath;
+        private readonly object moduleFolderLock;
 
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace FosterScript.Core
 
         public Loader()
         {
-            organFolderLock = new object();
+            moduleFolderLock = new object();
             nodeFolderLock = new object();
 
             // Load and check default folders. Use a settings file.
@@ -123,16 +123,16 @@ namespace FosterScript.Core
             throw new NotImplementedException();
         }
 
-        public Loader(string nodeFolder, string organFolder) : this() 
+        public Loader(string nodeFolder, string moduleFolder) : this() 
         { 
             lock(nodeFolderLock)
             {
                 NodeFolderPath = nodeFolder;
             }
 
-            lock(organFolderLock)
+            lock(moduleFolderLock)
             {
-                OrganFolderPath = organFolder;
+                ModuleFolderPath = moduleFolder;
             }
         }
 
