@@ -11,6 +11,8 @@ namespace FosterScript.Core.Nodes
     /// </summary>
     public abstract class OutputNode : Neuron, ICanAugment
     {
+        // TODO: Change to not be abstract, and use event to link to the module that added it.
+
         public List<NeuralConnection> Inputs { get; }
 
         protected OutputNode(string name, string description) : base(name, description)

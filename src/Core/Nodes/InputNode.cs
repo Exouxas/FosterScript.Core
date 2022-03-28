@@ -38,6 +38,7 @@ namespace FosterScript.Core.Nodes
             output = storedOutput;
         }
 
+        // TODO: Change this to be an event that will call a listener in the module that added it.
         /// <summary>
         /// Method used when running Calculate()
         /// </summary>
