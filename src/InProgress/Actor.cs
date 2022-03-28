@@ -8,19 +8,16 @@ using System.Numerics;
 namespace FosterScript
 {
     /// <summary>
-    /// Creature that will be evolving
+    /// Hard-coded AI
     /// </summary>
     public abstract class Actor
     {
         /*
-         * Idea is being revised. The new way of making this will be more modular.
-         * 
-         * 
          * Each "module" will attempt to be self-sufficient. 
          * 
          * A module can be dependent on another module, although it will not crash the software if the dependency is missing.
          * 
-         * This creature will only have base functionality. (like position, size, and colour)
+         * This AI will only have base functionality. (like position, size, and colour)
          */
 
         private List<Module> Modules { get; set; }
@@ -31,17 +28,7 @@ namespace FosterScript
 
         public System.Drawing.Color Color { get; set; }
 
-        public string GeneticDirectory 
-        {
-            get
-            {
-                return GeneticDirectory;
-            }
-            set 
-            { 
-                // TODO: Code for reading what organs the creature can have. (Script folder)
-            } 
-        }
+        public string GeneticPotential { get; set; }
 
         public Actor(float x, float y)
         {
@@ -49,9 +36,9 @@ namespace FosterScript
             Modules = new List<Module>();
         }
 
-        public Actor(float x, float y, string geneticDirectory): this(x, y)
+        public Actor(float x, float y, string geneticPotential): this(x, y)
         {
-            GeneticDirectory = geneticDirectory;
+            GeneticPotential = geneticPotential;
         }
 
         public abstract void Think();
