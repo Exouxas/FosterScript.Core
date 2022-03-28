@@ -6,7 +6,7 @@ Self-learning AI: Instance of Learner
 
 Creating a module for AI: Inherit from Module
 
-Creating a custom neuron: Inherit from HiddenNode
+Creating a custom neuron: Inherit from HiddenNode or InputNode
 
 
 Utilizing the world/surrounding as an AI: Add an input or output node linked to a Module (Create all the logic in the Module)
