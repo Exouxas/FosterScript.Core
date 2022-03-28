@@ -9,9 +9,15 @@ namespace FosterScript.Core.Nodes
     /// <summary>
     /// Exit node where values will be used to drive actions
     /// </summary>
-    public abstract class OutputNode : Neuron, ICanAugment
+    public class OutputNode : Neuron, ICanAugment
     {
-        // TODO: Change to not be abstract, and use event to link to the module that added it.
+        public double Result
+        {
+            get 
+            { 
+                return Math.Tanh(Inputs.Sum()); 
+            }
+        }
 
         public List<NeuralConnection> Inputs { get; }
 
