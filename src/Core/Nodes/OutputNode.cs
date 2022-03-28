@@ -11,6 +11,9 @@ namespace FosterScript.Core.Nodes
     /// </summary>
     public class OutputNode : Neuron, ICanAugment
     {
+        /// <summary>
+        /// Calculates value that module can use.
+        /// </summary>
         public double Result
         {
             get 
