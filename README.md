@@ -10,19 +10,30 @@ The essential features of this library is:
 I'm planning to make a server hosted implementation of this library, that will have a web GUI where you can see the creature attempt to survive live. The way I have made the library currently would allow the creatures to live indefinitely.
 
 ## Progress
-- ![80%](https://progress-bar.dev/80) Structure
-- ![100%](https://progress-bar.dev/100) Neuron
-- ![25%](https://progress-bar.dev/25) Actor
-- ![5%](https://progress-bar.dev/5) Actor subtypes
-- ![10%](https://progress-bar.dev/10) Module
-- ![0%](https://progress-bar.dev/0) Module subtypes (might not have subtypes)
-- ![0%](https://progress-bar.dev/0) World
-- ![0%](https://progress-bar.dev/0) World subtypes
+My attempt at tracking progress of the different classes to make development more effective.
+- ![85%](https://progress-bar.dev/85) Overall architecture/design
+- ![80%](https://progress-bar.dev/80) Neural network
+  - ![100%](https://progress-bar.dev/100) Neuron
+  - ![100%](https://progress-bar.dev/100) InputNode
+  - ![100%](https://progress-bar.dev/100) HiddenNode
+  - ![100%](https://progress-bar.dev/100) OutputNode
+  - ![100%](https://progress-bar.dev/100) NeuralConnection
+  - ![0%](https://progress-bar.dev/0) Brain
+- ![33%](https://progress-bar.dev/33) Victims
+  - ![90%](https://progress-bar.dev/90) Actor
+  - ![5%](https://progress-bar.dev/5) Module
+  - ![5%](https://progress-bar.dev/5) Learner
+- ![0%](https://progress-bar.dev/0) Multiverse
+  - ![0%](https://progress-bar.dev/0) World
+  - ![0%](https://progress-bar.dev/0) IndefiniteWorld
+  - ![0%](https://progress-bar.dev/0) FiniteWorld
+- ![10%](https://progress-bar.dev/10) Loader
+
 
 ## Inspiration
 The main inspiration is by a video from David Randall Miller: https://www.youtube.com/watch?v=N3tRFayqVtk
 
-Points of interest:
+Points of interest from the video:
 - Neural network structure
 - Diversity of input and output nodes
 - Weighting system
