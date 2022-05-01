@@ -13,21 +13,43 @@ namespace FosterScript
     public abstract class Actor
     {
         /*
-         * Each "module" will attempt to be self-sufficient. 
-         * 
-         * A module can be dependent on another module, although it will not crash the software if the dependency is missing.
-         * 
          * This AI will only have base functionality. (like position, size, and colour)
          */
 
+        /// <summary>
+        /// List of "parts" that alter or add to the Actors features.
+        /// </summary>
+        /// <value></value>
         private List<Module> Modules { get; set; }
 
+        /// <summary>
+        /// Position in the world it's contained in. 
+        /// 
+        /// Might be removed and instead added by a module.
+        /// </summary>
+        /// <value></value>
         public Vector2 Position { get; set; }
 
+        /// <summary>
+        /// Size of the actor, to be used in graphical implementations and interactions.
+        /// 
+        /// Might be removed and instead added by a module.
+        /// </summary>
+        /// <value></value>
         public double Radius { get; set; }
 
+        /// <summary>
+        /// Color of the actor, to be used in graphical implementations and interactions.
+        /// 
+        /// Might be removed and instead added by a module.
+        /// </summary>
+        /// <value></value>
         public System.Drawing.Color Color { get; set; }
 
+        /// <summary>
+        /// Don't remember what this was for... Keeping this here in case I remember in the future.
+        /// </summary>
+        /// <value></value>
         public string GeneticPotential { get; set; }
 
         public Actor(float x, float y)
@@ -41,10 +63,20 @@ namespace FosterScript
             GeneticPotential = geneticPotential;
         }
 
+        /// <summary>
+        /// Calculatory phase. Take inputs, calculate different outputs.
+        /// </summary>
         public abstract void Think();
 
+        /// <summary>
+        /// Use calculated values to act upon itself and the world.
+        /// </summary>
         public abstract void Act();
         
+        /// <summary>
+        /// Add a module to the actor.
+        /// </summary>
+        /// <param name="m">Module to be added.</param>
         public void AddModule(Module m){
             Modules.Add(m);
             m.Body = this;

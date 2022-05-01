@@ -11,6 +11,12 @@ namespace FosterScript
     /// </summary>
     public abstract class Module
     {
+        /*
+         * Each "module" will attempt to be self-sufficient. 
+         * 
+         * A module can be dependent on another module, although it will not crash the software if the dependency is missing.
+         */
+
         /// <summary>
         /// Parent actor
         /// </summary>
