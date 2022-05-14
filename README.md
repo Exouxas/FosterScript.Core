@@ -19,11 +19,11 @@ My attempt at tracking progress of the different classes to make development mor
   - ![100%](https://progress-bar.dev/100) OutputNode
   - ![100%](https://progress-bar.dev/100) NeuralConnection
   - ![0%](https://progress-bar.dev/0) Brain
-- ![33%](https://progress-bar.dev/33) Victims
+- ![33%](https://progress-bar.dev/33) Agents
   - ![90%](https://progress-bar.dev/90) Actor
   - ![5%](https://progress-bar.dev/5) Module
   - ![5%](https://progress-bar.dev/5) Learner
-- ![0%](https://progress-bar.dev/0) Multiverse
+- ![0%](https://progress-bar.dev/0) Environments
   - ![0%](https://progress-bar.dev/0) World
   - ![0%](https://progress-bar.dev/0) IndefiniteWorld
   - ![0%](https://progress-bar.dev/0) FiniteWorld
