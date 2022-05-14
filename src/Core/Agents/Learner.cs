@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Numerics;
 
-namespace FosterScript
+namespace FosterScript.Agents
 {
     /// <summary>
     /// An actor with an evolving brain.
