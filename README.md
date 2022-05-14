@@ -1,4 +1,4 @@
-# FosterScript
+# FosterScript.Core
 This project aims to make a library for genetic evolution of virtual species. It's a form of adaptation of the [NEAT algorithm](https://en.wikipedia.org/wiki/Neuroevolution_of_augmenting_topologies), but made to be highly dynamic.
 
 The essential features of this library is:
