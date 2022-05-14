@@ -11,7 +11,7 @@ I'm planning to make a server hosted implementation of this library, that will h
 
 ## Progress
 My attempt at tracking progress of the different classes to make development more effective.
-- ![85%](https://progress-bar.dev/85) Overall architecture/design
+- ![90%](https://progress-bar.dev/90) Overall architecture/design
 - ![80%](https://progress-bar.dev/80) Neural network
   - ![100%](https://progress-bar.dev/100) Neuron
   - ![100%](https://progress-bar.dev/100) InputNode
