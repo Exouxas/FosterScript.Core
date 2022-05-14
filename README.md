@@ -3,11 +3,11 @@ This project aims to make a library for genetic evolution of virtual species. It
 
 The essential features of this library is:
 - Scriptable neurons. Possibility to make a new type of neuron with a different calculation.
-- Scriptable "modules". Modules that are made to add features to actors/creatures.
+- Scriptable "modules". Modules that are made to add features to agents.
 - Propagation. All neurons transmit signals at one step at a time, which allows for back-propagation, but also adds a delay between input and output which felt realistic at the time.
 
 ## Planned usage
-I'm planning to make a server hosted implementation of this library, that will have a web GUI where you can see the creature attempt to survive live. The way I have made the library currently would allow the creatures to live indefinitely.
+I'm planning to make a server hosted implementation of this library, that will have a web GUI where you can see the agents attempt to survive live.
 
 ## Progress
 My attempt at tracking progress of the different classes to make development more effective.
