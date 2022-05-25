@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FosterScript.Core.Nodes
+namespace FosterScript.Core.NeuralNetwork
 {
     /// <summary>
     /// Simple connection between two nerons or nodes

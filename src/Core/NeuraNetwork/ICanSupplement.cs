@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FosterScript.Core.Nodes
+namespace FosterScript.Core.NeuralNetwork
 {
     /// <summary>
     /// Any object that gives an output, with methods for calculating and propagating
