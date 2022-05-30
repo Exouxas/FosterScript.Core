@@ -18,7 +18,12 @@ namespace FosterScript.Core.NeuralNetwork
         {
             get 
             { 
-                return Math.Tanh(Inputs.Sum()); 
+                double sum = 0;
+                foreach(NeuralConnection input in Inputs)
+                {
+                    sum += input.Output;
+                }
+                return Math.Tanh(sum); 
             }
         }
 

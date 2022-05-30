@@ -9,7 +9,7 @@ namespace FosterScript.Core.NeuralNetwork
     /// <summary>
     /// Simple connection between two nerons or nodes
     /// </summary>
-    public class NeuralConnection : IEnumerable<double>
+    public class NeuralConnection
     {
         public ICanSupplement From { get; }
         public ICanAugment To { get; }
@@ -55,11 +55,6 @@ namespace FosterScript.Core.NeuralNetwork
             throw new NotImplementedException();
 
 
-        }
-
-        public IEnumerator GetEnumerator()
-        {
-            return Output;
         }
 
         public byte[] ToBinary()
