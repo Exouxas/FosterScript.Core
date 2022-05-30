@@ -52,14 +52,15 @@ namespace FosterScript.Core.Agents
         /// <value></value>
         public string GeneticPotential { get; set; }
 
-        public Actor(float x, float y)
+        public Actor(float x, float y) : this(x, y, "")
+        {
+
+        }
+
+        public Actor(float x, float y, string geneticPotential)
         {
             Position = new Vector2(x, y);
             Modules = new List<Module>();
-        }
-
-        public Actor(float x, float y, string geneticPotential): this(x, y)
-        {
             GeneticPotential = geneticPotential;
         }
 
