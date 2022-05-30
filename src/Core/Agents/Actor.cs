@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Numerics;
 
-namespace FosterScript.Agents
+namespace FosterScript.Core.Agents
 {
     /// <summary>
     /// Hard-coded AI

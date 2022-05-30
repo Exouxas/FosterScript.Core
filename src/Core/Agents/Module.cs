@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FosterScript.Agents
+namespace FosterScript.Core.Agents
 {
     /// <summary>
     /// A module that may be inserted into an Actor for added functionality
