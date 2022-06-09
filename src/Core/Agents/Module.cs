@@ -9,7 +9,7 @@ namespace FosterScript.Core.Agents
     /// <summary>
     /// A module that may be inserted into an Actor for added functionality
     /// </summary>
-    public abstract class Module
+    public abstract class Module : Dependency
     {
         /*
          * Each "module" will attempt to be self-sufficient. 
@@ -22,6 +22,6 @@ namespace FosterScript.Core.Agents
         /// </summary>
         public abstract Actor Body { get; set; }
 
-        public abstract List<string> Dependencies { get; }
+        public abstract List<Dependency> Dependencies { get; }
     }
 }
