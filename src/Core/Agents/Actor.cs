@@ -23,30 +23,6 @@ namespace FosterScript.Core.Agents
         private List<Module> Modules { get; set; }
 
         /// <summary>
-        /// Position in the world it's contained in. 
-        /// 
-        /// Might be removed and instead added by a module.
-        /// </summary>
-        /// <value></value>
-        public Vector2 Position { get; set; }
-
-        /// <summary>
-        /// Size of the actor, to be used in graphical implementations and interactions.
-        /// 
-        /// Might be removed and instead added by a module.
-        /// </summary>
-        /// <value></value>
-        public double Radius { get; set; }
-
-        /// <summary>
-        /// Color of the actor, to be used in graphical implementations and interactions.
-        /// 
-        /// Might be removed and instead added by a module.
-        /// </summary>
-        /// <value></value>
-        public System.Drawing.Color Color { get; set; }
-
-        /// <summary>
         /// Don't remember what this was for... Keeping this here in case I remember in the future.
         /// </summary>
         /// <value></value>
