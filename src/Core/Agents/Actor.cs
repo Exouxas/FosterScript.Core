@@ -12,10 +12,6 @@ namespace FosterScript.Core.Agents
     /// </summary>
     public abstract class Actor
     {
-        /*
-         * This AI will only have base functionality. (like position, size, and colour)
-         */
-
         /// <summary>
         /// List of "parts" that alter or add to the Actors features.
         /// </summary>
