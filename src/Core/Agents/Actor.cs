@@ -18,22 +18,10 @@ namespace FosterScript.Core.Agents
         /// <value></value>
         private List<Module> Modules { get; set; }
 
-        /// <summary>
-        /// Don't remember what this was for... Keeping this here in case I remember in the future.
-        /// </summary>
-        /// <value></value>
-        public string GeneticPotential { get; set; }
-
-        public Actor(float x, float y) : this(x, y, "")
-        {
-
-        }
-
-        public Actor(float x, float y, string geneticPotential)
+        public Actor(float x, float y)
         {
             Position = new Vector2(x, y);
             Modules = new List<Module>();
-            GeneticPotential = geneticPotential;
         }
 
         /// <summary>

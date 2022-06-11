@@ -17,11 +17,6 @@ namespace FosterScript.Core.Agents
 
         }
 
-        public Learner(float x, float y, string geneticDirectory): base(x, y, geneticDirectory)
-        {
-            
-        }
-
         public override void Act()
         {
             throw new NotImplementedException();
