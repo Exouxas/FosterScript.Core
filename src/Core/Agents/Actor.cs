@@ -18,9 +18,8 @@ namespace FosterScript.Core.Agents
         /// <value></value>
         private List<Module> Modules { get; set; }
 
-        public Actor(float x, float y)
+        public Actor()
         {
-            Position = new Vector2(x, y);
             Modules = new List<Module>();
         }
 
