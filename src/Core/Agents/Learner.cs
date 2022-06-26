@@ -12,7 +12,7 @@ namespace FosterScript.Core.Agents
     /// </summary>
     public class Learner : Actor
     {
-        public Learner(float x, float y) :base(x, y)
+        public Learner() :base()
         {
 
         }
