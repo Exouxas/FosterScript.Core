@@ -17,5 +17,28 @@ namespace FosterScript.Core.Worlds
         {
             Actors = new List<Actor>();
         }
+
+        internal void SortActors()
+        {
+            Actors = Actors.OrderByDescending(o=>o.Initiative).ToList();
+        }
+
+        public void Act()
+        {
+            SortActors();
+
+            foreach(Actor a in Actors){
+                a.Act();
+            }
+        }
+
+        public void Think()
+        {
+            SortActors();
+
+            foreach(Actor a in Actors){
+                a.Think();
+            }
+        }
     }
 }
