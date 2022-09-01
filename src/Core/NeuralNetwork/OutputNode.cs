@@ -27,7 +27,7 @@ namespace FosterScript.Core.NeuralNetwork
             }
         }
 
-        public List<NeuralConnection> Inputs { get; }
+        private List<NeuralConnection> Inputs { get; }
 
         protected OutputNode(string name, string description) : base(name, description)
         {
