@@ -166,7 +166,7 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="dODVJtbnFo_2eaHGkToM-1" value="(abstract) World" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-                    <mxGeometry x="650" y="519" width="240" height="140" as="geometry">
+                    <mxGeometry x="650" y="485" width="240" height="208" as="geometry">
                         <mxRectangle x="550" y="140" width="160" height="26" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
@@ -179,8 +179,17 @@
                 <mxCell id="0" value="+ Iterate(): void" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="dODVJtbnFo_2eaHGkToM-1" vertex="1">
                     <mxGeometry y="60" width="240" height="26" as="geometry"/>
                 </mxCell>
+                <mxCell id="15" value="+ Think(): void" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="dODVJtbnFo_2eaHGkToM-1">
+                    <mxGeometry y="86" width="240" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="+ Act(): void" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="dODVJtbnFo_2eaHGkToM-1">
+                    <mxGeometry y="112" width="240" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="+ SortActors(): void" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="dODVJtbnFo_2eaHGkToM-1">
+                    <mxGeometry y="138" width="240" height="26" as="geometry"/>
+                </mxCell>
                 <mxCell id="1" value="&lt;&lt;event&gt;&gt;&#10;+ HasIterated(): HasIteratedEventHandler" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0" parent="dODVJtbnFo_2eaHGkToM-1" vertex="1">
-                    <mxGeometry y="86" width="240" height="44" as="geometry"/>
+                    <mxGeometry y="164" width="240" height="44" as="geometry"/>
                 </mxCell>
                 <mxCell id="dODVJtbnFo_2eaHGkToM-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="dODVJtbnFo_2eaHGkToM-1" target="2" edge="1">
                     <mxGeometry relative="1" as="geometry">
@@ -189,7 +198,7 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="dODVJtbnFo_2eaHGkToM-6" value="FiniteWorld" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-                    <mxGeometry x="790" y="730" width="120" height="40" as="geometry">
+                    <mxGeometry x="790" y="776" width="120" height="40" as="geometry">
                         <mxRectangle x="550" y="140" width="160" height="26" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
@@ -203,7 +212,7 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="dODVJtbnFo_2eaHGkToM-10" value="IndefiniteWorld" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-                    <mxGeometry x="630" y="730" width="120" height="40" as="geometry">
+                    <mxGeometry x="630" y="776" width="120" height="40" as="geometry">
                         <mxRectangle x="550" y="140" width="160" height="26" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
