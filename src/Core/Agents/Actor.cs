@@ -18,6 +18,9 @@ namespace FosterScript.Core.Agents
         /// <value></value>
         private List<Module> Modules { get; set; }
 
+        /// <summary>
+        /// Current priority number for the Actor. Higher means it gets activated before others.
+        /// </summary>
         public int Initiative { get; }
 
         public Actor()
