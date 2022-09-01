@@ -18,6 +18,8 @@ namespace FosterScript.Core.Agents
         /// <value></value>
         private List<Module> Modules { get; set; }
 
+        public int Initiative { get; }
+
         public Actor()
         {
             Modules = new List<Module>();
