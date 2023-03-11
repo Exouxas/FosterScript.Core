@@ -25,8 +25,6 @@ namespace FosterScript.Core.Worlds
 
         public void Think()
         {
-            SortActors();
-
             foreach(Actor a in Actors){
                 a.Think();
             }
