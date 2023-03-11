@@ -23,20 +23,29 @@ namespace FosterScript.Core.Worlds
             Actors = Actors.OrderByDescending(o=>o.Initiative).ToList();
         }
 
-        public void Think()
+        // TODO: Asynchronously call Think() on all actors. They don't depend on each other for this action.
+        private void Think()
         {
             foreach(Actor a in Actors){
                 a.Think();
             }
         }
 
-        public void Act()
+        private void Act()
         {
             SortActors();
 
             foreach(Actor a in Actors){
                 a.Act();
             }
+        }
+
+        /// <summary>
+        /// Progresses the world one step.
+        /// </summary>
+        protected void Step(){
+            Think();
+            Act();
         }
     }
 }
