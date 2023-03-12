@@ -14,26 +14,46 @@ namespace FosterScript.Core.Worlds
     {
         public List<Actor> Actors 
         {
-            get { return _actors; }
+            get
+            {
+                List<Actor> actorsCopy;
+
+                lock (_actorLock)
+                {
+                    actorsCopy = new List<Actor>(_actors);
+                }
+
+                return new List<Actor>(actorsCopy); 
+            }
         }
         private List<Actor> _actors;
+        private object _actorLock = new object();
 
         protected World()
         {
-            _actors = new List<Actor>();
+            lock (_actorLock)
+            {
+                _actors = new List<Actor>();
+            }
         }
 
         internal void SortActors()
         {
-            _actors = _actors.OrderByDescending(o=>o.Initiative).ToList();
+            lock (_actorLock)
+            {
+                _actors = _actors.OrderByDescending(o => o.Initiative).ToList();
+            }
         }
 
         // TODO: Asynchronously call Think() on all actors. They don't depend on each other for this action.
         private void Think()
         {
-            foreach(Actor a in _actors)
+            lock (_actorLock)
             {
-                a.Think(new List<Actor>(_actors));
+                foreach (Actor a in _actors)
+                {
+                    a.Think(new List<Actor>(_actors));
+                }
             }
         }
 
@@ -41,9 +61,12 @@ namespace FosterScript.Core.Worlds
         {
             SortActors();
 
-            foreach(Actor a in _actors)
+            lock (_actorLock)
             {
-                a.Act(new List<Actor>(_actors));
+                foreach (Actor a in _actors)
+                {
+                    a.Act(new List<Actor>(_actors));
+                }
             }
         }
 
@@ -53,6 +76,14 @@ namespace FosterScript.Core.Worlds
         protected void Step(){
             Think();
             Act();
+        }
+
+        public void Add(Actor a)
+        {
+            lock (_actorLock)
+            {
+                _actors.Add(a);
+            }
         }
     }
 }
