@@ -45,15 +45,14 @@ namespace FosterScript.Core.Worlds
             }
         }
 
-        // TODO: Asynchronously call Think() on all actors. They don't depend on each other for this action.
         private void Think()
         {
             lock (_actorLock)
             {
-                foreach (Actor a in _actors)
+                Parallel.ForEach(_actors, a =>
                 {
                     a.Think(new List<Actor>(_actors));
-                }
+                });
             }
         }
 
