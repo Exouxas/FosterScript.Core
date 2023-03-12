@@ -12,22 +12,27 @@ namespace FosterScript.Core.Worlds
     /// </summary>
     public abstract class World
     {
-        public List<Actor> Actors { get; }
+        public List<Actor> Actors 
+        {
+            get { return _actors; }
+        }
+        private List<Actor> _actors;
 
         protected World()
         {
-            Actors = new List<Actor>();
+            _actors = new List<Actor>();
         }
 
         internal void SortActors()
         {
-            Actors = Actors.OrderByDescending(o=>o.Initiative).ToList();
+            _actors = _actors.OrderByDescending(o=>o.Initiative).ToList();
         }
 
         // TODO: Asynchronously call Think() on all actors. They don't depend on each other for this action.
         private void Think()
         {
-            foreach(Actor a in Actors){
+            foreach(Actor a in _actors)
+            {
                 a.Think();
             }
         }
@@ -36,7 +41,8 @@ namespace FosterScript.Core.Worlds
         {
             SortActors();
 
-            foreach(Actor a in Actors){
+            foreach(Actor a in _actors)
+            {
                 a.Act();
             }
         }
