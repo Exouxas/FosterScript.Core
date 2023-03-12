@@ -85,5 +85,13 @@ namespace FosterScript.Core.Worlds
                 _actors.Add(a);
             }
         }
+
+        public void Remove(Actor a)
+        {
+            lock (_actorLock)
+            {
+                _actors.Remove(a);
+            }
+        }
     }
 }
