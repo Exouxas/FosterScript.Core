@@ -11,6 +11,6 @@ namespace FosterScript.Core.NeuralNetwork
     /// </summary>
     public interface ICanAugment
     {
-        private abstract List<NeuralConnection> Inputs { get; }
+        public abstract List<NeuralConnection> Inputs { get; }
     }
 }

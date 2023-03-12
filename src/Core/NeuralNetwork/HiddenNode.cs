@@ -11,7 +11,7 @@ namespace FosterScript.Core.NeuralNetwork
     /// </summary>
     public abstract class HiddenNode : InputNode, ICanAugment
     {
-        private List<NeuralConnection> Inputs { get; }
+        public List<NeuralConnection> Inputs { get; }
 
         protected HiddenNode(string name, string description) : base(name, description)
         {
