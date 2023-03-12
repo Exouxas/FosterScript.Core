@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Timers.Timer;
 
 namespace FosterScript.Core.Worlds
 {
@@ -13,7 +12,7 @@ namespace FosterScript.Core.Worlds
     public class IndefiniteWorld : World
     {
         // TODO: Add clock cycle
-        private Timer clock;
+        private System.Timers.Timer clock;
 
         /// <summary>
         /// Creates an instance of the IndefiniteWorld class.
@@ -21,12 +20,12 @@ namespace FosterScript.Core.Worlds
         /// <param name="millis">The amount of milliseconds between each step.</param>
         public IndefiniteWorld(long millis) : base()
         {
-            clock = new Timer(millis);
+            clock = new System.Timers.Timer(millis);
             clock.Elapsed += Tick;
             clock.AutoReset = true;
         }
 
-        private void Tick(Object source, ElapsedEventArgs e)
+        private void Tick(Object source, System.Timers.ElapsedEventArgs e)
         {
             Step();
         }
