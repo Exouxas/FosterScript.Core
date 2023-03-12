@@ -33,7 +33,7 @@ namespace FosterScript.Core.Worlds
         {
             foreach(Actor a in _actors)
             {
-                a.Think();
+                a.Think(new List<Actor>(_actors));
             }
         }
 
@@ -43,7 +43,7 @@ namespace FosterScript.Core.Worlds
 
             foreach(Actor a in _actors)
             {
-                a.Act();
+                a.Act(new List<Actor>(_actors));
             }
         }
 

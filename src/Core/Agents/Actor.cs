@@ -31,12 +31,12 @@ namespace FosterScript.Core.Agents
         /// <summary>
         /// Calculatory phase. Take inputs, calculate different outputs.
         /// </summary>
-        public abstract void Think();
+        public abstract void Think(List<Actor> interactibles);
 
         /// <summary>
         /// Use calculated values to act upon itself and the world.
         /// </summary>
-        public abstract void Act();
+        public abstract void Act(List<Actor> interactibles);
         
         /// <summary>
         /// Add a module to the actor.
