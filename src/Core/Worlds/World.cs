@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using FosterScript.Core.Agents;
@@ -28,6 +29,8 @@ namespace FosterScript.Core.Worlds
         }
         private List<Actor> _actors;
         private object _actorLock = new object();
+
+        private Dictionary<Actor, Vector3> positions = new Dictionary<Actor, Vector3>();
 
         protected World()
         {
@@ -77,12 +80,18 @@ namespace FosterScript.Core.Worlds
             Act();
         }
 
-        public void Add(Actor a)
+        public void Add(Actor a, Vector3 v)
         {
             lock (_actorLock)
             {
                 _actors.Add(a);
+                positions.Add(a, v);
             }
+        }
+
+        public void Add(Actor a)
+        {
+            Add(a, new Vector3(0, 0, 0));
         }
 
         public void Remove(Actor a)
@@ -90,6 +99,7 @@ namespace FosterScript.Core.Worlds
             lock (_actorLock)
             {
                 _actors.Remove(a);
+                positions.Remove(a);
             }
         }
     }
