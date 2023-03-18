@@ -7,13 +7,41 @@ using System.Threading.Tasks;
 namespace FosterScript.Core.Worlds
 {
     /// <summary>
-    /// 
+    /// A World that will run until stopped.
     /// </summary>
     public class IndefiniteWorld : World
     {
-        public IndefiniteWorld() : base()
+        // TODO: Add clock cycle
+        private System.Timers.Timer clock;
+
+        /// <summary>
+        /// Creates an instance of the IndefiniteWorld class.
+        /// </summary>
+        /// <param name="millis">The amount of milliseconds between each step.</param>
+        public IndefiniteWorld(long millis) : base()
         {
-            
+            clock = new System.Timers.Timer(millis);
+            clock.Elapsed += Tick;
+            clock.AutoReset = true;
+        }
+
+        private void Tick(Object source, System.Timers.ElapsedEventArgs e)
+        {
+            Step();
+        }
+
+        /// <summary>
+        /// Start the internal timer. Will run until you call the Stop() method.
+        /// </summary>
+        public void Start(){
+            clock.Enabled = true;
+        }
+
+        /// <summary>
+        /// Stop the internal timer.
+        /// </summary>
+        public void Stop(){
+            clock.Enabled = false;
         }
     }
 }

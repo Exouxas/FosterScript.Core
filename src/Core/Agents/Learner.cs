@@ -17,12 +17,12 @@ namespace FosterScript.Core.Agents
 
         }
 
-        public override void Act()
+        public override void Act(List<Actor> interactibles)
         {
             throw new NotImplementedException();
         }
 
-        public override void Think()
+        public override void Think(List<Actor> interactibles)
         {
             throw new NotImplementedException();
         }
