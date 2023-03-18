@@ -13,6 +13,10 @@ namespace FosterScript.Core.Worlds
     /// </summary>
     public abstract class World
     {
+        public event Notify StepDone;
+        public event Notify ThinkDone;
+        public event Notify ActDone;
+
         public List<Actor> Actors 
         {
             get
@@ -57,6 +61,8 @@ namespace FosterScript.Core.Worlds
                     a.Think(new List<Actor>(_actors));
                 });
             }
+
+            ThinkDone?.Invoke();
         }
 
         private void Act()
@@ -70,6 +76,8 @@ namespace FosterScript.Core.Worlds
                     a.Act(new List<Actor>(_actors));
                 }
             }
+
+            ActDone?.Invoke();
         }
 
         /// <summary>
@@ -78,6 +86,8 @@ namespace FosterScript.Core.Worlds
         protected void Step(){
             Think();
             Act();
+
+            StepDone?.Invoke();
         }
 
         public void Add(Actor a, Vector3 v)
@@ -103,4 +113,6 @@ namespace FosterScript.Core.Worlds
             }
         }
     }
+
+    public delegate void Notify();
 }
