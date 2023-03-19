@@ -64,6 +64,6 @@ jobs:
       uses: actions/download-artifact@main
       with:
         name: FosterScript.Core
-        path: bin/Release/*
+        path: src/Examples
     - name: Build
       run: dotnet build --no-restore
