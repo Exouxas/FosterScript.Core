@@ -6,10 +6,10 @@ name: .NET
 on:
   push:
     branches: [ "main" ]
-    paths: [ "src/**" ]
+    paths: [ "src/**", ".github/workflows/**" ]
   pull_request:
     branches: [ "main" ]
-    paths: [ "src/**" ]
+    paths: [ "src/**", ".github/workflows/**" ]
 
 jobs:
   build_core:
@@ -32,7 +32,7 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
   
-  
+
   build_examples:
     needs: build_core
     defaults:
