@@ -7,4 +7,8 @@
     <OutputTupe>Exe</OutputTupe>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Core\FosterScript.Core.csproj" />
+  </ItemGroup>
+
 </Project>

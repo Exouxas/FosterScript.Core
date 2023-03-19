@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FosterScript.Core", "Core\FosterScript.Core.csproj", "{E3C6FD94-37C5-4AF0-88E2-EAE853B0F412}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FosterScript.Examples", "Examples\FosterScript.Examples.csproj", "{ABD24BEF-11A3-451B-AC50-9BD3DAA01431}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E3C6FD94-37C5-4AF0-88E2-EAE853B0F412}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3C6FD94-37C5-4AF0-88E2-EAE853B0F412}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3C6FD94-37C5-4AF0-88E2-EAE853B0F412}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABD24BEF-11A3-451B-AC50-9BD3DAA01431}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABD24BEF-11A3-451B-AC50-9BD3DAA01431}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABD24BEF-11A3-451B-AC50-9BD3DAA01431}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABD24BEF-11A3-451B-AC50-9BD3DAA01431}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
