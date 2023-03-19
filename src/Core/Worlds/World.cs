@@ -112,6 +112,9 @@ namespace FosterScript.Core.Worlds
                 positions.Remove(a);
             }
         }
+
+        public abstract void Start();
+        public abstract void Stop();
     }
 
     public delegate void Notify();
