@@ -22,17 +22,28 @@ namespace FosterScript.Core.Agents
         /// </summary>
         public abstract Actor Body { get; set; }
 
-        public abstract Dictionary<Type, int[]> Dependencies { get; }
+        public abstract Dictionary<string, int[]> Dependencies { get; }
 
-        public bool CheckDependencies(ICollection<Dependency> dependencies)
+        public bool CheckDependencies(ICollection<Dependency> dependencyList)
         {
-            throw new NotImplementedException();
-            foreach (Dependency d in dependencies)
+            Dictionary<string, int[]> existingModules = dependencyList.ToDictionary(x => x.Name, x => x.Version);
+
+            foreach (string s in Dependencies.Keys)
             {
-                // Some logic to see if dependency doesn't exist.
-                // Doesn't exist = return false
+                if (!existingModules.ContainsKey(s)) 
+                { 
+                    return false; // Doesn't have the required module at all
+                } 
+                else
+                {
+                    if (!IsValid(Dependencies[s], existingModules[s]))
+                    {
+                        return false; // One of the modules has the wrong version
+                    }
+                }
             }
-            return true;
+
+            return true; // All modules exist and have a valid version
         }
     }
 }
