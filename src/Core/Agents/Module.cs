@@ -22,6 +22,17 @@ namespace FosterScript.Core.Agents
         /// </summary>
         public abstract Actor Body { get; set; }
 
-        public abstract Dictionary<Class, int[]> Dependencies { get; }
+        public abstract Dictionary<Type, int[]> Dependencies { get; }
+
+        public bool CheckDependencies(ICollection<Dependency> dependencies)
+        {
+            throw new NotImplementedException();
+            foreach (Dependency d in dependencies)
+            {
+                // Some logic to see if dependency doesn't exist.
+                // Doesn't exist = return false
+            }
+            return true;
+        }
     }
 }
