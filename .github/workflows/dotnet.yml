@@ -36,6 +36,11 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Upload artifact
+      uses: actions/upload-artifact@main
+      with:
+        name: FosterScript.Core
+        path: bin/Release/*
   
 
   build_examples:
@@ -55,5 +60,10 @@ jobs:
         dotnet-version: 6.0.x
     - name: Restore dependencies
       run: dotnet restore
+    - name: Download artifact
+      uses: actions/download-artifact@main
+      with:
+        name: FosterScript.Core
+        path: bin/Release/*
     - name: Build
       run: dotnet build --no-restore
