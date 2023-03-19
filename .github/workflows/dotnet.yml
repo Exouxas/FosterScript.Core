@@ -17,6 +17,7 @@ on:
 
 jobs:
   build_core:
+    name: Build Core
     runs-on: ubuntu-latest
 
     defaults:
@@ -38,6 +39,7 @@ jobs:
   
 
   build_examples:
+    name: Build Examples
     needs: build_core
     defaults:
       run:
