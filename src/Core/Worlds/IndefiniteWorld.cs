@@ -33,14 +33,14 @@ namespace FosterScript.Core.Worlds
         /// <summary>
         /// Start the internal timer. Will run until you call the Stop() method.
         /// </summary>
-        public void Start(){
+        public override void Start(){
             clock.Enabled = true;
         }
 
         /// <summary>
         /// Stop the internal timer.
         /// </summary>
-        public void Stop(){
+        public override void Stop(){
             clock.Enabled = false;
         }
     }
