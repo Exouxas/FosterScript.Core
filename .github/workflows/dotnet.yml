@@ -6,10 +6,14 @@ name: .NET
 on:
   push:
     branches: [ "main" ]
-    paths: [ "src/**", ".github/workflows/**" ]
+    paths: 
+    - "src/**"
+    - ".github/workflows/**"
   pull_request:
     branches: [ "main" ]
-    paths: [ "src/**", ".github/workflows/**" ]
+    paths: 
+    - "src/**"
+    - ".github/workflows/**"
 
 jobs:
   build_core:
