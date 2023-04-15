@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Numerics;
+using FosterScript.Core.Worlds;
 
 namespace FosterScript.Core.Agents
 {
@@ -12,7 +13,7 @@ namespace FosterScript.Core.Agents
     /// </summary>
     public class Learner : Actor
     {
-        public Learner() :base()
+        public Learner(World world) :base(world)
         {
 
         }
