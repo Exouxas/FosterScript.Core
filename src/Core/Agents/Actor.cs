@@ -11,7 +11,7 @@ namespace FosterScript.Core.Agents
     /// <summary>
     /// Hard-coded AI
     /// </summary>
-    public abstract class Actor
+    public class Actor
     {
         /// <summary>
         /// List of "parts" that alter or add to the Actors features.
