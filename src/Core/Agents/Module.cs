@@ -25,9 +25,14 @@ namespace FosterScript.Core.Agents
         /// <summary>
         /// Parent actor
         /// </summary>
-        public abstract Actor Body { get; set; }
+        public Actor Body { get; set; }
 
         public abstract Dictionary<string, int[]> Dependencies { get; }
+
+        public Module(Actor body)
+        {
+            Body = body;
+        }
 
         public bool CheckDependencies(ICollection<Dependency> dependencyList)
         {
