@@ -95,7 +95,12 @@ namespace FosterScript.Core.Agents
             // Queue this actor to be removed
             _world.Remove(this);
         }
-        
+
+        public void Move(Vector3 v)
+        {
+            _world.Move(this, v);
+        }
+
         /// <summary>
         /// Add a module to the actor.
         /// </summary>

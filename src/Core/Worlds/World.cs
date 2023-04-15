@@ -39,6 +39,7 @@ namespace FosterScript.Core.Worlds
         private object _actorRemoveLock = new object();
 
         private Dictionary<Actor, Vector3> positions = new Dictionary<Actor, Vector3>();
+        private object _positionsLock = new object();
 
         protected World()
         {
@@ -104,25 +105,94 @@ namespace FosterScript.Core.Worlds
             StepDone?.Invoke();
         }
 
+        /// <summary>
+        /// Add actor to world
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="v"></param>
         public void Add(Actor a, Vector3 v)
         {
             lock (_actorLock)
             {
                 _actors.Add(a);
+            }
+            lock(_positionsLock)
+            {
                 positions.Add(a, v);
             }
         }
 
+        /// <summary>
+        /// Add actor to world
+        /// </summary>
+        /// <param name="a"></param>
         public void Add(Actor a)
         {
             Add(a, new Vector3(0, 0, 0));
         }
 
+        /// <summary>
+        /// Add actor to removal queue
+        /// </summary>
+        /// <param name="a"></param>
         public void Remove(Actor a)
         {
             lock (_actorRemoveLock)
             {
                 _actorsToBeRemoved.Add(a);
+            }
+        }
+
+        /// <summary>
+        /// Find position of an actor
+        /// </summary>
+        /// <param name="a"></param>
+        /// <returns></returns>
+        public Vector3 GetPosition(Actor a)
+        {
+            lock (_positionsLock)
+            {
+                if (positions.ContainsKey(a))
+                {
+                    return positions[a];
+                }
+
+                else
+                {
+                    return new Vector3();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Move actor to a specific position
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="v"></param>
+        public void MoveTo(Actor a, Vector3 v)
+        {
+            lock (_positionsLock)
+            {
+                if (positions.ContainsKey(a))
+                {
+                    positions[a] = v;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Move actor in a direction
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="v"></param>
+        public void Move(Actor a, Vector3 v)
+        {
+            lock (_positionsLock)
+            {
+                if (positions.ContainsKey(a))
+                {
+                    positions[a] += v;
+                }
             }
         }
 
