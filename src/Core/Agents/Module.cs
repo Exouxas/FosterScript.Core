@@ -55,5 +55,8 @@ namespace FosterScript.Core.Agents
 
             return true; // All modules exist and have a valid version
         }
+
+        public abstract void Think();
+        public abstract void Act();
     }
 }
