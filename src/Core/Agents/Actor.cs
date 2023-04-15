@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Numerics;
+using FosterScript.Core.Worlds;
 
 namespace FosterScript.Core.Agents
 {
@@ -50,9 +51,12 @@ namespace FosterScript.Core.Agents
         /// </summary>
         public int Initiative { get; }
 
-        public Actor()
+        private World _world;
+
+        public Actor(World world)
         {
             Modules = new List<Module>();
+            _world = world;
         }
 
         /// <summary>
@@ -81,6 +85,15 @@ namespace FosterScript.Core.Agents
                     module.Act();
                 }
             }
+        }
+
+        /// <summary>
+        /// Remove actor from the world
+        /// </summary>
+        public void Kill()
+        {
+            // Queue this actor to be removed
+            _world.Remove(this);
         }
         
         /// <summary>
