@@ -27,18 +27,19 @@ namespace FosterScript.Core.Agents
         /// </summary>
         public Actor? Body { get; set; }
 
-        public abstract Dictionary<string, int[]> Dependencies { get; }
-        public Dictionary<string, Dependency> DependencyReferences { get; set; }
+        public Dictionary<string, int[]> Dependencies { get; }
+        public Dictionary<string, Module> DependencyReferences { get; set; }
 
         public Module()
         {
+            Dependencies = new();
             DependencyReferences = new();
         }
 
-        public bool CheckDependencies(ICollection<Dependency> dependencyList)
+        public bool CheckDependencies(List<Module> dependencyList)
         {
-            Dictionary<string, Dependency> existingModules = dependencyList.ToDictionary(x => x.Name, x => x);
-            Dictionary<string, Dependency> depRefs = new();
+            Dictionary<string, Module> existingModules = dependencyList.ToDictionary(x => x.Name, x => x);
+            Dictionary<string, Module> depRefs = new();
 
             foreach (string s in Dependencies.Keys)
             {

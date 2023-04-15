@@ -30,7 +30,7 @@ namespace FosterScript.Core.Agents
 
                 foreach(Module module in Modules)
                 {
-                    if (!module.CheckDependencies((ICollection<Dependency>)Modules))
+                    if (!module.CheckDependencies(Modules))
                     {
                         return false;
                     }
