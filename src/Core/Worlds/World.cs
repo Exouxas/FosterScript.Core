@@ -16,6 +16,7 @@ namespace FosterScript.Core.Worlds
         public event Notify StepDone;
         public event Notify ThinkDone;
         public event Notify ActDone;
+        public event NotifyDeath ActorKilled;
 
         public List<Actor> Actors
         {
@@ -67,7 +68,7 @@ namespace FosterScript.Core.Worlds
                 });
             }
 
-            ThinkDone?.Invoke();
+            ThinkDone();
         }
 
         private void Act()
@@ -82,7 +83,7 @@ namespace FosterScript.Core.Worlds
                 }
             }
 
-            ActDone?.Invoke();
+            ActDone();
         }
 
         /// <summary>
@@ -98,11 +99,12 @@ namespace FosterScript.Core.Worlds
                 {
                     _actors.Remove(a);
                     positions.Remove(a);
+                    ActorKilled(a);
                 }
                 _actorsToBeRemoved.Clear();
             }
 
-            StepDone?.Invoke();
+            StepDone();
         }
 
         /// <summary>
@@ -201,4 +203,5 @@ namespace FosterScript.Core.Worlds
     }
 
     public delegate void Notify();
+    public delegate void NotifyDeath(Actor actor);
 }
