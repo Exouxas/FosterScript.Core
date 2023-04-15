@@ -17,7 +17,7 @@ namespace FosterScript.Core.Worlds
         public event Notify ThinkDone;
         public event Notify ActDone;
 
-        public List<Actor> Actors 
+        public List<Actor> Actors
         {
             get
             {
@@ -28,11 +28,15 @@ namespace FosterScript.Core.Worlds
                     actorsCopy = new List<Actor>(_actors);
                 }
 
-                return new List<Actor>(actorsCopy); 
+                return new List<Actor>(actorsCopy);
             }
         }
         private List<Actor> _actors;
         private object _actorLock = new object();
+
+
+        private List<Actor> _actorsToBeRemoved;
+        private object _actorRemoveLock = new object();
 
         private Dictionary<Actor, Vector3> positions = new Dictionary<Actor, Vector3>();
 
@@ -87,6 +91,16 @@ namespace FosterScript.Core.Worlds
             Think();
             Act();
 
+            lock(_actorRemoveLock)
+            {
+                foreach (Actor a in _actorsToBeRemoved)
+                {
+                    _actors.Remove(a);
+                    positions.Remove(a);
+                }
+                _actorsToBeRemoved.Clear();
+            }
+
             StepDone?.Invoke();
         }
 
@@ -106,10 +120,9 @@ namespace FosterScript.Core.Worlds
 
         public void Remove(Actor a)
         {
-            lock (_actorLock)
+            lock (_actorRemoveLock)
             {
-                _actors.Remove(a);
-                positions.Remove(a);
+                _actorsToBeRemoved.Add(a);
             }
         }
 
