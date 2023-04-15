@@ -11,8 +11,8 @@ namespace FosterScript.Core.Worlds
     /// </summary>
     public class IndefiniteWorld : World
     {
-        // TODO: Add clock cycle
         private System.Timers.Timer clock;
+        public bool IsRunning => clock.Enabled;
 
         /// <summary>
         /// Creates an instance of the IndefiniteWorld class.
