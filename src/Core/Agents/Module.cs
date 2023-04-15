@@ -30,9 +30,9 @@ namespace FosterScript.Core.Agents
         public abstract Dictionary<string, int[]> Dependencies { get; }
         public Dictionary<string, Dependency> DependencyReferences { get; set; }
 
-        public Module(Actor body)
+        public Module()
         {
-            Body = body;
+
         }
 
         public bool CheckDependencies(ICollection<Dependency> dependencyList)
