@@ -58,7 +58,7 @@ namespace FosterScript.Core.Agents
         /// <summary>
         /// Calculatory phase. Take inputs, calculate different outputs.
         /// </summary>
-        public void Think(List<Actor> interactibles)
+        public virtual void Think(List<Actor> interactibles)
         {
             if (AreModulesValidated)
             {
@@ -72,7 +72,7 @@ namespace FosterScript.Core.Agents
         /// <summary>
         /// Use calculated values to act upon itself and the world.
         /// </summary>
-        public void Act(List<Actor> interactibles)
+        public virtual void Act(List<Actor> interactibles)
         {
             if (AreModulesValidated)
             {
