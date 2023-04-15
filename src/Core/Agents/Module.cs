@@ -15,6 +15,11 @@ namespace FosterScript.Core.Agents
          * Each "module" will attempt to be self-sufficient. 
          * 
          * A module can be dependent on another module, although it will not crash the software if the dependency is missing.
+         * 
+         * A module that is missing one or more dependencies will either:
+         *      Be disabled
+         *      Be removed (causing a cascading removal of modules)
+         *      Cause its parent Actor to be "killed" due to weak genetics
          */
 
         /// <summary>
