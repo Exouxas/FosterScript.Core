@@ -12,7 +12,7 @@ namespace FosterScript.Core.NeuralNetwork
     public class InputNode : Neuron, ICanSupplement
     {
         public delegate void OutputRequestHandler(object sender, InputNeuronEventArgs e);
-        public event OutputRequestHandler OnRequestOutput;
+        public event OutputRequestHandler? OnRequestOutput;
 
         public double Output 
         {
@@ -33,7 +33,7 @@ namespace FosterScript.Core.NeuralNetwork
             InputNeuronEventArgs args = new InputNeuronEventArgs();
             if(OnRequestOutput != null)
             {
-                OnRequestOutput(this, args);
+                OnRequestOutput?.Invoke(this, args);
             }
             
             storedOutput = args.Output;

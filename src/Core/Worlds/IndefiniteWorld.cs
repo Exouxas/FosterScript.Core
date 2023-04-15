@@ -11,8 +11,8 @@ namespace FosterScript.Core.Worlds
     /// </summary>
     public class IndefiniteWorld : World
     {
-        // TODO: Add clock cycle
         private System.Timers.Timer clock;
+        public bool IsRunning => clock.Enabled;
 
         /// <summary>
         /// Creates an instance of the IndefiniteWorld class.
@@ -21,11 +21,11 @@ namespace FosterScript.Core.Worlds
         public IndefiniteWorld(long millis) : base()
         {
             clock = new System.Timers.Timer(millis);
-            clock.Elapsed += Tick;
+            clock.Elapsed += Tick; ;
             clock.AutoReset = true;
         }
 
-        private void Tick(Object source, System.Timers.ElapsedEventArgs e)
+        private void Tick(object? sender, System.Timers.ElapsedEventArgs e)
         {
             Step();
         }
