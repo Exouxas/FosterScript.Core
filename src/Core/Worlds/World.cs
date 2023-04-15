@@ -44,6 +44,8 @@ namespace FosterScript.Core.Worlds
 
         protected World()
         {
+            _actorsToBeRemoved = new();
+
             lock (_actorLock)
             {
                 _actors = new List<Actor>();
