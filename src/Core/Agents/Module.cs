@@ -28,6 +28,7 @@ namespace FosterScript.Core.Agents
         public Actor Body { get; set; }
 
         public abstract Dictionary<string, int[]> Dependencies { get; }
+        public Dictionary<string, Dependency> DependencyReferences { get; set; }
 
         public Module(Actor body)
         {
@@ -36,7 +37,8 @@ namespace FosterScript.Core.Agents
 
         public bool CheckDependencies(ICollection<Dependency> dependencyList)
         {
-            Dictionary<string, int[]> existingModules = dependencyList.ToDictionary(x => x.Name, x => x.Version);
+            Dictionary<string, Dependency> existingModules = dependencyList.ToDictionary(x => x.Name, x => x);
+            Dictionary<string, Dependency> depRefs = new();
 
             foreach (string s in Dependencies.Keys)
             {
@@ -46,14 +48,21 @@ namespace FosterScript.Core.Agents
                 } 
                 else
                 {
-                    if (!IsValid(Dependencies[s], existingModules[s]))
+                    if (!IsValid(Dependencies[s], existingModules[s].Version))
                     {
                         return false; // One of the modules has the wrong version
+                    }
+                    else
+                    {
+                        // Dependency exists and is valid!
+                        depRefs.Add(s, existingModules[s]);
                     }
                 }
             }
 
-            return true; // All modules exist and have a valid version
+            // All modules exist and have a valid version
+            DependencyReferences = depRefs;
+            return true; 
         }
 
         public abstract void Think();
