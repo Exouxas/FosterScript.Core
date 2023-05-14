@@ -15,6 +15,7 @@ namespace FosterScript.Core.Worlds
     public class IndefiniteWorld : World, ISerializable
     {
         private System.Timers.Timer clock;
+        private readonly object _timerLock = new object();
         public bool IsRunning => clock.Enabled;
 
         private long _millisecondInterval;
@@ -28,12 +29,19 @@ namespace FosterScript.Core.Worlds
             _millisecondInterval = millis;
             clock = new System.Timers.Timer(_millisecondInterval);
             clock.Elapsed += Tick; ;
-            clock.AutoReset = true;
+            clock.AutoReset = false;
         }
 
         private void Tick(object? sender, System.Timers.ElapsedEventArgs e)
         {
-            Step();
+            lock(_timerLock)
+            {
+                if (IsRunning)
+                {
+                    clock.Start();
+                    Step();
+                }
+            }
         }
 
         /// <summary>
@@ -57,7 +65,7 @@ namespace FosterScript.Core.Worlds
             _millisecondInterval = info.GetInt64(nameof(_millisecondInterval));
             clock = new System.Timers.Timer(_millisecondInterval);
             clock.Elapsed += Tick; ;
-            clock.AutoReset = true;
+            clock.AutoReset = false;
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
