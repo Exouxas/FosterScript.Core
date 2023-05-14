@@ -17,15 +17,27 @@ namespace FosterScript.Core
         /// Enable or disable the loader.
         /// </summary>
         public bool Enabled => watcher.EnableRaisingEvents;
-        private object _loadLock;
+        private static object _loadLock = new();
 
         private FileSystemWatcher watcher;
-        private Dictionary<Type, List<Type>> loadedClasses = new();
+
+        public static Dictionary<Type, List<Type>> LoadedClasses
+        {
+            get
+            {
+                lock (_loadLock)
+                {
+                    return _loadedClasses;
+                }
+            }
+        }
+        private static Dictionary<Type, List<Type>> _loadedClasses = new() 
+        { 
+            { typeof(object), new List<Type>() } 
+        };
 
         public CachedLoader(string loadedFolder)
         {
-            loadedClasses.Add(typeof(object), new List<Type>());
-
             watcher = new(loadedFolder);
 
             watcher.Created += FileCreated;
@@ -41,7 +53,7 @@ namespace FosterScript.Core
         {
             lock (_loadLock)
             {
-                loadedClasses.Add(t, new List<Type>());
+                LoadedClasses.Add(t, new List<Type>());
             }
         }
 
