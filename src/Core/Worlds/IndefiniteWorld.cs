@@ -1,3 +1,4 @@
+using FosterScript.Core.Worlds;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,13 +17,16 @@ namespace FosterScript.Core.Worlds
         private System.Timers.Timer clock;
         public bool IsRunning => clock.Enabled;
 
+        private long _millisecondInterval;
+
         /// <summary>
         /// Creates an instance of the IndefiniteWorld class.
         /// </summary>
         /// <param name="millis">The amount of milliseconds between each step.</param>
         public IndefiniteWorld(long millis) : base()
         {
-            clock = new System.Timers.Timer(millis);
+            _millisecondInterval = millis;
+            clock = new System.Timers.Timer(_millisecondInterval);
             clock.Elapsed += Tick; ;
             clock.AutoReset = true;
         }
@@ -50,12 +54,17 @@ namespace FosterScript.Core.Worlds
 
         protected IndefiniteWorld(SerializationInfo info, StreamingContext context) : base(info, context)
         {
-
+            _millisecondInterval = info.GetInt64(nameof(_millisecondInterval));
+            clock = new System.Timers.Timer(_millisecondInterval);
+            clock.Elapsed += Tick; ;
+            clock.AutoReset = true;
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             base.GetObjectData(info, context);
+
+            info.AddValue(nameof(_millisecondInterval), _millisecondInterval);
         }
     }
 }
