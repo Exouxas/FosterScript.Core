@@ -1,29 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace FosterScript.Core.NeuralNetwork
 {
     /// <summary>
     /// Exit node where values will be used to drive actions
     /// </summary>
-    public class OutputNode : Neuron, ICanAugment
+    [Serializable]
+    public class OutputNode : Neuron, ICanAugment, ISerializable
     {
         /// <summary>
         /// Calculates value that module can use.
         /// </summary>
         public double Result
         {
-            get 
-            { 
+            get
+            {
                 double sum = 0;
-                foreach(NeuralConnection input in Inputs)
+                foreach (NeuralConnection input in Inputs)
                 {
                     sum += input.Output;
                 }
-                return Math.Tanh(sum); 
+                return Math.Tanh(sum);
             }
         }
 
@@ -32,6 +31,18 @@ namespace FosterScript.Core.NeuralNetwork
         protected OutputNode(string name, string description) : base(name, description)
         {
             Inputs = new List<NeuralConnection>();
+        }
+
+        protected OutputNode(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+            Inputs = (List<NeuralConnection>)info.GetValue(nameof(Inputs), typeof(List<NeuralConnection>));
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
+
+            info.AddValue(nameof(Inputs), Inputs);
         }
     }
 }

@@ -3,27 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace FosterScript.Core.NeuralNetwork
 {
     /// <summary>
     /// Nodes that provide input to the network
     /// </summary>
-    public class InputNode : Neuron, ICanSupplement
+    [Serializable]
+    public class InputNode : Neuron, ICanSupplement, ISerializable
     {
         public delegate void OutputRequestHandler(object sender, InputNeuronEventArgs e);
         public event OutputRequestHandler? OnRequestOutput;
 
-        public double Output 
+        public double Output
         {
             get
             {
                 return output;
-            } 
+            }
         }
         private double output;
 
         private double storedOutput;
+
+        protected InputNode(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+            output = (double)info.GetValue(nameof(Output), typeof(double));
+            storedOutput = (double)info.GetValue(nameof(storedOutput), typeof(double));
+        }
 
         /// <summary>
         /// Calculates and stores value in the back to prepare for propagation
@@ -31,11 +39,11 @@ namespace FosterScript.Core.NeuralNetwork
         public void Calculate()
         {
             InputNeuronEventArgs args = new InputNeuronEventArgs();
-            if(OnRequestOutput != null)
+            if (OnRequestOutput != null)
             {
                 OnRequestOutput?.Invoke(this, args);
             }
-            
+
             storedOutput = args.Output;
         }
 
@@ -47,9 +55,22 @@ namespace FosterScript.Core.NeuralNetwork
             output = storedOutput;
         }
 
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
+
+            info.AddValue(nameof(Output), Output);
+            info.AddValue(nameof(storedOutput), storedOutput);
+        }
+
         protected InputNode(string name, string description) : base(name, description)
         {
 
+        }
+
+        public InputNode(string name, string description, double output) : base(name, description)
+        {
+            this.output = output;
         }
     }
 

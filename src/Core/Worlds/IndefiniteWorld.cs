@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,7 +10,8 @@ namespace FosterScript.Core.Worlds
     /// <summary>
     /// A World that will run until stopped.
     /// </summary>
-    public class IndefiniteWorld : World
+    [Serializable]
+    public class IndefiniteWorld : World, ISerializable
     {
         private System.Timers.Timer clock;
         public bool IsRunning => clock.Enabled;
@@ -33,15 +35,27 @@ namespace FosterScript.Core.Worlds
         /// <summary>
         /// Start the internal timer. Will run until you call the Stop() method.
         /// </summary>
-        public override void Start(){
+        public override void Start()
+        {
             clock.Enabled = true;
         }
 
         /// <summary>
         /// Stop the internal timer.
         /// </summary>
-        public override void Stop(){
+        public override void Stop()
+        {
             clock.Enabled = false;
+        }
+
+        protected IndefiniteWorld(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
         }
     }
 }

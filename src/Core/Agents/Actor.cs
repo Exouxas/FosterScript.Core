@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Numerics;
+using System.Runtime.Serialization;
 using FosterScript.Core.Worlds;
 
 namespace FosterScript.Core.Agents
@@ -11,7 +12,8 @@ namespace FosterScript.Core.Agents
     /// <summary>
     /// Hard-coded AI
     /// </summary>
-    public class Actor
+    [Serializable]
+    public class Actor : ISerializable
     {
         /// <summary>
         /// List of "parts" that alter or add to the Actors features.
@@ -22,13 +24,13 @@ namespace FosterScript.Core.Agents
         /// <summary>
         /// Check if modules are validated.
         /// </summary>
-        private bool AreModulesValidated 
+        private bool AreModulesValidated
         {
             get
             {
                 if (_areModulesValidated) { return true; }
 
-                foreach(Module module in Modules)
+                foreach (Module module in Modules)
                 {
                     if (!module.CheckDependencies(Modules))
                     {
@@ -42,7 +44,7 @@ namespace FosterScript.Core.Agents
             set
             {
                 _areModulesValidated = value;
-            } 
+            }
         }
         private bool _areModulesValidated = false;
 
@@ -57,6 +59,18 @@ namespace FosterScript.Core.Agents
         {
             Modules = new List<Module>();
             _world = world;
+        }
+
+        public Actor(SerializationInfo info, StreamingContext context)
+        {
+            Modules = (List<Module>)info.GetValue(nameof(Modules), typeof(List<Module>));
+            _world = (World)info.GetValue(nameof(_world), typeof(World));
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue(nameof(Modules), Modules);
+            info.AddValue(nameof(_world), _world);
         }
 
         /// <summary>
@@ -105,7 +119,8 @@ namespace FosterScript.Core.Agents
         /// Add a module to the actor.
         /// </summary>
         /// <param name="m">Module to be added.</param>
-        public void AddModule(Module m){
+        public void AddModule(Module m)
+        {
             Modules.Add(m);
             m.Body = this;
             AreModulesValidated = false;
