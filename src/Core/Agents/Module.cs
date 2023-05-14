@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace FosterScript.Core.Agents
 {
     /// <summary>
     /// A module that may be inserted into an Actor for added functionality
     /// </summary>
-    public abstract class Module : Dependency
+    [Serializable]
+    public abstract class Module : Dependency, ISerializable
     {
         /*
          * Each "module" will attempt to be self-sufficient. 
@@ -36,6 +36,13 @@ namespace FosterScript.Core.Agents
             DependencyReferences = new();
         }
 
+        protected Module(SerializationInfo info, StreamingContext context) : this()
+        {
+            Body = (Actor?)info.GetValue(nameof(Body), typeof(Actor));
+            Dependencies = (Dictionary<string, int[]>)info.GetValue(nameof(Dependencies), typeof(Dictionary<string, int[]>));
+            DependencyReferences = (Dictionary<string, Module>)info.GetValue(nameof(DependencyReferences), typeof(Dictionary<string, Module>));
+        }
+
         public bool CheckDependencies(List<Module> dependencyList)
         {
             Dictionary<string, Module> existingModules = dependencyList.ToDictionary(x => x.Name, x => x);
@@ -43,10 +50,10 @@ namespace FosterScript.Core.Agents
 
             foreach (string s in Dependencies.Keys)
             {
-                if (!existingModules.ContainsKey(s)) 
-                { 
+                if (!existingModules.ContainsKey(s))
+                {
                     return false; // Doesn't have the required module at all
-                } 
+                }
                 else
                 {
                     if (!IsValid(Dependencies[s], existingModules[s].Version))
@@ -63,10 +70,17 @@ namespace FosterScript.Core.Agents
 
             // All modules exist and have a valid version
             DependencyReferences = depRefs;
-            return true; 
+            return true;
         }
 
         public abstract void Think();
         public abstract void Act();
+
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue(nameof(Body), Body);
+            info.AddValue(nameof(Dependencies), Dependencies);
+            info.AddValue(nameof(DependencyReferences), DependencyReferences);
+        }
     }
 }

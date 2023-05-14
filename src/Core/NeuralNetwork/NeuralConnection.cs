@@ -3,26 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace FosterScript.Core.NeuralNetwork
 {
     /// <summary>
-    /// Simple connection between two nerons or nodes
+    /// Simple connection between two neurons or nodes
     /// </summary>
-    public class NeuralConnection
+    [Serializable]
+    public class NeuralConnection : ISerializable
     {
         public ICanSupplement From { get; }
         public ICanAugment To { get; }
 
         public double Weight 
         { 
-            get
-            {
-                return savedWeight;
-            }
+            get 
+            { 
+                return weight; 
+            } 
         }
-        private short weight;
-        private double savedWeight;
+        private double weight;
 
         public double Output
         {
@@ -33,34 +34,27 @@ namespace FosterScript.Core.NeuralNetwork
         }
 
 
-        public NeuralConnection(ICanSupplement from, ICanAugment to, short weight)
+        public NeuralConnection(ICanSupplement from, ICanAugment to, double weight)
         {
             From = from;
             To = to;
             this.weight = weight;
-            savedWeight = weight / 8192d;
 
             To.Inputs.Add(this);
         }
 
-        public NeuralConnection(byte[] bin, Dictionary<ushort, ICanSupplement> from, Dictionary<ushort, ICanAugment> to)
+        public NeuralConnection(SerializationInfo info, StreamingContext context)
         {
-            int requiredSize = 6;
-            if(bin.Length != requiredSize) // Needs to be 48 bits total
-            {
-                throw new Exception("Not correct amount of bytes. Expected "+ (requiredSize * 8) + " bits, but received " + (bin.Length * 8) + " bits");
-            }
-
-            // Logic for searching for link points (neurons)
-            throw new NotImplementedException();
-
-
+            From = (ICanSupplement)info.GetValue(nameof(From), typeof(ICanSupplement));
+            To = (ICanAugment)info.GetValue(nameof(To), typeof(ICanAugment));
+            weight = (double)info.GetValue(nameof(Weight), typeof(double));
         }
 
-        public byte[] ToBinary()
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            // Logic for converting this object to binary.
-            throw new NotImplementedException();
+            info.AddValue(nameof(From), From);
+            info.AddValue(nameof(To), To);
+            info.AddValue(nameof(Weight), weight);
         }
     }
 }

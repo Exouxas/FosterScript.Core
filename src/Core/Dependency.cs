@@ -1,6 +1,9 @@
+// File: C:\Programming\GitHub\FosterScript.Core\src\Core\Dependency.cs
 using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace FosterScript.Core
@@ -8,7 +11,8 @@ namespace FosterScript.Core
     /// <summary>
     /// A class that some other class can be dependent on.
     /// </summary>
-    public abstract class Dependency
+    [Serializable]
+    public abstract class Dependency : ISerializable
     {
         /// <summary>
         /// Version number.
@@ -17,6 +21,18 @@ namespace FosterScript.Core
 
         public abstract string Name { get; }
 
+        protected Dependency() { }
+
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+
+        }
+
+        protected Dependency(SerializationInfo info, StreamingContext context)
+        {
+
+        }
+
         /// <summary>
         /// Check if the provided version is compatible.
         /// General rule: index 0 changing means not backward compatible anymore.
@@ -24,20 +40,20 @@ namespace FosterScript.Core
         /// </summary>
         public static bool IsValid(int[] requiredVersion, int[] providedVersion)
         {
-            if(requiredVersion is not null && providedVersion is not null) // Verify that both version instances exist
+            if (requiredVersion is not null && providedVersion is not null) // Verify that both version instances exist
             {
-                if(requiredVersion.Length > 0 && providedVersion.Length > 0) // Verify that there are numbers in the array
+                if (requiredVersion.Length > 0 && providedVersion.Length > 0) // Verify that there are numbers in the array
                 {
-                    if(requiredVersion[0] != providedVersion[0]) // If major version isn't the same, then it's not backwars compatible
+                    if (requiredVersion[0] != providedVersion[0]) // If major version isn't the same, then it's not backwars compatible
                     {
                         return false;
                     }
 
-                    for(int i = 1; i < requiredVersion.Length && i < providedVersion.Length; i++)
+                    for (int i = 1; i < requiredVersion.Length && i < providedVersion.Length; i++)
                     {
-                        if(requiredVersion[i] > providedVersion[i]) return false; // Version not high enough
+                        if (requiredVersion[i] > providedVersion[i]) return false; // Version not high enough
 
-                        if(requiredVersion[i] < providedVersion[i]) return true; // Version is newer
+                        if (requiredVersion[i] < providedVersion[i]) return true; // Version is newer
 
                         // If neither, then check next number
                     }

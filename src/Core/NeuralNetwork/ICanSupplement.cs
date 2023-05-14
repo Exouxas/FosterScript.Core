@@ -9,7 +9,7 @@ namespace FosterScript.Core.NeuralNetwork
     /// <summary>
     /// Any object that gives an output, with methods for calculating and propagating
     /// </summary>
-    public interface ICanSupplement
+    public interface ICanSupplement : ISerializable
     {
         public double Output { get; }
 

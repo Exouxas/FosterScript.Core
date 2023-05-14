@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using FosterScript.Core.Agents;
@@ -11,7 +12,8 @@ namespace FosterScript.Core.Worlds
     /// <summary>
     /// 
     /// </summary>
-    public abstract class World
+    [Serializable]
+    public abstract class World : ISerializable
     {
         public event Notify? StepDone;
         public event Notify? ThinkDone;
@@ -91,11 +93,12 @@ namespace FosterScript.Core.Worlds
         /// <summary>
         /// Progresses the world one step.
         /// </summary>
-        protected void Step(){
+        protected void Step()
+        {
             Think();
             Act();
 
-            lock(_actorRemoveLock)
+            lock (_actorRemoveLock)
             {
                 foreach (Actor a in _actorsToBeRemoved)
                 {
@@ -120,7 +123,7 @@ namespace FosterScript.Core.Worlds
             {
                 _actors.Add(a);
             }
-            lock(_positionsLock)
+            lock (_positionsLock)
             {
                 positions.Add(a, v);
             }
@@ -198,6 +201,26 @@ namespace FosterScript.Core.Worlds
                     positions[a] += v;
                 }
             }
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue(nameof(_actorsToBeRemoved), _actorsToBeRemoved);
+            info.AddValue(nameof(_actors), _actors);
+            info.AddValue(nameof(_actorRemoveLock), _actorRemoveLock);
+            info.AddValue(nameof(_actorLock), _actorLock);
+            info.AddValue(nameof(_positionsLock), _positionsLock);
+            info.AddValue(nameof(positions), positions);
+        }
+
+        internal World(SerializationInfo info, StreamingContext context)
+        {
+            _actorsToBeRemoved = (List<Actor>)info.GetValue(nameof(_actorsToBeRemoved), typeof(List<Actor>));
+            _actors = (List<Actor>)info.GetValue(nameof(_actors), typeof(List<Actor>));
+            _actorRemoveLock = (object)info.GetValue(nameof(_actorRemoveLock), typeof(object));
+            _actorLock = (object)info.GetValue(nameof(_actorLock), typeof(object));
+            _positionsLock = (object)info.GetValue(nameof(_positionsLock), typeof(object));
+            positions = (Dictionary<Actor, Vector3>)info.GetValue(nameof(positions), typeof(Dictionary<Actor, Vector3>));
         }
 
         public abstract void Start();
