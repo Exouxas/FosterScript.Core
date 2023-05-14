@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <OutputTupe>Exe</OutputTupe>
     <OutputType>Exe</OutputType>
+    <StartupObject>FosterScript.Examples.FiniteExample</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>

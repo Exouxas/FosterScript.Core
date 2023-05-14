@@ -5,7 +5,7 @@ using FosterScript.Examples.Modules;
 
 namespace FosterScript.Examples
 {
-    public static class Application
+    public static class IndefiniteExample
     {
         static IndefiniteWorld world = new(500);
         public static void Main(string[] args){
@@ -52,7 +52,7 @@ namespace FosterScript.Examples
 
         private static void Tick(){
             World w = world;
-            Console.WriteLine("World did a thing " + w.Actors.Count);
+            Console.WriteLine($"Step number {world.CurrentStep}, there are {world.Actors.Count} actors left.");
         }
     }
 }
