@@ -20,6 +20,19 @@ namespace FosterScript.Core.Worlds
         public event Notify? ActDone;
         public event NotifyDeath? ActorKilled;
 
+        /// <summary>
+        /// Get the current step.
+        /// </summary>
+        public long CurrentStep
+        {
+            get
+            {
+                return _currentStep;
+            }
+        }
+
+        private long _currentStep = 0;
+
         public List<Actor> Actors
         {
             get
@@ -95,6 +108,7 @@ namespace FosterScript.Core.Worlds
         /// </summary>
         protected void Step()
         {
+            _currentStep++;
             Think();
             Act();
 
@@ -205,6 +219,7 @@ namespace FosterScript.Core.Worlds
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
+            info.AddValue(nameof(_currentStep), _currentStep);
             info.AddValue(nameof(_actorsToBeRemoved), _actorsToBeRemoved);
             info.AddValue(nameof(_actors), _actors);
             info.AddValue(nameof(_actorRemoveLock), _actorRemoveLock);
@@ -215,6 +230,7 @@ namespace FosterScript.Core.Worlds
 
         internal World(SerializationInfo info, StreamingContext context)
         {
+            _currentStep = (long)info.GetValue(nameof(_currentStep), typeof(long));
             _actorsToBeRemoved = (List<Actor>)info.GetValue(nameof(_actorsToBeRemoved), typeof(List<Actor>));
             _actors = (List<Actor>)info.GetValue(nameof(_actors), typeof(List<Actor>));
             _actorRemoveLock = (object)info.GetValue(nameof(_actorRemoveLock), typeof(object));
