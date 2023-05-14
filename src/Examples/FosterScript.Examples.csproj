@@ -1,10 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <OutputTupe>Exe</OutputTupe>
     <OutputType>Exe</OutputType>
     <StartupObject>FosterScript.Examples.FiniteExample</StartupObject>
   </PropertyGroup>
