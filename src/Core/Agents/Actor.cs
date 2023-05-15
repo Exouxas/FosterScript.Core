@@ -118,12 +118,33 @@ namespace FosterScript.Core.Agents
         /// <summary>
         /// Add a module to the actor.
         /// </summary>
-        /// <param name="m">Module to be added.</param>
-        public void AddModule(Module m)
+        /// <param name="module">Module to be added.</param>
+        public void AddModule(Module module)
         {
-            Modules.Add(m);
-            m.Body = this;
+            Modules.Add(module);
+            module.Body = this;
             AreModulesValidated = false;
+            module.Initialize();
+        }
+
+        /// <summary>
+        /// Add a modules to the actor.
+        /// </summary>
+        /// <param name="moduleList">Modules to be added.</param>
+        public void AddModule(ICollection<Module> moduleList)
+        {
+            foreach(Module module in moduleList)
+            {
+                Modules.Add(module);
+                module.Body = this;
+            }
+            AreModulesValidated = false;
+
+            if(AreModulesValidated)
+            {
+                foreach (Module module in moduleList)
+                    module.Initialize();
+            }
         }
     }
 }
