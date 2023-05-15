@@ -73,6 +73,7 @@ namespace FosterScript.Core.Agents
             return true;
         }
 
+        public abstract void Initialize();
         public abstract void Think();
         public abstract void Act();
 
