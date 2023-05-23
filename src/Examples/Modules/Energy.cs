@@ -35,7 +35,12 @@ namespace FosterScript.Examples.Modules
 
         public Energy() : base()
         {
-            
+
+        }
+
+        public override void Initialize()
+        {
+
         }
 
         public override void Think()
