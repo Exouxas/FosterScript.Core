@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
+using FosterScript.Core.NeuralNetwork;
 
 namespace FosterScript.Core
 {
@@ -42,6 +43,13 @@ namespace FosterScript.Core
 
             watcher.Created += FileCreated;
             watcher.Deleted += FileDeleted;
+
+            // Add subclasses of HiddenNode to the cache
+            _loadedClasses.Add(typeof(HiddenNode), new List<Type>());
+            foreach (Type t in typeof(HiddenNode).Assembly.GetTypes().Where(t => t.IsSubclassOf(typeof(HiddenNode))))
+            {
+                _loadedClasses[typeof(HiddenNode)].Add(t);
+            }
         }
 
 
