@@ -8,7 +8,8 @@ namespace FosterScript.Examples
     public static class IndefiniteExample
     {
         static IndefiniteWorld world = new(500);
-        public static void Main(string[] args){
+        public static void Main(string[] args)
+        {
             Random random = new();
 
             Console.WriteLine("Creating actors");
@@ -50,7 +51,8 @@ namespace FosterScript.Examples
             while(world.IsRunning) { }
         }
 
-        private static void Tick(){
+        private static void Tick()
+        {
             World w = world;
             Console.WriteLine($"Step number {world.CurrentStep}, there are {world.Actors.Count} actors left.");
         }
