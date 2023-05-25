@@ -10,6 +10,8 @@ namespace FosterScript.Examples
         static IndefiniteWorld world = new(500);
         public static void Main(string[] args)
         {
+            Console.WriteLine("Indefinite World Example");
+
             Random random = new();
 
             Console.WriteLine("Creating actors");
@@ -30,7 +32,7 @@ namespace FosterScript.Examples
                 RandomMovement2D mov = new();
                 mov.Speed = random.NextDouble() * 1 + 1;
                 actor.AddModule(mov);
-
+                
                 world.Add(actor);
             }
 

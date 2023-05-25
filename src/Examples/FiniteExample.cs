@@ -11,6 +11,8 @@ namespace FosterScript.Examples
 
         public static void Main(string[] args)
         {
+            Console.WriteLine("Finite World Example");
+
             Random random = new();
 
             Console.WriteLine("Creating actors");
