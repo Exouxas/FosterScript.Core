@@ -16,9 +16,14 @@ namespace FosterScript.Core.Worlds
     {
         private System.Timers.Timer clock;
         private readonly object _timerLock = new object();
-        public bool IsRunning => clock.Enabled;
-
         private long _millisecondInterval;
+
+        public bool IsRunning 
+        { 
+            get { return _isRunning; } 
+        }
+        private bool _isRunning;
+
 
         /// <summary>
         /// Creates an instance of the IndefiniteWorld class.
@@ -38,7 +43,7 @@ namespace FosterScript.Core.Worlds
             {
                 if (IsRunning)
                 {
-                    clock.Start();
+                    clock.Enabled = true;
                     Step();
                 }
             }
@@ -50,6 +55,7 @@ namespace FosterScript.Core.Worlds
         public override void Start()
         {
             clock.Enabled = true;
+            _isRunning = true;
         }
 
         /// <summary>
@@ -58,6 +64,7 @@ namespace FosterScript.Core.Worlds
         public override void Stop()
         {
             clock.Enabled = false;
+            _isRunning = false;
         }
 
         protected IndefiniteWorld(SerializationInfo info, StreamingContext context) : base(info, context)
