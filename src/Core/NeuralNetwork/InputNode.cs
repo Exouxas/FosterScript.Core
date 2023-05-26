@@ -63,9 +63,9 @@ namespace FosterScript.Core.NeuralNetwork
             info.AddValue(nameof(storedOutput), storedOutput);
         }
 
-        protected InputNode(string name, string description) : base(name, description)
+        public InputNode(string name, string description) : this(name, description, 0)
         {
-
+            
         }
 
         public InputNode(string name, string description, double output) : base(name, description)

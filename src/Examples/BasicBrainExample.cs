@@ -1,11 +1,12 @@
 using FosterScript.Core;
 using FosterScript.Core.Worlds;
 using FosterScript.Core.Agents;
-using FosterScript.Examples.Modules;
+using FosterScript.Examples.Modules.SmartModules;
+using FosterScript.Core.NeuralNetwork;
 
 namespace FosterScript.Examples
 {
-    public static class IndefiniteExample
+    public static class BasicBrainExample
     {
         static IndefiniteWorld world = new(500);
         public static void Main(string[] args)
@@ -18,21 +19,26 @@ namespace FosterScript.Examples
             for(int i = 0; i < 3; i++)
             {
                 Actor actor = new(world);
+                List<Module> modules = new List<Module>();
 
-                Digestion d = new();
+                SmartDigestion d = new();
                 d.DigestionRate = random.NextDouble() * 2;
                 d.StoredMeat = random.NextDouble() * 5;
                 d.StoredPlant = random.NextDouble() * 5;
-                actor.AddModule(d);
+                modules.Add(d);
 
-                Energy e = new();
+                SmartEnergy e = new();
                 e.EnergyStored = random.NextDouble() * 10;
-                actor.AddModule(e);
+                modules.Add(e);
 
-                RandomMovement2D mov = new();
+                SmartMovement2D mov = new();
                 mov.Speed = random.NextDouble() * 1 + 1;
-                actor.AddModule(mov);
-                
+                modules.Add(mov);
+
+                BasicBrain brain = new BasicBrain();
+                modules.Add(brain);
+
+                actor.AddModule(modules);
                 world.Add(actor);
             }
 

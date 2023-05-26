@@ -22,6 +22,11 @@ namespace FosterScript.Examples.Modules
         {
             Dependencies.Add("Energy", new int[] { 1, 0, 0 });
         }
+
+        public override void Initialize()
+        {
+
+        }
         public override void Think()
         {
             

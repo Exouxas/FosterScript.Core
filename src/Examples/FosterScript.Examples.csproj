@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <OutputType>Exe</OutputType>
-    <StartupObject>FosterScript.Examples.FiniteExample</StartupObject>
+    <StartupObject>FosterScript.Examples.BasicBrainExample</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>

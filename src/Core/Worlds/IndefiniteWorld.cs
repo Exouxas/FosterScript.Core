@@ -33,7 +33,7 @@ namespace FosterScript.Core.Worlds
         {
             _millisecondInterval = millis;
             clock = new System.Timers.Timer(_millisecondInterval);
-            clock.Elapsed += Tick; ;
+            clock.Elapsed += Tick;
             clock.AutoReset = false;
         }
 
