@@ -73,7 +73,8 @@ namespace FosterScript.Examples.Modules.SmartModules
             y /= normalizedDistance;
 
             // Exponentially more exhausting to move faster
-            ((Energy)DependencyReferences["SmartEnergy"]).EnergyStored -= Speed * Speed;
+            ((SmartEnergy)DependencyReferences["SmartEnergy"]).EnergyStored -= Speed * Speed;
+
             Body?.Move(new Vector3(x * (float)Speed, y * (float)Speed, 0));
         }
     }
