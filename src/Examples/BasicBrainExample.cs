@@ -36,6 +36,7 @@ namespace FosterScript.Examples
                 modules.Add(mov);
 
                 BasicBrain brain = new BasicBrain();
+                modules.Add(brain);
 
                 actor.AddModule(modules);
                 world.Add(actor);
