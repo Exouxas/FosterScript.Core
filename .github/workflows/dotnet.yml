@@ -42,7 +42,7 @@ jobs:
       run: dotnet test --no-build --verbosity normal
   
 
-  build_examples:
+  build_example_library:
     name: Build Example library
     needs: build_core
     runs-on: ubuntu-latest
