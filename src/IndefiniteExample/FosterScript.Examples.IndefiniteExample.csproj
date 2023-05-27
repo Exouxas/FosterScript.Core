@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Core\FosterScript.Core.csproj" />
-    <ProjectReference Include="..\Examples\FosterScript.Examples.csproj" />
+    <ProjectReference Include="..\ExampleLibrary\FosterScript.Examples.csproj" />
   </ItemGroup>
 
 </Project>
