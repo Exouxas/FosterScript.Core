@@ -49,7 +49,10 @@ namespace FosterScript.Examples
 
             world.Start();
 
-            while (world.IsRunning) { }
+            while (world.IsRunning) 
+            {
+                Thread.Sleep(1000);
+            }
         }
 
         private static void Tick()
