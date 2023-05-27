@@ -65,13 +65,13 @@ namespace FosterScript.Examples.Modules.SmartModules
             if (StoredMeat > DigestionRate)
             {
                 StoredMeat -= DigestionRate;
-                ((Energy)DependencyReferences["Energy"]).EnergyStored += DigestionRate * 5;
+                ((SmartEnergy)DependencyReferences["SmartEnergy"]).EnergyStored += DigestionRate * 5;
             }
 
             if (StoredPlant > DigestionRate)
             {
                 StoredPlant -= DigestionRate;
-                ((Energy)DependencyReferences["Energy"]).EnergyStored += DigestionRate;
+                ((SmartEnergy)DependencyReferences["SmartEnergy"]).EnergyStored += DigestionRate;
             }
         }
     }
