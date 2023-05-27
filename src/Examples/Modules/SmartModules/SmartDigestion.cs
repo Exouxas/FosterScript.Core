@@ -1,10 +1,5 @@
 ﻿using FosterScript.Core.Agents;
 using FosterScript.Core.NeuralNetwork;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FosterScript.Examples.Modules.SmartModules
 {

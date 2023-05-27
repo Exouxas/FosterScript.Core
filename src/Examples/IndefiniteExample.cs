@@ -1,4 +1,3 @@
-using FosterScript.Core;
 using FosterScript.Core.Worlds;
 using FosterScript.Core.Agents;
 using FosterScript.Examples.Modules;

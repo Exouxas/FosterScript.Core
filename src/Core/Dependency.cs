@@ -1,10 +1,4 @@
-// File: C:\Programming\GitHub\FosterScript.Core\src\Core\Dependency.cs
-using System;
-using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.Runtime.Serialization;
-using System.Text;
 
 namespace FosterScript.Core
 {

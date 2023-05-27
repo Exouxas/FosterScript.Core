@@ -1,8 +1,6 @@
-using FosterScript.Core;
 using FosterScript.Core.Worlds;
 using FosterScript.Core.Agents;
 using FosterScript.Examples.Modules.SmartModules;
-using FosterScript.Core.NeuralNetwork;
 
 namespace FosterScript.Examples
 {
