@@ -11,8 +11,12 @@ namespace FosterScript.Examples.Modules
         #endregion
 
         #region "Properties"
+        /// <summary>
+        /// The speed at which the actor moves.
+        /// </summary>
         public double Speed { get; set; }
         #endregion
+
         public RandomMovement2D() : base()
         {
             Dependencies.Add("Energy", new int[] { 1, 0, 0 });
@@ -20,11 +24,11 @@ namespace FosterScript.Examples.Modules
 
         public override void Initialize()
         {
-
+            // Nothing to initialize
         }
         public override void Think()
         {
-            
+            // Actor gets a permanent speed, so there's nothing to think about
         }
         public override void Act()
         {

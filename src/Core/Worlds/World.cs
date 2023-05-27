@@ -10,9 +10,24 @@ namespace FosterScript.Core.Worlds
     [Serializable]
     public abstract class World : ISerializable
     {
+        /// <summary>
+        /// A whole step has been completed.
+        /// </summary>
         public event Notify? StepDone;
+
+        /// <summary>
+        /// The preliminary think phase has been completed.
+        /// </summary>
         public event Notify? ThinkDone;
+
+        /// <summary>
+        /// The action phase has been completed.
+        /// </summary>
         public event Notify? ActDone;
+
+        /// <summary>
+        /// An actor has been killed.
+        /// </summary>
         public event NotifyDeath? ActorKilled;
 
         /// <summary>
@@ -25,9 +40,11 @@ namespace FosterScript.Core.Worlds
                 return _currentStep;
             }
         }
-
         private long _currentStep = 0;
 
+        /// <summary>
+        /// A copy of the list of all actors in the world.
+        /// </summary>
         public List<Actor> Actors
         {
             get
@@ -62,6 +79,9 @@ namespace FosterScript.Core.Worlds
             }
         }
 
+        /// <summary>
+        /// Sorts the actors by initiative.
+        /// </summary>
         internal void SortActors()
         {
             lock (_actorLock)
@@ -70,6 +90,9 @@ namespace FosterScript.Core.Worlds
             }
         }
 
+        /// <summary>
+        /// Cause all actors to think.
+        /// </summary>
         private void Think()
         {
             lock (_actorLock)
@@ -83,6 +106,9 @@ namespace FosterScript.Core.Worlds
             ThinkDone?.Invoke();
         }
 
+        /// <summary>
+        /// Cause all actors to act.
+        /// </summary>
         private void Act()
         {
             SortActors();
@@ -124,8 +150,8 @@ namespace FosterScript.Core.Worlds
         /// <summary>
         /// Add actor to world
         /// </summary>
-        /// <param name="a"></param>
-        /// <param name="v"></param>
+        /// <param name="a">Actor to be added</param>
+        /// <param name="v">Location the actor will be added to</param>
         public void Add(Actor a, Vector3 v)
         {
             lock (_actorLock)
@@ -141,7 +167,7 @@ namespace FosterScript.Core.Worlds
         /// <summary>
         /// Add actor to world
         /// </summary>
-        /// <param name="a"></param>
+        /// <param name="a">Actor to be added</param>
         public void Add(Actor a)
         {
             Add(a, new Vector3(0, 0, 0));
@@ -150,7 +176,7 @@ namespace FosterScript.Core.Worlds
         /// <summary>
         /// Add actor to removal queue
         /// </summary>
-        /// <param name="a"></param>
+        /// <param name="a">Actor to be removed</param>
         public void Remove(Actor a)
         {
             lock (_actorRemoveLock)
@@ -162,8 +188,8 @@ namespace FosterScript.Core.Worlds
         /// <summary>
         /// Find position of an actor
         /// </summary>
-        /// <param name="a"></param>
-        /// <returns></returns>
+        /// <param name="a">The actor you want to get the position of</param>
+        /// <returns>Position of the actor</returns>
         public Vector3 GetPosition(Actor a)
         {
             lock (_positionsLock)
@@ -183,8 +209,8 @@ namespace FosterScript.Core.Worlds
         /// <summary>
         /// Move actor to a specific position
         /// </summary>
-        /// <param name="a"></param>
-        /// <param name="v"></param>
+        /// <param name="a">Actor to be moved</param>
+        /// <param name="v">The location the actor will be moved to</param>
         public void MoveTo(Actor a, Vector3 v)
         {
             lock (_positionsLock)
@@ -199,8 +225,8 @@ namespace FosterScript.Core.Worlds
         /// <summary>
         /// Move actor in a direction
         /// </summary>
-        /// <param name="a"></param>
-        /// <param name="v"></param>
+        /// <param name="a">Actor to be moved</param>
+        /// <param name="v">Direction and distance the actor will be moved</param>
         public void Move(Actor a, Vector3 v)
         {
             lock (_positionsLock)

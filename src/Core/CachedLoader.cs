@@ -15,6 +15,9 @@ namespace FosterScript.Core
 
         private FileSystemWatcher watcher;
 
+        /// <summary>
+        /// All classes that have been loaded.
+        /// </summary>
         public static Dictionary<Type, List<Type>> LoadedClasses
         {
             get
@@ -58,12 +61,24 @@ namespace FosterScript.Core
             }
         }
 
+        /// <summary>
+        /// Loads a Type from a file and adds it to the cache.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <exception cref="NotImplementedException"></exception>
         private void FileCreated(object sender, FileSystemEventArgs e)
         {
             // TODO: Load the file and add it to the cache
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Removes a Type from the cache and unloads it.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <exception cref="NotImplementedException"></exception>
         private void FileDeleted(object sender, FileSystemEventArgs e)
         {
             // TODO: Unload the file and remove it from the cache

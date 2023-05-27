@@ -11,6 +11,9 @@ namespace FosterScript.Examples.Modules.SmartModules
         #endregion
 
         #region "Properties"
+        /// <summary>
+        /// The amount of stored energy.
+        /// </summary>
         public double EnergyStored 
         {
             get

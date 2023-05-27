@@ -12,6 +12,9 @@ namespace FosterScript.Examples.Modules.SmartModules
         #endregion
 
         #region "Properties"
+        /// <summary>
+        /// The speed of the agent.
+        /// </summary>
         public double Speed { get; set; }
         #endregion
 

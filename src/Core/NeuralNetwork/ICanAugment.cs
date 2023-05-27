@@ -7,6 +7,9 @@ namespace FosterScript.Core.NeuralNetwork
     /// </summary>
     public interface ICanAugment : ISerializable
     {
+        /// <summary>
+        /// Neural inputs.
+        /// </summary>
         public abstract List<NeuralConnection> Inputs { get; }
     }
 }

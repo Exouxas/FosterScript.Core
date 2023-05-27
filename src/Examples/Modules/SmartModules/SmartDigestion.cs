@@ -3,6 +3,10 @@ using FosterScript.Core.NeuralNetwork;
 
 namespace FosterScript.Examples.Modules.SmartModules
 {
+    /// <summary>
+    /// Represents a module that facilitates digestion of stored meat and plant resources.
+    /// <para>The module utilizes a brain to intake input.</para>
+    /// </summary>
     public class SmartDigestion : Module
     {
         #region "Inherited Properties"
@@ -11,8 +15,19 @@ namespace FosterScript.Examples.Modules.SmartModules
         #endregion
 
         #region "Properties"
+        /// <summary>
+        /// The amount of stored meat resources.
+        /// </summary>
         public double StoredMeat { get; set; }
+
+        /// <summary>
+        /// The amount of stored plant resources.
+        /// </summary>
         public double StoredPlant { get; set; }
+
+        /// <summary>
+        /// The rate at which food is digested.
+        /// </summary>
         public double DigestionRate { get; set; }
         #endregion
 

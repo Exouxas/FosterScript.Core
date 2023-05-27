@@ -8,12 +8,18 @@ namespace FosterScript.Core.NeuralNetwork
     [Serializable]
     public abstract class Neuron : ISerializable
     {
+        /// <summary>
+        /// Name of the neuron
+        /// </summary>
         public string Name
         {
             get { return _name; }
         }
         protected string _name;
 
+        /// <summary>
+        /// Description of the neuron
+        /// </summary>
         public string Description
         {
             get { return _description; }

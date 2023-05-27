@@ -12,6 +12,9 @@ namespace FosterScript.Core.Worlds
         private readonly object _timerLock = new object();
         private long _millisecondInterval;
 
+        /// <summary>
+        /// Indicator of whether the world is running or not.
+        /// </summary>
         public bool IsRunning 
         { 
             get { return _isRunning; } 
@@ -31,6 +34,11 @@ namespace FosterScript.Core.Worlds
             clock.AutoReset = false;
         }
 
+        /// <summary>
+        /// The method that is called when the internal timer ticks.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Tick(object? sender, System.Timers.ElapsedEventArgs e)
         {
             lock(_timerLock)

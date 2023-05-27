@@ -10,6 +10,9 @@ namespace FosterScript.Examples.Modules
         #endregion
 
         #region "Properties"
+        /// <summary>
+        /// The amount of energy stored.
+        /// </summary>
         public double EnergyStored 
         {
             get
@@ -35,7 +38,7 @@ namespace FosterScript.Examples.Modules
 
         public override void Initialize()
         {
-
+            // Nothing to initialize
         }
 
         public override void Think()

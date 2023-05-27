@@ -8,9 +8,19 @@ namespace FosterScript.Core.NeuralNetwork
     [Serializable]
     public class NeuralConnection : ISerializable
     {
+        /// <summary>
+        /// Supplementing node
+        /// </summary>
         public ICanSupplement From { get; }
+
+        /// <summary>
+        /// Receiving node
+        /// </summary>
         public ICanAugment To { get; }
 
+        /// <summary>
+        /// Weight of the connection
+        /// </summary>
         public double Weight 
         { 
             get 
@@ -20,6 +30,9 @@ namespace FosterScript.Core.NeuralNetwork
         }
         private double weight;
 
+        /// <summary>
+        /// Output of the connection
+        /// </summary>
         public double Output
         {
             get 

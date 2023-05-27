@@ -7,6 +7,9 @@ namespace FosterScript.Core.NeuralNetwork
     /// </summary>
     public interface ICanSupplement : ISerializable
     {
+        /// <summary>
+        /// Neural output.
+        /// </summary>
         public double Output { get; }
 
         /// <summary>
