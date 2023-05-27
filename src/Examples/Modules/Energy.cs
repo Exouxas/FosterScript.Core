@@ -2,7 +2,7 @@
 
 namespace FosterScript.Examples.Modules
 {
-    internal class Energy : Module
+    public class Energy : Module
     {
         #region "Inherited Properties"
         public override string Name => "Energy";

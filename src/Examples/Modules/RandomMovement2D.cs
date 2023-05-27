@@ -3,7 +3,7 @@ using System.Numerics;
 
 namespace FosterScript.Examples.Modules
 {
-    internal class RandomMovement2D : Module
+    public class RandomMovement2D : Module
     {
         #region "Inherited Properties"
         public override string Name => "RandomMovement2D";

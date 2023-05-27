@@ -2,7 +2,7 @@
 
 namespace FosterScript.Examples.Modules
 {
-    internal class BasicBrain : Brain
+    public class BasicBrain : Brain
     {
         public override int[] Version { get; } = { 1, 0, 0 };
 

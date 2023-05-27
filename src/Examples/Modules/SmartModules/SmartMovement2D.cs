@@ -4,7 +4,7 @@ using System.Numerics;
 
 namespace FosterScript.Examples.Modules.SmartModules
 {
-    internal class SmartMovement2D : Module
+    public class SmartMovement2D : Module
     {
         #region "Inherited Properties"
         public override string Name => "SmartMovement2D";

@@ -3,7 +3,7 @@ using FosterScript.Core.NeuralNetwork;
 
 namespace FosterScript.Examples.Modules.SmartModules
 {
-    internal class SmartDigestion : Module
+    public class SmartDigestion : Module
     {
         #region "Inherited Properties"
         public override string Name => "SmartDigestion";
