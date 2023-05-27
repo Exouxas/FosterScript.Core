@@ -69,7 +69,7 @@ jobs:
 
   build_examples:
     name: Build Examples
-    needs: build_core
+    needs: build_example_library
     runs-on: ubuntu-latest
         
     strategy:
