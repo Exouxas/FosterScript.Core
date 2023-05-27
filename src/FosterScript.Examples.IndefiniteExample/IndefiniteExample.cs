@@ -1,5 +1,5 @@
-﻿using FosterScript.Core.Worlds;
-using FosterScript.Core.Agents;
+﻿using FosterScript.Core.Agents;
+using FosterScript.Core.Worlds;
 using FosterScript.Examples.Modules;
 
 namespace FosterScript.Examples
@@ -49,7 +49,7 @@ namespace FosterScript.Examples
 
             world.Start();
 
-            while (world.IsRunning) 
+            while (world.IsRunning)
             {
                 Thread.Sleep(1000);
             }

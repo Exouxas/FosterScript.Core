@@ -1,5 +1,5 @@
-﻿using FosterScript.Core.Worlds;
-using FosterScript.Core.Agents;
+﻿using FosterScript.Core.Agents;
+using FosterScript.Core.Worlds;
 using FosterScript.Examples.Modules;
 
 namespace FosterScript.Examples

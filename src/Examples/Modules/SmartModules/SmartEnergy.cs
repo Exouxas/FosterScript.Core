@@ -14,7 +14,7 @@ namespace FosterScript.Examples.Modules.SmartModules
         /// <summary>
         /// The amount of stored energy.
         /// </summary>
-        public double EnergyStored 
+        public double EnergyStored
         {
             get
             {
@@ -22,12 +22,12 @@ namespace FosterScript.Examples.Modules.SmartModules
             }
             set
             {
-                if(value <= 0)
+                if (value <= 0)
                 {
                     Body?.Kill();
                 }
                 _energyStored = value;
-            } 
+            }
         }
         private double _energyStored;
         #endregion

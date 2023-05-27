@@ -1,5 +1,5 @@
-using System.Runtime.Serialization;
 using FosterScript.Core.Agents;
+using System.Runtime.Serialization;
 
 namespace FosterScript.Core.NeuralNetwork
 {

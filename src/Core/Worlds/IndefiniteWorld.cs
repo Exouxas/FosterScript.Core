@@ -15,9 +15,9 @@ namespace FosterScript.Core.Worlds
         /// <summary>
         /// Indicator of whether the world is running or not.
         /// </summary>
-        public bool IsRunning 
-        { 
-            get { return _isRunning; } 
+        public bool IsRunning
+        {
+            get { return _isRunning; }
         }
         private bool _isRunning;
 
@@ -41,7 +41,7 @@ namespace FosterScript.Core.Worlds
         /// <param name="e"></param>
         private void Tick(object? sender, System.Timers.ElapsedEventArgs e)
         {
-            lock(_timerLock)
+            lock (_timerLock)
             {
                 if (IsRunning)
                 {

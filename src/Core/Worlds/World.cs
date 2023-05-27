@@ -1,6 +1,6 @@
+using FosterScript.Core.Agents;
 using System.Numerics;
 using System.Runtime.Serialization;
-using FosterScript.Core.Agents;
 
 namespace FosterScript.Core.Worlds
 {

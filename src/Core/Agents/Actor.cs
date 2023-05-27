@@ -1,6 +1,6 @@
+using FosterScript.Core.Worlds;
 using System.Numerics;
 using System.Runtime.Serialization;
-using FosterScript.Core.Worlds;
 
 namespace FosterScript.Core.Agents
 {
@@ -144,14 +144,14 @@ namespace FosterScript.Core.Agents
         /// <param name="moduleList">The collection of modules to add.</param>
         public void AddModule(ICollection<Module> moduleList)
         {
-            foreach(Module module in moduleList)
+            foreach (Module module in moduleList)
             {
                 Modules.Add(module);
                 module.Body = this;
             }
             AreModulesValidated = false;
 
-            if(AreModulesValidated)
+            if (AreModulesValidated)
             {
                 foreach (Module module in moduleList)
                     module.Initialize();

@@ -1,5 +1,5 @@
-using FosterScript.Core.Worlds;
 using FosterScript.Core.Agents;
+using FosterScript.Core.Worlds;
 using FosterScript.Examples.Modules;
 using FosterScript.Examples.Modules.SmartModules;
 
@@ -15,7 +15,7 @@ namespace FosterScript.Examples
             Random random = new();
 
             Console.WriteLine("Creating actors");
-            for(int i = 0; i < 3; i++)
+            for (int i = 0; i < 3; i++)
             {
                 Actor actor = new(world);
                 List<Module> modules = new List<Module>();
@@ -46,7 +46,7 @@ namespace FosterScript.Examples
             {
                 Console.WriteLine("Actor died! " + world.Actors.Count + " left");
 
-                if(world.Actors.Count == 0)
+                if (world.Actors.Count == 0)
                 {
                     world.Stop();
                     Console.WriteLine("All actors died, stopped world");
@@ -55,8 +55,8 @@ namespace FosterScript.Examples
 
             world.Start();
 
-            while(world.IsRunning) 
-            { 
+            while (world.IsRunning)
+            {
                 Thread.Sleep(1000);
             }
         }
