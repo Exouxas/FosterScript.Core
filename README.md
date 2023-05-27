@@ -11,23 +11,21 @@ I'm planning to make a server hosted implementation of this library, that will h
 
 ## Progress
 My attempt at tracking progress of the different classes to make development more effective.
-- ![90%](https://progress-bar.dev/90) Overall architecture/design
-- ![83%](https://progress-bar.dev/83) NeuralNetwork
+- ![100%](https://progress-bar.dev/100) Overall architecture/design
+- ![100%](https://progress-bar.dev/100) NeuralNetwork
   - ![100%](https://progress-bar.dev/100) Neuron
   - ![100%](https://progress-bar.dev/100) InputNode
   - ![100%](https://progress-bar.dev/100) HiddenNode
   - ![100%](https://progress-bar.dev/100) OutputNode
   - ![100%](https://progress-bar.dev/100) NeuralConnection
-  - ![0%](https://progress-bar.dev/0) Brain
-- ![63%](https://progress-bar.dev/63) Agents
-  - ![95%](https://progress-bar.dev/95) Actor
-  - ![90%](https://progress-bar.dev/90) Module
-  - ![5%](https://progress-bar.dev/5) Learner
-- ![63%](https://progress-bar.dev/63) Environments
-  - ![95%](https://progress-bar.dev/95) World
-  - ![95%](https://progress-bar.dev/95) IndefiniteWorld
-  - ![0%](https://progress-bar.dev/0) FiniteWorld
-- ![10%](https://progress-bar.dev/10) Loader
+  - ![100%](https://progress-bar.dev/100) Brain
+- ![100%](https://progress-bar.dev/100) Agents
+  - ![100%](https://progress-bar.dev/100) Actor
+  - ![100%](https://progress-bar.dev/100) Module
+- ![100%](https://progress-bar.dev/100) Environments
+  - ![100%](https://progress-bar.dev/100) World
+  - ![100%](https://progress-bar.dev/100) IndefiniteWorld
+  - ![100%](https://progress-bar.dev/100) FiniteWorld
 
 
 ## Inspiration
