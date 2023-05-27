@@ -43,20 +43,50 @@ jobs:
   
 
   build_examples:
-    name: Build Examples
+    name: Build Example library
     needs: build_core
     runs-on: ubuntu-latest
 
     defaults:
       run:
-        working-directory: src/Examples
+        working-directory: src/ExampleLibrary
+        
+    strategy:
+      matrix:
+        dotnet-version: [6.0.x, 7.0.x]
     
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: ${{ matrix.dotnet-version }}
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+  
+
+  build_examples:
+    name: Build Examples
+    needs: build_core
+    runs-on: ubuntu-latest
+        
+    strategy:
+      matrix:
+        dotnet-version: [6.0.x, 7.0.x]
+        projects: [BasicBrainExample, FiniteExample, IndefiniteExample]
+
+    defaults:
+      run:
+        working-directory: src/${{ matrix.projects }}
+    
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ matrix.dotnet-version }}
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
