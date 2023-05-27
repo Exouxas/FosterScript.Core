@@ -1,13 +1,12 @@
-using FosterScript.Core;
+﻿using FosterScript.Core.Agents;
 using FosterScript.Core.Worlds;
-using FosterScript.Core.Agents;
 using FosterScript.Examples.Modules;
 
 namespace FosterScript.Examples
 {
     public static class IndefiniteExample
     {
-        static IndefiniteWorld world = new(500);
+        static readonly IndefiniteWorld world = new(500);
         public static void Main(string[] args)
         {
             Console.WriteLine("Indefinite World Example");
@@ -15,7 +14,7 @@ namespace FosterScript.Examples
             Random random = new();
 
             Console.WriteLine("Creating actors");
-            for(int i = 0; i < 3; i++)
+            for (int i = 0; i < 3; i++)
             {
                 Actor actor = new(world);
 
@@ -32,7 +31,7 @@ namespace FosterScript.Examples
                 RandomMovement2D mov = new();
                 mov.Speed = random.NextDouble() * 1 + 1;
                 actor.AddModule(mov);
-                
+
                 world.Add(actor);
             }
 
@@ -41,7 +40,7 @@ namespace FosterScript.Examples
             {
                 Console.WriteLine("Actor died! " + world.Actors.Count + " left");
 
-                if(world.Actors.Count == 0)
+                if (world.Actors.Count == 0)
                 {
                     world.Stop();
                     Console.WriteLine("All actors died, stopped world");
@@ -50,12 +49,14 @@ namespace FosterScript.Examples
 
             world.Start();
 
-            while(world.IsRunning) { }
+            while (world.IsRunning)
+            {
+                Thread.Sleep(1000);
+            }
         }
 
         private static void Tick()
         {
-            World w = world;
             Console.WriteLine($"Step number {world.CurrentStep}, there are {world.Actors.Count} actors left.");
         }
     }

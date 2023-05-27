@@ -1,13 +1,8 @@
 ﻿using FosterScript.Core.Agents;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FosterScript.Examples.Modules
 {
-    internal class Energy : Module
+    public class Energy : Module
     {
         #region "Inherited Properties"
         public override string Name => "Energy";
@@ -15,7 +10,10 @@ namespace FosterScript.Examples.Modules
         #endregion
 
         #region "Properties"
-        public double EnergyStored 
+        /// <summary>
+        /// The amount of energy stored.
+        /// </summary>
+        public double EnergyStored
         {
             get
             {
@@ -23,12 +21,12 @@ namespace FosterScript.Examples.Modules
             }
             set
             {
-                if(value <= 0)
+                if (value <= 0)
                 {
                     Body?.Kill();
                 }
                 _energyStored = value;
-            } 
+            }
         }
         private double _energyStored;
         #endregion
@@ -40,7 +38,7 @@ namespace FosterScript.Examples.Modules
 
         public override void Initialize()
         {
-
+            // Nothing to initialize
         }
 
         public override void Think()

@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using FosterScript.Core.Worlds;
 using System.Numerics;
 using System.Runtime.Serialization;
-using FosterScript.Core.Worlds;
 
 namespace FosterScript.Core.Agents
 {
@@ -53,7 +48,7 @@ namespace FosterScript.Core.Agents
         /// </summary>
         public int Initiative { get; }
 
-        private World _world;
+        private readonly World _world;
 
         public Actor(World world)
         {
@@ -61,12 +56,22 @@ namespace FosterScript.Core.Agents
             _world = world;
         }
 
-        public Actor(SerializationInfo info, StreamingContext context)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Actor"/> class with deserialized data.
+        /// </summary>
+        /// <param name="info">The stream of serialized data.</param>
+        /// <param name="context">The current deserialization context.</param>
+        protected Actor(SerializationInfo info, StreamingContext context)
         {
             Modules = (List<Module>)info.GetValue(nameof(Modules), typeof(List<Module>));
             _world = (World)info.GetValue(nameof(_world), typeof(World));
         }
 
+        /// <summary>
+        /// Populates a SerializationInfo instance with the data required to serialize the Actor.
+        /// </summary>
+        /// <param name="info">The stream of serialized data.</param>
+        /// <param name="context">The current serialization context.</param>
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue(nameof(Modules), Modules);
@@ -74,8 +79,9 @@ namespace FosterScript.Core.Agents
         }
 
         /// <summary>
-        /// Calculatory phase. Take inputs, calculate different outputs.
+        /// Performs any necessary calculations for the Actor in preparation for taking action.
         /// </summary>
+        /// <param name="interactibles">List of other Actors the current Actor can interact with.</param>
         public virtual void Think(List<Actor> interactibles)
         {
             if (AreModulesValidated)
@@ -88,8 +94,9 @@ namespace FosterScript.Core.Agents
         }
 
         /// <summary>
-        /// Use calculated values to act upon itself and the world.
+        /// Performs any actions for the Actor based on the results of the Think() method.
         /// </summary>
+        /// <param name="interactibles">List of other Actors the current Actor can interact with.</param>
         public virtual void Act(List<Actor> interactibles)
         {
             if (AreModulesValidated)
@@ -102,7 +109,7 @@ namespace FosterScript.Core.Agents
         }
 
         /// <summary>
-        /// Remove actor from the world
+        /// Removes actor from the world.
         /// </summary>
         public void Kill()
         {
@@ -110,6 +117,10 @@ namespace FosterScript.Core.Agents
             _world.Remove(this);
         }
 
+        /// <summary>
+        /// Move the actor by a vector.
+        /// </summary>
+        /// <param name="v"></param>
         public void Move(Vector3 v)
         {
             _world.Move(this, v);
@@ -128,19 +139,19 @@ namespace FosterScript.Core.Agents
         }
 
         /// <summary>
-        /// Add a modules to the actor.
+        /// Adds a collection of modules to the actor.
         /// </summary>
-        /// <param name="moduleList">Modules to be added.</param>
+        /// <param name="moduleList">The collection of modules to add.</param>
         public void AddModule(ICollection<Module> moduleList)
         {
-            foreach(Module module in moduleList)
+            foreach (Module module in moduleList)
             {
                 Modules.Add(module);
                 module.Body = this;
             }
             AreModulesValidated = false;
 
-            if(AreModulesValidated)
+            if (AreModulesValidated)
             {
                 foreach (Module module in moduleList)
                     module.Initialize();

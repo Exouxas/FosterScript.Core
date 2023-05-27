@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace FosterScript.Core.NeuralNetwork
 {
@@ -12,12 +8,18 @@ namespace FosterScript.Core.NeuralNetwork
     [Serializable]
     public abstract class Neuron : ISerializable
     {
+        /// <summary>
+        /// Name of the neuron
+        /// </summary>
         public string Name
         {
             get { return _name; }
         }
         protected string _name;
 
+        /// <summary>
+        /// Description of the neuron
+        /// </summary>
         public string Description
         {
             get { return _description; }

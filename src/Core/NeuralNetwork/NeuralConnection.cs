@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace FosterScript.Core.NeuralNetwork
 {
@@ -13,9 +8,19 @@ namespace FosterScript.Core.NeuralNetwork
     [Serializable]
     public class NeuralConnection : ISerializable
     {
+        /// <summary>
+        /// Supplementing node
+        /// </summary>
         public ICanSupplement From { get; }
+
+        /// <summary>
+        /// Receiving node
+        /// </summary>
         public ICanAugment To { get; }
 
+        /// <summary>
+        /// Weight of the connection
+        /// </summary>
         public double Weight 
         { 
             get 
@@ -23,8 +28,11 @@ namespace FosterScript.Core.NeuralNetwork
                 return weight; 
             } 
         }
-        private double weight;
+        private readonly double weight;
 
+        /// <summary>
+        /// Output of the connection
+        /// </summary>
         public double Output
         {
             get 

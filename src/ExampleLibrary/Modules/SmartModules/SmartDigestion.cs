@@ -1,14 +1,13 @@
 ﻿using FosterScript.Core.Agents;
 using FosterScript.Core.NeuralNetwork;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FosterScript.Examples.Modules.SmartModules
 {
-    internal class SmartDigestion : Module
+    /// <summary>
+    /// Represents a module that facilitates digestion of stored meat and plant resources.
+    /// <para>The module utilizes a brain to intake input.</para>
+    /// </summary>
+    public class SmartDigestion : Module
     {
         #region "Inherited Properties"
         public override string Name => "SmartDigestion";
@@ -16,13 +15,24 @@ namespace FosterScript.Examples.Modules.SmartModules
         #endregion
 
         #region "Properties"
+        /// <summary>
+        /// The amount of stored meat resources.
+        /// </summary>
         public double StoredMeat { get; set; }
+
+        /// <summary>
+        /// The amount of stored plant resources.
+        /// </summary>
         public double StoredPlant { get; set; }
+
+        /// <summary>
+        /// The rate at which food is digested.
+        /// </summary>
         public double DigestionRate { get; set; }
         #endregion
 
         #region "Private values"
-        private Brain brain = null;
+        private Brain brain;
         #endregion
 
         public SmartDigestion() : base()
@@ -70,13 +80,13 @@ namespace FosterScript.Examples.Modules.SmartModules
             if (StoredMeat > DigestionRate)
             {
                 StoredMeat -= DigestionRate;
-                ((Energy)DependencyReferences["Energy"]).EnergyStored += DigestionRate * 5;
+                ((SmartEnergy)DependencyReferences["SmartEnergy"]).EnergyStored += DigestionRate * 5;
             }
 
             if (StoredPlant > DigestionRate)
             {
                 StoredPlant -= DigestionRate;
-                ((Energy)DependencyReferences["Energy"]).EnergyStored += DigestionRate;
+                ((SmartEnergy)DependencyReferences["SmartEnergy"]).EnergyStored += DigestionRate;
             }
         }
     }

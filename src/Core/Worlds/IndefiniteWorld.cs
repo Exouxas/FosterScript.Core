@@ -1,10 +1,4 @@
-using FosterScript.Core.Worlds;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FosterScript.Core.Worlds
 {
@@ -14,13 +8,16 @@ namespace FosterScript.Core.Worlds
     [Serializable]
     public class IndefiniteWorld : World, ISerializable
     {
-        private System.Timers.Timer clock;
-        private readonly object _timerLock = new object();
-        private long _millisecondInterval;
+        private readonly System.Timers.Timer clock;
+        private readonly object _timerLock = new();
+        private readonly long _millisecondInterval;
 
-        public bool IsRunning 
-        { 
-            get { return _isRunning; } 
+        /// <summary>
+        /// Indicator of whether the world is running or not.
+        /// </summary>
+        public bool IsRunning
+        {
+            get { return _isRunning; }
         }
         private bool _isRunning;
 
@@ -37,9 +34,14 @@ namespace FosterScript.Core.Worlds
             clock.AutoReset = false;
         }
 
+        /// <summary>
+        /// The method that is called when the internal timer ticks.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Tick(object? sender, System.Timers.ElapsedEventArgs e)
         {
-            lock(_timerLock)
+            lock (_timerLock)
             {
                 if (IsRunning)
                 {
@@ -75,7 +77,7 @@ namespace FosterScript.Core.Worlds
             clock.AutoReset = false;
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             base.GetObjectData(info, context);
 

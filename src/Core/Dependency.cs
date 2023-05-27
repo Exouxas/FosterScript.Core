@@ -1,10 +1,4 @@
-// File: C:\Programming\GitHub\FosterScript.Core\src\Core\Dependency.cs
-using System;
-using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.Runtime.Serialization;
-using System.Text;
 
 namespace FosterScript.Core
 {
@@ -19,16 +13,19 @@ namespace FosterScript.Core
         /// </summary>
         public abstract int[] Version { get; }
 
+        /// <summary>
+        /// Name of the dependency.
+        /// </summary>
         public abstract string Name { get; }
 
         protected Dependency() { }
 
-        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
+        protected Dependency(SerializationInfo info, StreamingContext context)
         {
 
         }
 
-        protected Dependency(SerializationInfo info, StreamingContext context)
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
 
         }
@@ -40,25 +37,31 @@ namespace FosterScript.Core
         /// </summary>
         public static bool IsValid(int[] requiredVersion, int[] providedVersion)
         {
-            if (requiredVersion is not null && providedVersion is not null) // Verify that both version instances exist
+            // Verify that both version instances exist
+            if (requiredVersion is not null && providedVersion is not null) 
             {
-                if (requiredVersion.Length > 0 && providedVersion.Length > 0) // Verify that there are numbers in the array
+                // Verify that there are numbers in the array
+                if (requiredVersion.Length > 0 && providedVersion.Length > 0) 
                 {
-                    if (requiredVersion[0] != providedVersion[0]) // If major version isn't the same, then it's not backwars compatible
+                    // If major version isn't the same, then it's not backwars compatible
+                    if (requiredVersion[0] != providedVersion[0]) 
                     {
                         return false;
                     }
 
                     for (int i = 1; i < requiredVersion.Length && i < providedVersion.Length; i++)
                     {
-                        if (requiredVersion[i] > providedVersion[i]) return false; // Version not high enough
+                        // Version not high enough
+                        if (requiredVersion[i] > providedVersion[i]) return false;
 
-                        if (requiredVersion[i] < providedVersion[i]) return true; // Version is newer
+                        // Version is newer
+                        if (requiredVersion[i] < providedVersion[i]) return true; 
 
                         // If neither, then check next number
                     }
 
-                    return true; // If both version are same, return true
+                    // If both version are same, return true
+                    return true; 
                 }
             }
 

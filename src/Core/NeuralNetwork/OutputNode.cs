@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace FosterScript.Core.NeuralNetwork
 {
@@ -38,7 +36,7 @@ namespace FosterScript.Core.NeuralNetwork
             Inputs = (List<NeuralConnection>)info.GetValue(nameof(Inputs), typeof(List<NeuralConnection>));
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             base.GetObjectData(info, context);
 

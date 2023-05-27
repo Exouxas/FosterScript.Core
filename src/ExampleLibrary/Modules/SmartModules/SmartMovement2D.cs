@@ -1,15 +1,10 @@
 ﻿using FosterScript.Core.Agents;
 using FosterScript.Core.NeuralNetwork;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FosterScript.Examples.Modules.SmartModules
 {
-    internal class SmartMovement2D : Module
+    public class SmartMovement2D : Module
     {
         #region "Inherited Properties"
         public override string Name => "SmartMovement2D";
@@ -17,14 +12,17 @@ namespace FosterScript.Examples.Modules.SmartModules
         #endregion
 
         #region "Properties"
+        /// <summary>
+        /// The speed of the agent.
+        /// </summary>
         public double Speed { get; set; }
         #endregion
 
         #region "Private values"
-        private Brain brain = null;
-        private OutputNode outputSpeedNeuron = null;
-        private OutputNode movementXNeuron = null;
-        private OutputNode movementYNeuron = null;
+        private Brain brain;
+        private OutputNode outputSpeedNeuron;
+        private OutputNode movementXNeuron;
+        private OutputNode movementYNeuron;
         #endregion
 
         public SmartMovement2D() : base()

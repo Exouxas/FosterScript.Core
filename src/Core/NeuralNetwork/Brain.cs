@@ -1,11 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using FosterScript.Core;
 using FosterScript.Core.Agents;
+using System.Runtime.Serialization;
 
 namespace FosterScript.Core.NeuralNetwork
 {
@@ -15,10 +9,21 @@ namespace FosterScript.Core.NeuralNetwork
     [Serializable]
     public abstract class Brain : Module, ISerializable
     {
+        /// <summary>
+        /// Collection of all nodes that can output data to other nodes.
+        /// </summary> 
         public List<ICanSupplement> SupplementingNodes { get; }
+
+        /// <summary>
+        /// Collection of all nodes that receive data.
+        /// </summary> 
         public List<ICanAugment> AugmentingNodes { get; }
+
+        /// <summary>
+        /// Collection of connections between nodes in this brain.
+        /// </summary> 
         public List<NeuralConnection> NeuralConnections { get; set; }
-        private object _neuralLock = new object();
+        private readonly object _neuralLock = new();
 
         public Brain()
         {
@@ -27,6 +32,11 @@ namespace FosterScript.Core.NeuralNetwork
             NeuralConnections = new();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the Brain class with deserialized data. 
+        /// </summary>    
+        /// <param name="info">The stream of serialized data.</param>
+        /// <param name="context">The current deserialization context.</param>
         protected Brain(SerializationInfo info, StreamingContext context)
         {
             SupplementingNodes = (List<ICanSupplement>)info.GetValue(nameof(SupplementingNodes), typeof(List<ICanSupplement>));
@@ -34,17 +44,22 @@ namespace FosterScript.Core.NeuralNetwork
             NeuralConnections = (List<NeuralConnection>)info.GetValue(nameof(NeuralConnections), typeof(List<NeuralConnection>));
         }
 
-
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        /// <summary>
+        /// Populates a SerializationInfo instance with the data required to serialize the Brain.
+        /// </summary>
+        /// <param name="info">The stream of serialized data.</param>
+        /// <param name="context">The current serialization context.</param>
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
+            base.GetObjectData(info, context);
+
             info.AddValue(nameof(SupplementingNodes), SupplementingNodes);
             info.AddValue(nameof(AugmentingNodes), AugmentingNodes);
             info.AddValue(nameof(NeuralConnections), NeuralConnections);
         }
 
-
         /// <summary>
-        /// Connects 'from' supplementing node to 'to' augmenting node with specified weight.
+        /// Connects 'from' supplementing node 'to' augmenting node with specified weight.
         /// </summary>
         /// <param name="from">The supplementing node.</param>
         /// <param name="to">The augmenting node.</param>

@@ -1,14 +1,9 @@
 ﻿using FosterScript.Core.Agents;
 using FosterScript.Core.NeuralNetwork;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FosterScript.Examples.Modules.SmartModules
 {
-    internal class SmartEnergy : Module
+    public class SmartEnergy : Module
     {
         #region "Inherited Properties"
         public override string Name => "SmartEnergy";
@@ -16,7 +11,10 @@ namespace FosterScript.Examples.Modules.SmartModules
         #endregion
 
         #region "Properties"
-        public double EnergyStored 
+        /// <summary>
+        /// The amount of stored energy.
+        /// </summary>
+        public double EnergyStored
         {
             get
             {
@@ -24,18 +22,18 @@ namespace FosterScript.Examples.Modules.SmartModules
             }
             set
             {
-                if(value <= 0)
+                if (value <= 0)
                 {
                     Body?.Kill();
                 }
                 _energyStored = value;
-            } 
+            }
         }
         private double _energyStored;
         #endregion
 
         #region "Private values"
-        private Brain brain = null;
+        private Brain brain;
         #endregion
 
         public SmartEnergy() : base()

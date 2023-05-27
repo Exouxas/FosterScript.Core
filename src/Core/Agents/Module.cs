@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace FosterScript.Core.Agents
 {
@@ -27,7 +24,14 @@ namespace FosterScript.Core.Agents
         /// </summary>
         public Actor? Body { get; set; }
 
+        /// <summary>
+        /// List of dependencies with both names and version numbers
+        /// </summary>
         public Dictionary<string, int[]> Dependencies { get; }
+
+        /// <summary>
+        /// References to dependencies
+        /// </summary>
         public Dictionary<string, Module> DependencyReferences { get; set; }
 
         public Module()
@@ -43,6 +47,20 @@ namespace FosterScript.Core.Agents
             DependencyReferences = (Dictionary<string, Module>)info.GetValue(nameof(DependencyReferences), typeof(Dictionary<string, Module>));
         }
 
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
+
+            info.AddValue(nameof(Body), Body);
+            info.AddValue(nameof(Dependencies), Dependencies);
+            info.AddValue(nameof(DependencyReferences), DependencyReferences);
+        }
+
+        /// <summary>
+        /// Check if the module is valid for the given version
+        /// </summary>
+        /// <param name="dependencyList">List of modules</param>
+        /// <returns></returns>
         public bool CheckDependencies(List<Module> dependencyList)
         {
             Dictionary<string, Module> existingModules = dependencyList.ToDictionary(x => x.Name, x => x);
@@ -73,15 +91,19 @@ namespace FosterScript.Core.Agents
             return true;
         }
 
+        /// <summary>
+        /// Run module initialization
+        /// </summary>
         public abstract void Initialize();
-        public abstract void Think();
-        public abstract void Act();
 
-        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            info.AddValue(nameof(Body), Body);
-            info.AddValue(nameof(Dependencies), Dependencies);
-            info.AddValue(nameof(DependencyReferences), DependencyReferences);
-        }
+        /// <summary>
+        /// Execute calculations that don't act on the world
+        /// </summary>
+        public abstract void Think();
+
+        /// <summary>
+        /// Use calculations to act on the world
+        /// </summary>
+        public abstract void Act();
     }
 }

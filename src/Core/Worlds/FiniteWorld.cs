@@ -1,10 +1,4 @@
-﻿using FosterScript.Core.Worlds;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace FosterScript.Core.Worlds
 {
@@ -14,7 +8,7 @@ namespace FosterScript.Core.Worlds
     [Serializable]
     public class FiniteWorld : World, ISerializable
     {
-        private long _steps;
+        private readonly long _steps;
         private bool _isRunning = false;
 
         /// <summary>
@@ -55,7 +49,7 @@ namespace FosterScript.Core.Worlds
             _steps = info.GetInt64(nameof(_steps));
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             base.GetObjectData(info, context);
 

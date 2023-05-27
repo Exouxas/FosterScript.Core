@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace FosterScript.Core.NeuralNetwork
 {
@@ -33,12 +28,20 @@ namespace FosterScript.Core.NeuralNetwork
             storedOutput = (double)info.GetValue(nameof(storedOutput), typeof(double));
         }
 
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
+
+            info.AddValue(nameof(Output), Output);
+            info.AddValue(nameof(storedOutput), storedOutput);
+        }
+
         /// <summary>
         /// Calculates and stores value in the back to prepare for propagation
         /// </summary>
         public void Calculate()
         {
-            InputNeuronEventArgs args = new InputNeuronEventArgs();
+            InputNeuronEventArgs args = new();
             if (OnRequestOutput != null)
             {
                 OnRequestOutput?.Invoke(this, args);
@@ -53,14 +56,6 @@ namespace FosterScript.Core.NeuralNetwork
         public void Propagate()
         {
             output = storedOutput;
-        }
-
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            base.GetObjectData(info, context);
-
-            info.AddValue(nameof(Output), Output);
-            info.AddValue(nameof(storedOutput), storedOutput);
         }
 
         public InputNode(string name, string description) : this(name, description, 0)

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace FosterScript.Core.NeuralNetwork
 {
@@ -12,6 +7,9 @@ namespace FosterScript.Core.NeuralNetwork
     /// </summary>
     public interface ICanAugment : ISerializable
     {
+        /// <summary>
+        /// Neural inputs.
+        /// </summary>
         public abstract List<NeuralConnection> Inputs { get; }
     }
 }

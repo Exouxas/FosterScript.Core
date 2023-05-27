@@ -1,10 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using System.Timers;
 using FosterScript.Core.NeuralNetwork;
 
 namespace FosterScript.Core
@@ -18,10 +11,13 @@ namespace FosterScript.Core
         /// Enable or disable the loader.
         /// </summary>
         public bool Enabled => watcher.EnableRaisingEvents;
-        private static object _loadLock = new();
+        private static readonly object _loadLock = new();
 
-        private FileSystemWatcher watcher;
+        private readonly FileSystemWatcher watcher;
 
+        /// <summary>
+        /// All classes that have been loaded.
+        /// </summary>
         public static Dictionary<Type, List<Type>> LoadedClasses
         {
             get
@@ -32,7 +28,7 @@ namespace FosterScript.Core
                 }
             }
         }
-        private static Dictionary<Type, List<Type>> _loadedClasses = new() 
+        private static readonly Dictionary<Type, List<Type>> _loadedClasses = new() 
         { 
             { typeof(object), new List<Type>() } 
         };
@@ -65,12 +61,24 @@ namespace FosterScript.Core
             }
         }
 
+        /// <summary>
+        /// Loads a Type from a file and adds it to the cache.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <exception cref="NotImplementedException"></exception>
         private void FileCreated(object sender, FileSystemEventArgs e)
         {
             // TODO: Load the file and add it to the cache
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Removes a Type from the cache and unloads it.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <exception cref="NotImplementedException"></exception>
         private void FileDeleted(object sender, FileSystemEventArgs e)
         {
             // TODO: Unload the file and remove it from the cache

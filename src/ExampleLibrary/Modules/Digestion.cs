@@ -1,13 +1,8 @@
 ﻿using FosterScript.Core.Agents;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FosterScript.Examples.Modules
 {
-    internal class Digestion : Module
+    public class Digestion : Module
     {
         #region "Inherited Properties"
         public override string Name => "Digestion";
@@ -15,8 +10,19 @@ namespace FosterScript.Examples.Modules
         #endregion
 
         #region "Properties"
+        /// <summary>
+        /// The amount of stored meat resources.
+        /// </summary>
         public double StoredMeat { get; set; }
+
+        /// <summary>
+        /// The amount of stored plant resources.
+        /// </summary>
         public double StoredPlant { get; set; }
+
+        /// <summary>
+        /// The rate at which food is digested.
+        /// </summary>
         public double DigestionRate { get; set; }
         #endregion
 
@@ -27,12 +33,12 @@ namespace FosterScript.Examples.Modules
 
         public override void Initialize()
         {
-
+            // Nothing to initialize
         }
 
         public override void Think()
         {
-
+            // Actor gets a permanent digestion rate, so there's nothing to think about
         }
 
         public override void Act()
