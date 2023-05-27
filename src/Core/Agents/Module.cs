@@ -47,8 +47,10 @@ namespace FosterScript.Core.Agents
             DependencyReferences = (Dictionary<string, Module>)info.GetValue(nameof(DependencyReferences), typeof(Dictionary<string, Module>));
         }
 
-        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
+            base.GetObjectData(info, context);
+
             info.AddValue(nameof(Body), Body);
             info.AddValue(nameof(Dependencies), Dependencies);
             info.AddValue(nameof(DependencyReferences), DependencyReferences);

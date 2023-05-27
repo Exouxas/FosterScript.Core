@@ -49,8 +49,10 @@ namespace FosterScript.Core.NeuralNetwork
         /// </summary>
         /// <param name="info">The stream of serialized data.</param>
         /// <param name="context">The current serialization context.</param>
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
+            base.GetObjectData(info, context);
+
             info.AddValue(nameof(SupplementingNodes), SupplementingNodes);
             info.AddValue(nameof(AugmentingNodes), AugmentingNodes);
             info.AddValue(nameof(NeuralConnections), NeuralConnections);

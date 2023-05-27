@@ -79,6 +79,28 @@ namespace FosterScript.Core.Worlds
             }
         }
 
+        internal World(SerializationInfo info, StreamingContext context)
+        {
+            _currentStep = (long)info.GetValue(nameof(_currentStep), typeof(long));
+            _actorsToBeRemoved = (List<Actor>)info.GetValue(nameof(_actorsToBeRemoved), typeof(List<Actor>));
+            _actors = (List<Actor>)info.GetValue(nameof(_actors), typeof(List<Actor>));
+            _actorRemoveLock = (object)info.GetValue(nameof(_actorRemoveLock), typeof(object));
+            _actorLock = (object)info.GetValue(nameof(_actorLock), typeof(object));
+            _positionsLock = (object)info.GetValue(nameof(_positionsLock), typeof(object));
+            positions = (Dictionary<Actor, Vector3>)info.GetValue(nameof(positions), typeof(Dictionary<Actor, Vector3>));
+        }
+
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue(nameof(_currentStep), _currentStep);
+            info.AddValue(nameof(_actorsToBeRemoved), _actorsToBeRemoved);
+            info.AddValue(nameof(_actors), _actors);
+            info.AddValue(nameof(_actorRemoveLock), _actorRemoveLock);
+            info.AddValue(nameof(_actorLock), _actorLock);
+            info.AddValue(nameof(_positionsLock), _positionsLock);
+            info.AddValue(nameof(positions), positions);
+        }
+
         /// <summary>
         /// Sorts the actors by initiative.
         /// </summary>
@@ -236,28 +258,6 @@ namespace FosterScript.Core.Worlds
                     positions[a] += v;
                 }
             }
-        }
-
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            info.AddValue(nameof(_currentStep), _currentStep);
-            info.AddValue(nameof(_actorsToBeRemoved), _actorsToBeRemoved);
-            info.AddValue(nameof(_actors), _actors);
-            info.AddValue(nameof(_actorRemoveLock), _actorRemoveLock);
-            info.AddValue(nameof(_actorLock), _actorLock);
-            info.AddValue(nameof(_positionsLock), _positionsLock);
-            info.AddValue(nameof(positions), positions);
-        }
-
-        internal World(SerializationInfo info, StreamingContext context)
-        {
-            _currentStep = (long)info.GetValue(nameof(_currentStep), typeof(long));
-            _actorsToBeRemoved = (List<Actor>)info.GetValue(nameof(_actorsToBeRemoved), typeof(List<Actor>));
-            _actors = (List<Actor>)info.GetValue(nameof(_actors), typeof(List<Actor>));
-            _actorRemoveLock = (object)info.GetValue(nameof(_actorRemoveLock), typeof(object));
-            _actorLock = (object)info.GetValue(nameof(_actorLock), typeof(object));
-            _positionsLock = (object)info.GetValue(nameof(_positionsLock), typeof(object));
-            positions = (Dictionary<Actor, Vector3>)info.GetValue(nameof(positions), typeof(Dictionary<Actor, Vector3>));
         }
 
         public abstract void Start();

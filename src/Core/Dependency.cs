@@ -20,12 +20,12 @@ namespace FosterScript.Core
 
         protected Dependency() { }
 
-        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
+        protected Dependency(SerializationInfo info, StreamingContext context)
         {
 
         }
 
-        protected Dependency(SerializationInfo info, StreamingContext context)
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
 
         }

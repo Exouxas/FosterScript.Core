@@ -28,6 +28,14 @@ namespace FosterScript.Core.NeuralNetwork
             storedOutput = (double)info.GetValue(nameof(storedOutput), typeof(double));
         }
 
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
+
+            info.AddValue(nameof(Output), Output);
+            info.AddValue(nameof(storedOutput), storedOutput);
+        }
+
         /// <summary>
         /// Calculates and stores value in the back to prepare for propagation
         /// </summary>
@@ -48,14 +56,6 @@ namespace FosterScript.Core.NeuralNetwork
         public void Propagate()
         {
             output = storedOutput;
-        }
-
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            base.GetObjectData(info, context);
-
-            info.AddValue(nameof(Output), Output);
-            info.AddValue(nameof(storedOutput), storedOutput);
         }
 
         public InputNode(string name, string description) : this(name, description, 0)
