@@ -8,7 +8,7 @@ namespace FosterScript.Examples.Modules
 
         public override string Name { get; } = "BasicBrain";
 
-        private Random random = new();
+        private readonly Random random = new();
 
 
         /// <summary>

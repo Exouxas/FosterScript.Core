@@ -60,14 +60,14 @@ namespace FosterScript.Core.Worlds
             }
         }
         private List<Actor> _actors;
-        private object _actorLock = new object();
+        private readonly object _actorLock = new();
 
 
-        private List<Actor> _actorsToBeRemoved;
-        private object _actorRemoveLock = new object();
+        private readonly List<Actor> _actorsToBeRemoved;
+        private readonly object _actorRemoveLock = new();
 
-        private Dictionary<Actor, Vector3> positions = new Dictionary<Actor, Vector3>();
-        private object _positionsLock = new object();
+        private readonly Dictionary<Actor, Vector3> positions = new();
+        private readonly object _positionsLock = new();
 
         protected World()
         {

@@ -33,7 +33,7 @@ namespace FosterScript.Examples.Modules
         public override void Act()
         {
             // Move randomly
-            Random random = new Random();
+            Random random = new();
             float x = (float)((random.NextDouble() * 2 - 1) * Speed);
             float y = (float)((random.NextDouble() * 2 - 1) * Speed);
             double distance = Math.Sqrt(x * x + y * y);

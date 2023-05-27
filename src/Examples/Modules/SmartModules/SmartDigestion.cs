@@ -32,7 +32,7 @@ namespace FosterScript.Examples.Modules.SmartModules
         #endregion
 
         #region "Private values"
-        private Brain brain = null;
+        private Brain brain;
         #endregion
 
         public SmartDigestion() : base()

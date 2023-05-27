@@ -6,7 +6,7 @@ namespace FosterScript.Examples
 {
     public static class IndefiniteExample
     {
-        static IndefiniteWorld world = new(500);
+        static readonly IndefiniteWorld world = new(500);
         public static void Main(string[] args)
         {
             Console.WriteLine("Indefinite World Example");
@@ -54,7 +54,6 @@ namespace FosterScript.Examples
 
         private static void Tick()
         {
-            World w = world;
             Console.WriteLine($"Step number {world.CurrentStep}, there are {world.Actors.Count} actors left.");
         }
     }

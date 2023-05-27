@@ -19,10 +19,10 @@ namespace FosterScript.Examples.Modules.SmartModules
         #endregion
 
         #region "Private values"
-        private Brain brain = null;
-        private OutputNode outputSpeedNeuron = null;
-        private OutputNode movementXNeuron = null;
-        private OutputNode movementYNeuron = null;
+        private Brain brain;
+        private OutputNode outputSpeedNeuron;
+        private OutputNode movementXNeuron;
+        private OutputNode movementYNeuron;
         #endregion
 
         public SmartMovement2D() : base()

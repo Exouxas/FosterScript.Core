@@ -8,7 +8,7 @@ namespace FosterScript.Core.Worlds
     [Serializable]
     public class FiniteWorld : World, ISerializable
     {
-        private long _steps;
+        private readonly long _steps;
         private bool _isRunning = false;
 
         /// <summary>

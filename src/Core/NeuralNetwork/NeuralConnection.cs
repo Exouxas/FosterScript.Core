@@ -28,7 +28,7 @@ namespace FosterScript.Core.NeuralNetwork
                 return weight; 
             } 
         }
-        private double weight;
+        private readonly double weight;
 
         /// <summary>
         /// Output of the connection

@@ -6,7 +6,7 @@ namespace FosterScript.Examples
 {
     public static class FiniteExample
     {
-        static FiniteWorld world = new(20);
+        static readonly FiniteWorld world = new(20);
 
         public static void Main(string[] args)
         {

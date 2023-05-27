@@ -8,9 +8,9 @@ namespace FosterScript.Core.Worlds
     [Serializable]
     public class IndefiniteWorld : World, ISerializable
     {
-        private System.Timers.Timer clock;
-        private readonly object _timerLock = new object();
-        private long _millisecondInterval;
+        private readonly System.Timers.Timer clock;
+        private readonly object _timerLock = new();
+        private readonly long _millisecondInterval;
 
         /// <summary>
         /// Indicator of whether the world is running or not.

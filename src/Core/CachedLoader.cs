@@ -11,9 +11,9 @@ namespace FosterScript.Core
         /// Enable or disable the loader.
         /// </summary>
         public bool Enabled => watcher.EnableRaisingEvents;
-        private static object _loadLock = new();
+        private static readonly object _loadLock = new();
 
-        private FileSystemWatcher watcher;
+        private readonly FileSystemWatcher watcher;
 
         /// <summary>
         /// All classes that have been loaded.
@@ -28,7 +28,7 @@ namespace FosterScript.Core
                 }
             }
         }
-        private static Dictionary<Type, List<Type>> _loadedClasses = new() 
+        private static readonly Dictionary<Type, List<Type>> _loadedClasses = new() 
         { 
             { typeof(object), new List<Type>() } 
         };

@@ -23,7 +23,7 @@ namespace FosterScript.Core.NeuralNetwork
         /// Collection of connections between nodes in this brain.
         /// </summary> 
         public List<NeuralConnection> NeuralConnections { get; set; }
-        private object _neuralLock = new object();
+        private readonly object _neuralLock = new();
 
         public Brain()
         {

@@ -48,7 +48,7 @@ namespace FosterScript.Core.Agents
         /// </summary>
         public int Initiative { get; }
 
-        private World _world;
+        private readonly World _world;
 
         public Actor(World world)
         {

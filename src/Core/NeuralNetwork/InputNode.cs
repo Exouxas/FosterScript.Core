@@ -33,7 +33,7 @@ namespace FosterScript.Core.NeuralNetwork
         /// </summary>
         public void Calculate()
         {
-            InputNeuronEventArgs args = new InputNeuronEventArgs();
+            InputNeuronEventArgs args = new();
             if (OnRequestOutput != null)
             {
                 OnRequestOutput?.Invoke(this, args);

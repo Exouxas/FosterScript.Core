@@ -7,7 +7,7 @@ namespace FosterScript.Examples
 {
     public static class BasicBrainExample
     {
-        static IndefiniteWorld world = new(500);
+        static readonly IndefiniteWorld world = new(500);
         public static void Main(string[] args)
         {
             Console.WriteLine("Indefinite World Example");
@@ -20,19 +20,19 @@ namespace FosterScript.Examples
                 Actor actor = new(world);
                 List<Module> modules = new List<Module>();
 
-                SmartDigestion d = new();
-                d.DigestionRate = random.NextDouble() * 2;
-                d.StoredMeat = random.NextDouble() * 5;
-                d.StoredPlant = random.NextDouble() * 5;
-                modules.Add(d);
+                SmartDigestion smartDigestion = new();
+                smartDigestion.DigestionRate = random.NextDouble() * 2;
+                smartDigestion.StoredMeat = random.NextDouble() * 5;
+                smartDigestion.StoredPlant = random.NextDouble() * 5;
+                modules.Add(smartDigestion);
 
-                SmartEnergy e = new();
-                e.EnergyStored = random.NextDouble() * 10;
-                modules.Add(e);
+                SmartEnergy smartEnergy = new();
+                smartEnergy.EnergyStored = random.NextDouble() * 10;
+                modules.Add(smartEnergy);
 
-                SmartMovement2D mov = new();
-                mov.Speed = random.NextDouble() * 1 + 1;
-                modules.Add(mov);
+                SmartMovement2D smartMovement = new();
+                smartMovement.Speed = random.NextDouble() * 1 + 1;
+                modules.Add(smartMovement);
 
                 BasicBrain brain = new BasicBrain();
                 modules.Add(brain);
@@ -60,7 +60,6 @@ namespace FosterScript.Examples
 
         private static void Tick()
         {
-            World w = world;
             Console.WriteLine($"Step number {world.CurrentStep}, there are {world.Actors.Count} actors left.");
         }
     }
