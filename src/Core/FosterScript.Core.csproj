@@ -1,10 +1,27 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<OutputTupe>Library</OutputTupe>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 
-  <PropertyGroup>
-    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <OutputTupe>Library</OutputTupe>
-  </PropertyGroup>
+		<Title>FosterScript.Core</Title>
+		<PackageId>FosterScript.Core</PackageId>
+		<VersionPrefix>1.0.0</VersionPrefix>
+		<VersionSuffix>alpha</VersionSuffix>
+		<Authors>Exouxas</Authors>
+		<Description>FosterScript.Core: A flexible NEAT-based neural network library for .NET, empowering intelligent agents in research, games, and AI simulations.</Description>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageTags>AI;NEAT;NeuroEvolution;NeuralNetwork;Evolution</PackageTags>
+		
+		<Copyright>Copyright © Christoffer Aske 2023</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://fosterscript.com/</PackageProjectUrl>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+	</PropertyGroup>
 
+	<ItemGroup>
+		<None Include="../../README.md" Pack="true" PackagePath="/" />
+	</ItemGroup>
 </Project>
