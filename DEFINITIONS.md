@@ -67,7 +67,7 @@ Actors can be designed as AI entities, where Modules enable them to exhibit inte
 
 By combining different Modules and defining their interactions, Actors can perform complex actions and contribute to the overall dynamics of the simulated world.
 
-Please refer to the [implementation documentation](https://github.com/Exouxas/FosterScript.Core/blob/main/IMPLEMENTATION.md) for more details on how to create and configure Actors with appropriate Modules for your desired behaviors.
+Please refer to the [implementation documentation](IMPLEMENTATION.md) for more details on how to create and configure Actors with appropriate Modules for your desired behaviors.
 
 ## **CachedLoader**
 Dynamically loads modules and neurons during runtime. Can be used as a single-time load or a scheduled repeated load. 
