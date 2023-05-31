@@ -1,38 +1,72 @@
 # FosterScript.Core
-This project aims to make a library for genetic evolution of virtual species. It's a form of adaptation of the [NEAT algorithm](https://en.wikipedia.org/wiki/Neuroevolution_of_augmenting_topologies), but made to be highly dynamic.
 
+FosterScript.Core is a C# library that provides a framework for genetic evolution of virtual species. It is designed to facilitate the implementation of the Neuroevolution of Augmenting Topologies ([NEAT](https://en.wikipedia.org/wiki/Neuroevolution_of_augmenting_topologies)) algorithm, while offering high flexibility and dynamic behavior.
+
+## Key Features
 The essential features of this library is:
-- Scriptable neurons. Possibility to make a new type of neuron with a different calculation.
-- Scriptable "modules". Modules that are made to add features to agents.
-- Propagation. All neurons transmit signals at one step at a time, which allows for back-propagation, but also adds a delay between input and output which felt realistic at the time.
+- Scriptable neurons: FosterScript.Core allows you to create custom neuron types with different calculations, enabling the development of novel neural network architectures.
+- Scriptable modules: Modules are components that enhance the functionality of agents. You can define and add custom modules to your agents to incorporate specific behaviors and capabilities.
+- Propagation: The library supports signal propagation where neurons transmit signals in discrete steps, allowing for back-propagation and introducing a realistic delay between input and output.
 
-## Planned usage
-I'm planning to make a server hosted implementation of this library, that will have a web GUI where you can see the agents attempt to survive live.
-
-## Progress
-My attempt at tracking progress of the different classes to make development more effective.
-- ![100%](https://progress-bar.dev/100) Overall architecture/design
-- ![100%](https://progress-bar.dev/100) NeuralNetwork
-  - ![100%](https://progress-bar.dev/100) Neuron
-  - ![100%](https://progress-bar.dev/100) InputNode
-  - ![100%](https://progress-bar.dev/100) HiddenNode
-  - ![100%](https://progress-bar.dev/100) OutputNode
-  - ![100%](https://progress-bar.dev/100) NeuralConnection
-  - ![100%](https://progress-bar.dev/100) Brain
-- ![100%](https://progress-bar.dev/100) Agents
-  - ![100%](https://progress-bar.dev/100) Actor
-  - ![100%](https://progress-bar.dev/100) Module
-- ![100%](https://progress-bar.dev/100) Environments
-  - ![100%](https://progress-bar.dev/100) World
-  - ![100%](https://progress-bar.dev/100) IndefiniteWorld
-  - ![100%](https://progress-bar.dev/100) FiniteWorld
-
+## Planned Usage
+I am planning to develop a server-hosted implementation of FosterScript.Core, featuring a web-based graphical user interface. This implementation will provide a live view of the agents' survival attempts, showcasing their adaptation to dynamic events. It will serve as a tool for researchers, game developers, and individuals interested in learning about neural networks and genetic algorithms.
 
 ## Inspiration
-The main inspiration is by a video from David Randall Miller: https://www.youtube.com/watch?v=N3tRFayqVtk
+FosterScript.Core was inspired by a video from David Randall Miller, which explores various aspects of neural networks and genetic evolution. You can watch the video [here](https://www.youtube.com/watch?v=N3tRFayqVtk). The video covers topics such as neural network structure, diverse input and output nodes, weighting systems, and network visualization.
 
-Points of interest from the video:
-- Neural network structure
-- Diversity of input and output nodes
-- Weighting system
-- Graphing of network
+# Getting Started
+To integrate FosterScript.Core into your project, please refer to the [implementation guide](https://github.com/Exouxas/FosterScript.Core/blob/main/IMPLEMENTATION.md) for detailed instructions.
+
+# Examples
+The [FosterScript.Examples](https://github.com/Exouxas/FosterScript.Examples/) repository contains several examples demonstrating the usage of FosterScript.Core. You can explore these examples to gain insights into implementing the framework in your own projects.
+
+# Best Practices
+When creating custom modules, it is recommended to follow the best practice of inheriting the `Module` base class. Here's an example illustrating the inheritance:
+
+```csharp
+public class ExampleModule : Module
+{
+    // Inherited Properties
+    public override string Name => "Example module";
+    public override int[] Version => new int[] { 1, 0, 0 };
+
+    // Custom Properties
+    public double StoredSample
+    {
+        get { return _storedSample; }
+        set
+        {
+            if (value <= 0)
+            {
+                // Example of how to terminate the host actor
+                Body?.Kill();
+            }
+            _storedSample = value;
+        }
+    }
+    private double _storedSample;
+
+    public ExampleModule() : base()
+    {
+        // Pre-initialization code
+    }
+
+    public override void Initialize()
+    {
+        // Perform initialization tasks, including adding input and output neurons.
+    }
+
+    public override void Think()
+    {
+        // Observation phase: Add logic for observing the environment, such as distance calculations with other actors.
+    }
+
+    public override void Act()
+    {
+        // Action phase: Execute planned interactions or behaviors.
+    }
+}
+```
+
+# Definitions
+For detailed definitions and explanations of key terms used throughout the framework, please refer to the [DEFINITIONS.md](https://github.com/Exouxas/FosterScript.Core/blob/main/DEFINITIONS.md) file. This document provides comprehensive descriptions of concepts such as modules, nodes, neural connections, actors, and more. It serves as a valuable resource for gaining a deeper understanding of the framework's components and their interactions.
