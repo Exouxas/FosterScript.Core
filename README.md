@@ -15,7 +15,7 @@ I am planning to develop a server-hosted implementation of FosterScript.Core, fe
 FosterScript.Core was inspired by a video from David Randall Miller, which explores various aspects of neural networks and genetic evolution. You can watch the video [here](https://www.youtube.com/watch?v=N3tRFayqVtk). The video covers topics such as neural network structure, diverse input and output nodes, weighting systems, and network visualization.
 
 # Getting Started
-To integrate FosterScript.Core into your project, please refer to the [implementation guide](https://github.com/Exouxas/FosterScript.Core/blob/main/IMPLEMENTATION.md) for detailed instructions.
+To integrate FosterScript.Core into your project, please refer to the [implementation guide](IMPLEMENTATION.md) for detailed instructions.
 
 # Examples
 The [FosterScript.Examples](https://github.com/Exouxas/FosterScript.Examples/) repository contains several examples demonstrating the usage of FosterScript.Core. You can explore these examples to gain insights into implementing the framework in your own projects.
@@ -69,4 +69,4 @@ public class ExampleModule : Module
 ```
 
 # Definitions
-For detailed definitions and explanations of key terms used throughout the framework, please refer to the [DEFINITIONS.md](https://github.com/Exouxas/FosterScript.Core/blob/main/DEFINITIONS.md) file. This document provides comprehensive descriptions of concepts such as modules, nodes, neural connections, actors, and more. It serves as a valuable resource for gaining a deeper understanding of the framework's components and their interactions.
+For detailed definitions and explanations of key terms used throughout the framework, please refer to the [DEFINITIONS.md](DEFINITIONS.md) file. This document provides comprehensive descriptions of concepts such as modules, nodes, neural connections, actors, and more. It serves as a valuable resource for gaining a deeper understanding of the framework's components and their interactions.
