@@ -28,7 +28,17 @@ namespace FosterScript.Core.Worlds
         /// <summary>
         /// An actor has been killed.
         /// </summary>
-        public event NotifyDeath? ActorKilled;
+        public event NotifyActorEvent? ActorKilled;
+
+        /// <summary>
+        /// An actor has been added.
+        /// </summary>
+        public event NotifyActorEvent? ActorAdded;
+
+        /// <summary>
+        /// An actor has been moved.
+        /// </summary>
+        public event NotifyActorMoved? ActorMoved;
 
         /// <summary>
         /// Get the current step.
@@ -161,7 +171,7 @@ namespace FosterScript.Core.Worlds
                 {
                     _actors.Remove(a);
                     positions.Remove(a);
-                    ActorKilled?.Invoke(a);
+                    ActorKilled?.Invoke(a, GetPosition(a));
                 }
                 _actorsToBeRemoved.Clear();
             }
@@ -184,6 +194,8 @@ namespace FosterScript.Core.Worlds
             {
                 positions.Add(a, v);
             }
+
+            ActorAdded?.Invoke(a, v);
         }
 
         /// <summary>
@@ -235,6 +247,8 @@ namespace FosterScript.Core.Worlds
         /// <param name="v">The location the actor will be moved to</param>
         public void MoveTo(Actor a, Vector3 v)
         {
+            Vector3 oldPosition = GetPosition(a);
+
             lock (_positionsLock)
             {
                 if (positions.ContainsKey(a))
@@ -242,6 +256,8 @@ namespace FosterScript.Core.Worlds
                     positions[a] = v;
                 }
             }
+
+            ActorMoved?.Invoke(a, oldPosition, v);
         }
 
         /// <summary>
@@ -251,13 +267,9 @@ namespace FosterScript.Core.Worlds
         /// <param name="v">Direction and distance the actor will be moved</param>
         public void Move(Actor a, Vector3 v)
         {
-            lock (_positionsLock)
-            {
-                if (positions.ContainsKey(a))
-                {
-                    positions[a] += v;
-                }
-            }
+            Vector3 oldPosition = GetPosition(a);
+
+            MoveTo(a, oldPosition + v);
         }
 
         public abstract void Start();
@@ -265,5 +277,6 @@ namespace FosterScript.Core.Worlds
     }
 
     public delegate void Notify();
-    public delegate void NotifyDeath(Actor actor);
+    public delegate void NotifyActorEvent(Actor actor, Vector3 vector);
+    public delegate void NotifyActorMoved(Actor actor, Vector3 oldPosition, Vector3 newPosition);
 }
