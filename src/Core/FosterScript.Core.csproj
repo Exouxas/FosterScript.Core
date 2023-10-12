@@ -9,7 +9,7 @@
 		<Title>FosterScript.Core</Title>
 		<PackageId>FosterScript.Core</PackageId>
 		<PackageIcon>logo.png</PackageIcon>
-		<VersionPrefix>1.0.1</VersionPrefix>
+		<VersionPrefix>1.0.2</VersionPrefix>
 		<VersionSuffix>alpha</VersionSuffix>
 		<Authors>Exouxas</Authors>
 		<Description>FosterScript.Core: A flexible NEAT-based neural network library for .NET, empowering intelligent agents in research, games, and AI simulations.</Description>
