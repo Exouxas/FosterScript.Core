@@ -169,9 +169,11 @@ namespace FosterScript.Core.Worlds
             {
                 foreach (Actor a in _actorsToBeRemoved)
                 {
+                    Vector3 position = GetPosition(a);
+
                     _actors.Remove(a);
                     positions.Remove(a);
-                    ActorKilled?.Invoke(a, GetPosition(a));
+                    ActorKilled?.Invoke(a, position);
                 }
                 _actorsToBeRemoved.Clear();
             }
