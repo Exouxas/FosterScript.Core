@@ -247,6 +247,11 @@ namespace FosterScript.Core.Worlds
         /// <param name="v">The location the actor will be moved to</param>
         public void MoveTo(Actor a, Vector3 v)
         {
+            if (float.IsNaN(v.X) || float.IsNaN(v.Y) || float.IsNaN(v.Z))
+            {
+                throw new ArgumentException("Vector3 cannot contain NaN values");
+            }
+
             Vector3 oldPosition = GetPosition(a);
 
             lock (_positionsLock)
