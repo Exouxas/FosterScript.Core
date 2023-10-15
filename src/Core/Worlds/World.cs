@@ -41,9 +41,30 @@ namespace FosterScript.Core.Worlds
         public event NotifyActorMoved? ActorMoved;
 
         /// <summary>
-        /// The world bounds. If this value is null, the world is unbounded.
+        /// The world bounds. If this value is null, the world is unbounded. If any of the values are 0 or lower, they will be set to a very small value.
         /// </summary>
-        public Vector3? WorldBounds { get; set; } = null;
+        public Vector3? WorldBounds
+        {
+            get => _worldBounds;
+            set
+            {
+                if (value != null)
+                {
+                    float minimum = 0.000000001f;
+
+                    _worldBounds = new Vector3(
+                        Math.Max(value.Value.X, minimum),
+                        Math.Max(value.Value.Y, minimum),
+                        Math.Max(value.Value.Z, minimum)
+                        );
+                }
+                else
+                {
+                    _worldBounds = null;
+                }
+            }
+        }
+        private Vector3? _worldBounds = null;
 
         /// <summary>
         /// Whether the world wraps around.
