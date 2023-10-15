@@ -41,6 +41,37 @@ namespace FosterScript.Core.Worlds
         public event NotifyActorMoved? ActorMoved;
 
         /// <summary>
+        /// The world bounds. If this value is null, the world is unbounded. If any of the values are 0 or lower, they will be set to a very small value.
+        /// </summary>
+        public Vector3? WorldBounds
+        {
+            get => _worldBounds;
+            set
+            {
+                if (value != null)
+                {
+                    float minimum = 0.000000001f;
+
+                    _worldBounds = new Vector3(
+                        Math.Max(value.Value.X, minimum),
+                        Math.Max(value.Value.Y, minimum),
+                        Math.Max(value.Value.Z, minimum)
+                        );
+                }
+                else
+                {
+                    _worldBounds = null;
+                }
+            }
+        }
+        private Vector3? _worldBounds = null;
+
+        /// <summary>
+        /// Whether the world wraps around.
+        /// </summary>
+        public bool WorldWrap { get; set; } = false;
+
+        /// <summary>
         /// Get the current step.
         /// </summary>
         public long CurrentStep
@@ -254,17 +285,41 @@ namespace FosterScript.Core.Worlds
                 throw new ArgumentException("Vector3 cannot contain NaN values");
             }
 
+            Vector3 newPosition = v;
+
+            if (WorldBounds != null)
+            {
+                float x = newPosition.X;
+                float y = newPosition.Y;
+                float z = newPosition.Z;
+
+                if (WorldWrap)
+                {
+                    x -= (float)Math.Floor(x / WorldBounds.Value.X) * WorldBounds.Value.X;
+                    y -= (float)Math.Floor(y / WorldBounds.Value.Y) * WorldBounds.Value.Y;
+                    z -= (float)Math.Floor(z / WorldBounds.Value.Z) * WorldBounds.Value.Z;
+                }
+                else
+                {
+                    x = Math.Clamp(x, 0, WorldBounds.Value.X);
+                    y = Math.Clamp(y, 0, WorldBounds.Value.Y);
+                    z = Math.Clamp(z, 0, WorldBounds.Value.Z);
+                }
+
+                newPosition = new Vector3(x, y, z);
+            }
+
             Vector3 oldPosition = GetPosition(a);
 
             lock (_positionsLock)
             {
                 if (positions.ContainsKey(a))
                 {
-                    positions[a] = v;
+                    positions[a] = newPosition;
                 }
             }
 
-            ActorMoved?.Invoke(a, oldPosition, v);
+            ActorMoved?.Invoke(a, oldPosition, newPosition);
         }
 
         /// <summary>
