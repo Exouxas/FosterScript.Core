@@ -6,7 +6,7 @@ namespace FosterScript.Core.Worlds
     /// A World that will run a set amount of times.
     /// </summary>
     [Serializable]
-    public class FiniteWorld : World, ISerializable
+    public class FiniteWorld : World
     {
         private readonly long _steps;
         private bool _isRunning = false;
@@ -46,7 +46,7 @@ namespace FosterScript.Core.Worlds
 
         protected FiniteWorld(SerializationInfo info, StreamingContext context) : base(info, context)
         {
-            _steps = info.GetInt64(nameof(_steps));
+            _steps = GetValue<long>(info, nameof(_steps));
         }
 
         public override void GetObjectData(SerializationInfo info, StreamingContext context)

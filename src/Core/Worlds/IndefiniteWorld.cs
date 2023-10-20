@@ -6,7 +6,7 @@ namespace FosterScript.Core.Worlds
     /// A World that will run until stopped.
     /// </summary>
     [Serializable]
-    public class IndefiniteWorld : World, ISerializable
+    public class IndefiniteWorld : World
     {
         private readonly System.Timers.Timer clock;
         private readonly object _timerLock = new();
@@ -71,7 +71,8 @@ namespace FosterScript.Core.Worlds
 
         protected IndefiniteWorld(SerializationInfo info, StreamingContext context) : base(info, context)
         {
-            _millisecondInterval = info.GetInt64(nameof(_millisecondInterval));
+            _millisecondInterval = GetValue<long>(info, nameof(_millisecondInterval));
+            
             clock = new System.Timers.Timer(_millisecondInterval);
             clock.Elapsed += Tick; ;
             clock.AutoReset = false;

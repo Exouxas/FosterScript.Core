@@ -6,7 +6,7 @@ namespace FosterScript.Core.Agents
     /// A module that may be inserted into an Actor for added functionality
     /// </summary>
     [Serializable]
-    public abstract class Module : Dependency, ISerializable
+    public abstract class Module : Dependency
     {
         /*
          * Each "module" will attempt to be self-sufficient. 
@@ -42,15 +42,13 @@ namespace FosterScript.Core.Agents
 
         protected Module(SerializationInfo info, StreamingContext context) : this()
         {
-            Body = (Actor?)info.GetValue(nameof(Body), typeof(Actor));
-            Dependencies = (Dictionary<string, int[]>)(info.GetValue(nameof(Dependencies), typeof(Dictionary<string, int[]>)) ?? throw new SerializationException());
-            DependencyReferences = (Dictionary<string, Module>)(info.GetValue(nameof(DependencyReferences), typeof(Dictionary<string, Module>)) ?? throw new SerializationException());
+            Body = GetValue<Actor>(info, nameof(Body));
+            Dependencies = GetValue<Dictionary<string, int[]>>(info, nameof(Dependencies));
+            DependencyReferences = GetValue<Dictionary<string, Module>>(info, nameof(DependencyReferences));
         }
 
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            base.GetObjectData(info, context);
-
             info.AddValue(nameof(Body), Body);
             info.AddValue(nameof(Dependencies), Dependencies);
             info.AddValue(nameof(DependencyReferences), DependencyReferences);

@@ -6,7 +6,7 @@ namespace FosterScript.Core.NeuralNetwork
     /// Exit node where values will be used to drive actions
     /// </summary>
     [Serializable]
-    public class OutputNode : Neuron, ICanAugment, ISerializable
+    public class OutputNode : Neuron, ICanAugment
     {
         /// <summary>
         /// Calculates value that module can use.
@@ -33,7 +33,7 @@ namespace FosterScript.Core.NeuralNetwork
 
         protected OutputNode(SerializationInfo info, StreamingContext context) : base(info, context)
         {
-            Inputs = (List<NeuralConnection>)(info.GetValue(nameof(Inputs), typeof(List<NeuralConnection>)) ?? throw new SerializationException());
+            Inputs = GetValue<List<NeuralConnection>>(info, nameof(Inputs));
         }
 
         public override void GetObjectData(SerializationInfo info, StreamingContext context)

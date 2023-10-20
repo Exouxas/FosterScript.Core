@@ -7,7 +7,7 @@ namespace FosterScript.Core.NeuralNetwork
     /// Stores and calculates nodes.
     /// </summary>
     [Serializable]
-    public abstract class Brain : Module, ISerializable
+    public abstract class Brain : Module
     {
         /// <summary>
         /// Collection of all nodes that can output data to other nodes.
@@ -39,9 +39,9 @@ namespace FosterScript.Core.NeuralNetwork
         /// <param name="context">The current deserialization context.</param>
         protected Brain(SerializationInfo info, StreamingContext context)
         {
-            SupplementingNodes = (List<ICanSupplement>)(info.GetValue(nameof(SupplementingNodes), typeof(List<ICanSupplement>)) ?? throw new SerializationException());
-            AugmentingNodes = (List<ICanAugment>)(info.GetValue(nameof(AugmentingNodes), typeof(List<ICanAugment>)) ?? throw new SerializationException());
-            NeuralConnections = (List<NeuralConnection>)(info.GetValue(nameof(NeuralConnections), typeof(List<NeuralConnection>)) ?? throw new SerializationException());
+            SupplementingNodes = GetValue<List<ICanSupplement>>(info, nameof(SupplementingNodes));
+            AugmentingNodes = GetValue<List<ICanAugment>>(info, nameof(AugmentingNodes));
+            NeuralConnections = GetValue<List<NeuralConnection>>(info, nameof(NeuralConnections));
         }
 
         /// <summary>

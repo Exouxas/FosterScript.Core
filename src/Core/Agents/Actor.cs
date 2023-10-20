@@ -1,6 +1,7 @@
 using FosterScript.Core.Worlds;
 using System.Numerics;
 using System.Runtime.Serialization;
+using FosterScript.Core.Utilities;
 
 namespace FosterScript.Core.Agents
 {
@@ -8,7 +9,7 @@ namespace FosterScript.Core.Agents
     /// Hard-coded AI
     /// </summary>
     [Serializable]
-    public class Actor : ISerializable
+    public class Actor : Serializable
     {
         /// <summary>
         /// List of "parts" that alter or add to the Actors features.
@@ -63,8 +64,8 @@ namespace FosterScript.Core.Agents
         /// <param name="context">The current deserialization context.</param>
         protected Actor(SerializationInfo info, StreamingContext context)
         {
-            Modules = (List<Module>)info.GetValue(nameof(Modules), typeof(List<Module>));
-            _world = (World)info.GetValue(nameof(_world), typeof(World));
+            Modules = GetValue<List<Module>>(info, nameof(Modules));
+            _world = GetValue<World>(info, nameof(_world));
         }
 
         /// <summary>
@@ -72,7 +73,7 @@ namespace FosterScript.Core.Agents
         /// </summary>
         /// <param name="info">The stream of serialized data.</param>
         /// <param name="context">The current serialization context.</param>
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue(nameof(Modules), Modules);
             info.AddValue(nameof(_world), _world);

@@ -1,4 +1,5 @@
 using System.Runtime.Serialization;
+using FosterScript.Core.Utilities;
 
 namespace FosterScript.Core
 {
@@ -6,7 +7,7 @@ namespace FosterScript.Core
     /// A class that some other class can be dependent on.
     /// </summary>
     [Serializable]
-    public abstract class Dependency : ISerializable
+    public abstract class Dependency : Serializable
     {
         /// <summary>
         /// Version number.
@@ -21,11 +22,6 @@ namespace FosterScript.Core
         protected Dependency() { }
 
         protected Dependency(SerializationInfo info, StreamingContext context)
-        {
-
-        }
-
-        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
 
         }

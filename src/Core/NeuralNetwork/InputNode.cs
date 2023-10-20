@@ -6,7 +6,7 @@ namespace FosterScript.Core.NeuralNetwork
     /// Nodes that provide input to the network
     /// </summary>
     [Serializable]
-    public class InputNode : Neuron, ICanSupplement, ISerializable
+    public class InputNode : Neuron, ICanSupplement
     {
         public delegate void OutputRequestHandler(object sender, InputNeuronEventArgs e);
         public event OutputRequestHandler? OnRequestOutput;
@@ -24,8 +24,8 @@ namespace FosterScript.Core.NeuralNetwork
 
         protected InputNode(SerializationInfo info, StreamingContext context) : base(info, context)
         {
-            output = (double)(info.GetValue(nameof(Output), typeof(double)) ?? throw new SerializationException());
-            storedOutput = (double)(info.GetValue(nameof(storedOutput), typeof(double)) ?? throw new SerializationException());
+            output = GetValue<double>(info, nameof(output));
+            storedOutput = GetValue<double>(info, nameof(storedOutput));
         }
 
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
