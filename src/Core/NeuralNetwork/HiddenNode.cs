@@ -6,7 +6,7 @@ namespace FosterScript.Core.NeuralNetwork
     /// Calculating nodes used to calculate and propagate data from input to output
     /// </summary>
     [Serializable]
-    public abstract class HiddenNode : InputNode, ICanAugment, ISerializable
+    public abstract class HiddenNode : InputNode, ICanAugment
     {
         public List<NeuralConnection> Inputs { get; }
 
@@ -17,7 +17,7 @@ namespace FosterScript.Core.NeuralNetwork
 
         protected HiddenNode(SerializationInfo info, StreamingContext context) : base(info, context)
         {
-            Inputs = (List<NeuralConnection>)(info.GetValue(nameof(Inputs), typeof(List<NeuralConnection>)) ?? throw new SerializationException());
+            Inputs = GetValue<List<NeuralConnection>>(info, nameof(Inputs));
         }
 
         public override void GetObjectData(SerializationInfo info, StreamingContext context)

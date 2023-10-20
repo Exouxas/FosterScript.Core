@@ -1,6 +1,7 @@
 using FosterScript.Core.Agents;
 using System.Numerics;
 using System.Runtime.Serialization;
+using FosterScript.Core.Utilities;
 
 namespace FosterScript.Core.Worlds
 {
@@ -8,7 +9,7 @@ namespace FosterScript.Core.Worlds
     /// 
     /// </summary>
     [Serializable]
-    public abstract class World : ISerializable
+    public abstract class World : Serializable
     {
         /// <summary>
         /// A whole step has been completed.
@@ -122,16 +123,16 @@ namespace FosterScript.Core.Worlds
 
         internal World(SerializationInfo info, StreamingContext context)
         {
-            _currentStep = (long)(info.GetValue(nameof(_currentStep), typeof(long)) ?? throw new SerializationException());
-            _actorsToBeRemoved = (List<Actor>)(info.GetValue(nameof(_actorsToBeRemoved), typeof(List<Actor>)) ?? throw new SerializationException());
-            _actors = (List<Actor>)(info.GetValue(nameof(_actors), typeof(List<Actor>)) ?? throw new SerializationException());
-            _actorRemoveLock = (object)(info.GetValue(nameof(_actorRemoveLock), typeof(object)) ?? throw new SerializationException());
-            _actorLock = (object)(info.GetValue(nameof(_actorLock), typeof(object)) ?? throw new SerializationException());
-            _positionsLock = (object)(info.GetValue(nameof(_positionsLock), typeof(object)) ?? throw new SerializationException());
-            positions = (Dictionary<Actor, Vector3>)(info.GetValue(nameof(positions), typeof(Dictionary<Actor, Vector3>)) ?? throw new SerializationException());
+            _currentStep = GetValue<long>(info, nameof(_currentStep));
+            _actorsToBeRemoved = GetValue<List<Actor>>(info, nameof(_actorsToBeRemoved));
+            _actors = GetValue<List<Actor>>(info, nameof(_actors));
+            _actorRemoveLock = GetValue<object>(info, nameof(_actorRemoveLock));
+            _actorLock = GetValue<object>(info, nameof(_actorLock));
+            _positionsLock = GetValue<object>(info, nameof(_positionsLock));
+            positions = GetValue<Dictionary<Actor, Vector3>>(info, nameof(positions));
         }
 
-        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue(nameof(_currentStep), _currentStep);
             info.AddValue(nameof(_actorsToBeRemoved), _actorsToBeRemoved);

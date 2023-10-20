@@ -1,4 +1,5 @@
 ﻿using System.Runtime.Serialization;
+using FosterScript.Core.Utilities;
 
 namespace FosterScript.Core.NeuralNetwork
 {
@@ -6,7 +7,7 @@ namespace FosterScript.Core.NeuralNetwork
     /// Simple connection between two neurons or nodes
     /// </summary>
     [Serializable]
-    public class NeuralConnection : ISerializable
+    public class NeuralConnection : Serializable
     {
         /// <summary>
         /// Supplementing node
@@ -53,12 +54,12 @@ namespace FosterScript.Core.NeuralNetwork
 
         public NeuralConnection(SerializationInfo info, StreamingContext context)
         {
-            From = (ICanSupplement)(info.GetValue(nameof(From), typeof(ICanSupplement)) ?? throw new SerializationException());
-            To = (ICanAugment)(info.GetValue(nameof(To), typeof(ICanAugment)) ?? throw new SerializationException());
-            weight = (double)(info.GetValue(nameof(Weight), typeof(double)) ?? throw new SerializationException());
+            From = GetValue<ICanSupplement>(info, nameof(From));
+            To = GetValue<ICanAugment>(info, nameof(To));
+            weight = GetValue<double>(info, nameof(Weight));
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue(nameof(From), From);
             info.AddValue(nameof(To), To);

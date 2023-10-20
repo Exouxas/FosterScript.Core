@@ -1,4 +1,5 @@
 ﻿using System.Runtime.Serialization;
+using FosterScript.Core.Utilities;
 
 namespace FosterScript.Core.NeuralNetwork
 {
@@ -6,7 +7,7 @@ namespace FosterScript.Core.NeuralNetwork
     /// General neuron. Base type for the input, hidden, and output nodes.
     /// </summary>
     [Serializable]
-    public abstract class Neuron : ISerializable
+    public abstract class Neuron : Serializable
     {
         /// <summary>
         /// Name of the neuron
@@ -34,11 +35,11 @@ namespace FosterScript.Core.NeuralNetwork
 
         protected Neuron(SerializationInfo info, StreamingContext context)
         {
-            _name = (string)(info.GetValue(nameof(Name), typeof(string)) ?? throw new SerializationException());
-            _description = (string)(info.GetValue(nameof(Description), typeof(string)) ?? throw new SerializationException());
+            _name = GetValue<string>(info, nameof(_name));
+            _description = GetValue<string>(info, nameof(_description));
         }
 
-        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue(nameof(Name), Name);
             info.AddValue(nameof(Description), Description);
