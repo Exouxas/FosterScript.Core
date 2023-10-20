@@ -6,7 +6,7 @@ namespace FosterScript.Core.Utilities
     {
         public abstract void GetObjectData(SerializationInfo info, StreamingContext context);
 
-        protected T GetValue<T>(SerializationInfo info, string name)
+        protected static T GetValue<T>(SerializationInfo info, string name)
         {
             return (T)(info.GetValue(name, typeof(T)) ?? throw new SerializationException());
         }
