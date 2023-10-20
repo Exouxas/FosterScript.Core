@@ -39,9 +39,9 @@ namespace FosterScript.Core.NeuralNetwork
         /// <param name="context">The current deserialization context.</param>
         protected Brain(SerializationInfo info, StreamingContext context)
         {
-            SupplementingNodes = (List<ICanSupplement>)info.GetValue(nameof(SupplementingNodes), typeof(List<ICanSupplement>));
-            AugmentingNodes = (List<ICanAugment>)info.GetValue(nameof(AugmentingNodes), typeof(List<ICanAugment>));
-            NeuralConnections = (List<NeuralConnection>)info.GetValue(nameof(NeuralConnections), typeof(List<NeuralConnection>));
+            SupplementingNodes = (List<ICanSupplement>)(info.GetValue(nameof(SupplementingNodes), typeof(List<ICanSupplement>)) ?? throw new SerializationException());
+            AugmentingNodes = (List<ICanAugment>)(info.GetValue(nameof(AugmentingNodes), typeof(List<ICanAugment>)) ?? throw new SerializationException());
+            NeuralConnections = (List<NeuralConnection>)(info.GetValue(nameof(NeuralConnections), typeof(List<NeuralConnection>)) ?? throw new SerializationException());
         }
 
         /// <summary>

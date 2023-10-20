@@ -24,8 +24,8 @@ namespace FosterScript.Core.NeuralNetwork
 
         protected InputNode(SerializationInfo info, StreamingContext context) : base(info, context)
         {
-            output = (double)info.GetValue(nameof(Output), typeof(double));
-            storedOutput = (double)info.GetValue(nameof(storedOutput), typeof(double));
+            output = (double)(info.GetValue(nameof(Output), typeof(double)) ?? throw new SerializationException());
+            storedOutput = (double)(info.GetValue(nameof(storedOutput), typeof(double)) ?? throw new SerializationException());
         }
 
         public override void GetObjectData(SerializationInfo info, StreamingContext context)

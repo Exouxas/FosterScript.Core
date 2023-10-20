@@ -122,13 +122,13 @@ namespace FosterScript.Core.Worlds
 
         internal World(SerializationInfo info, StreamingContext context)
         {
-            _currentStep = (long)info.GetValue(nameof(_currentStep), typeof(long));
-            _actorsToBeRemoved = (List<Actor>)info.GetValue(nameof(_actorsToBeRemoved), typeof(List<Actor>));
-            _actors = (List<Actor>)info.GetValue(nameof(_actors), typeof(List<Actor>));
-            _actorRemoveLock = (object)info.GetValue(nameof(_actorRemoveLock), typeof(object));
-            _actorLock = (object)info.GetValue(nameof(_actorLock), typeof(object));
-            _positionsLock = (object)info.GetValue(nameof(_positionsLock), typeof(object));
-            positions = (Dictionary<Actor, Vector3>)info.GetValue(nameof(positions), typeof(Dictionary<Actor, Vector3>));
+            _currentStep = (long)(info.GetValue(nameof(_currentStep), typeof(long)) ?? throw new SerializationException());
+            _actorsToBeRemoved = (List<Actor>)(info.GetValue(nameof(_actorsToBeRemoved), typeof(List<Actor>)) ?? throw new SerializationException());
+            _actors = (List<Actor>)(info.GetValue(nameof(_actors), typeof(List<Actor>)) ?? throw new SerializationException());
+            _actorRemoveLock = (object)(info.GetValue(nameof(_actorRemoveLock), typeof(object)) ?? throw new SerializationException());
+            _actorLock = (object)(info.GetValue(nameof(_actorLock), typeof(object)) ?? throw new SerializationException());
+            _positionsLock = (object)(info.GetValue(nameof(_positionsLock), typeof(object)) ?? throw new SerializationException());
+            positions = (Dictionary<Actor, Vector3>)(info.GetValue(nameof(positions), typeof(Dictionary<Actor, Vector3>)) ?? throw new SerializationException());
         }
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
