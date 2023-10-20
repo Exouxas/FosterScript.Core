@@ -43,8 +43,8 @@ namespace FosterScript.Core.Agents
         protected Module(SerializationInfo info, StreamingContext context) : this()
         {
             Body = (Actor?)info.GetValue(nameof(Body), typeof(Actor));
-            Dependencies = (Dictionary<string, int[]>)info.GetValue(nameof(Dependencies), typeof(Dictionary<string, int[]>));
-            DependencyReferences = (Dictionary<string, Module>)info.GetValue(nameof(DependencyReferences), typeof(Dictionary<string, Module>));
+            Dependencies = (Dictionary<string, int[]>)(info.GetValue(nameof(Dependencies), typeof(Dictionary<string, int[]>)) ?? throw new SerializationException());
+            DependencyReferences = (Dictionary<string, Module>)(info.GetValue(nameof(DependencyReferences), typeof(Dictionary<string, Module>)) ?? throw new SerializationException());
         }
 
         public override void GetObjectData(SerializationInfo info, StreamingContext context)

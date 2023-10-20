@@ -53,9 +53,9 @@ namespace FosterScript.Core.NeuralNetwork
 
         public NeuralConnection(SerializationInfo info, StreamingContext context)
         {
-            From = (ICanSupplement)info.GetValue(nameof(From), typeof(ICanSupplement));
-            To = (ICanAugment)info.GetValue(nameof(To), typeof(ICanAugment));
-            weight = (double)info.GetValue(nameof(Weight), typeof(double));
+            From = (ICanSupplement)(info.GetValue(nameof(From), typeof(ICanSupplement)) ?? throw new SerializationException());
+            To = (ICanAugment)(info.GetValue(nameof(To), typeof(ICanAugment)) ?? throw new SerializationException());
+            weight = (double)(info.GetValue(nameof(Weight), typeof(double)) ?? throw new SerializationException());
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)

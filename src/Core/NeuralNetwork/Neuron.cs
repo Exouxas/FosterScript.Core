@@ -34,8 +34,8 @@ namespace FosterScript.Core.NeuralNetwork
 
         protected Neuron(SerializationInfo info, StreamingContext context)
         {
-            _name = (string)info.GetValue(nameof(Name), typeof(string));
-            _description = (string)info.GetValue(nameof(Description), typeof(string));
+            _name = (string)(info.GetValue(nameof(Name), typeof(string)) ?? throw new SerializationException());
+            _description = (string)(info.GetValue(nameof(Description), typeof(string)) ?? throw new SerializationException());
         }
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)

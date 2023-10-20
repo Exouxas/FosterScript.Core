@@ -17,7 +17,7 @@ namespace FosterScript.Core.NeuralNetwork
 
         protected HiddenNode(SerializationInfo info, StreamingContext context) : base(info, context)
         {
-            Inputs = (List<NeuralConnection>)info.GetValue(nameof(Inputs), typeof(List<NeuralConnection>));
+            Inputs = (List<NeuralConnection>)(info.GetValue(nameof(Inputs), typeof(List<NeuralConnection>)) ?? throw new SerializationException());
         }
 
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
