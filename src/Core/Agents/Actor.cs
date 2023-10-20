@@ -135,7 +135,11 @@ namespace FosterScript.Core.Agents
             Modules.Add(module);
             module.Body = this;
             AreModulesValidated = false;
-            module.Initialize();
+
+            if (AreModulesValidated)
+            {
+                module.Initialize();
+            }
         }
 
         /// <summary>
