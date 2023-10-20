@@ -334,6 +334,31 @@ namespace FosterScript.Core.Worlds
             MoveTo(a, oldPosition + v);
         }
 
+        /// <summary>
+        /// Get actors within range of the given center position and radius.
+        /// </summary>
+        /// <param name="center">The center position used for calculating the radius.</param>
+        /// <param name="radius">The radius used for calculating the range from the center position.</param>
+        /// <returns>A collection of actors within the range of the center position.</returns>
+        public ICollection<Actor> GetActorsInArea(Vector3 center, float radius)
+        {
+            List<Actor> actorsInArea = new();
+
+            lock (_actorLock)
+            {
+                foreach (Actor a in _actors)
+                {
+                    if (Vector3.Distance(center, GetPosition(a)) <= radius)
+                    {
+                        actorsInArea.Add(a);
+                    }
+                }
+            }
+
+            return actorsInArea;
+        }
+
+
         public abstract void Start();
         public abstract void Stop();
     }
